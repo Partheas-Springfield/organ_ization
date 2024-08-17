@@ -37,4 +37,4 @@ func set_display_tile(vector2i):
 			game_tile_data.append(0)
 		else:
 			game_tile_data.append(get_tile(vector2i + v2).get_id())
-	display_tilemap.set_cell(vector2i,1,Global.tilemap_key[game_tile_data])
+	display_tilemap.set_cell(vector2i,randi_range(0,1),Global.tilemap_key[game_tile_data])
