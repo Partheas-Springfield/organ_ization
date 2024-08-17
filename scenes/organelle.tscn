@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://vj6w4u8fedxt"]
+
+[ext_resource type="Script" path="res://scripts/organelle.gd" id="1_ig6ep"]
+[ext_resource type="Texture2D" uid="uid://u72sgxpxf3ee" path="res://sprites/organelles1.png" id="2_mi3hv"]
+[ext_resource type="Texture2D" uid="uid://b2bqgn23q5ax5" path="res://sprites/organelles3.png" id="3_5sifr"]
+[ext_resource type="Texture2D" uid="uid://dn1y1b7c6pefj" path="res://sprites/organelles2.png" id="4_b4v34"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntrjl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mi3hv")
+}],
+"loop": true,
+"name": &"test1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5sifr")
+}],
+"loop": true,
+"name": &"test2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_b4v34")
+}],
+"loop": true,
+"name": &"test3",
+"speed": 5.0
+}]
+
+[node name="organelle" type="Node2D"]
+script = ExtResource("1_ig6ep")
+
+[node name="organelle_sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(64, 64)
+sprite_frames = SubResource("SpriteFrames_ntrjl")
+animation = &"test2"
