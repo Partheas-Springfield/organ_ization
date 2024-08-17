@@ -12,8 +12,8 @@ var valid_placement = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for xi in range(0,5):
-		for yi in range(0,5):
+	for xi in range(6,11):
+		for yi in range(2,7):
 			var new_tile = tile_scene.instantiate()
 			game_tiles.add_child(new_tile)
 			new_tile.set_iposition(xi,yi)
@@ -21,6 +21,13 @@ func _ready():
 	for tile in game_tiles.get_children():
 		tile.tile_clicked.connect(_tile_clicked.bind(tile))
 		tile.tile_entered.connect(_tile_entered.bind(tile))
+	for xi in range(8,11):
+		for yi in range(4,7):
+			get_tile(Vector2i(xi,yi)).set_incel()
+	for used_tile in display_tilemap.get_used_cells():
+		set_display_tile(used_tile)
+	_place_organelle(get_tile(Vector2i(8,4)),'nucleus')
+	_place_organelle(get_tile(Vector2i(10,4)),'test1')
 
 func get_tile(vector2i):
 	for tile in game_tiles.get_children():
@@ -43,14 +50,31 @@ func _tile_clicked(tile):
 		tile.set_incel(false)
 	elif mode == 'organelle':
 		if valid_placement:
-			for vector2i in Global.get_organelle_vectors(active_organelle):
-				get_tile(tile.get_iposition() + vector2i).set_organelle(active_organelle)
-			tile.show_organelle()
+			_place_organelle(tile,active_organelle)
 			active_organelle = null
-			mode = null
+			mode = 'move'
+			valid_placement = false
 			_clear_organelle_tilemap()
+	elif mode == 'move':
+		if tile.organelle != null:
+			active_organelle = _remove_organelle(tile)
+			mode = 'organelle'
 	for used_tile in display_tilemap.get_used_cells():
 		set_display_tile(used_tile)
+
+func _place_organelle(tile,organelle):
+	for vector2i in Global.get_organelle_vectors(organelle):
+		get_tile(tile.get_iposition() + vector2i).set_organelle(organelle,tile.get_iposition())
+	tile.show_organelle()
+
+func _remove_organelle(tile):
+	var origin_tile = get_tile(tile.get_organelle_origin())
+	var organelle_to_remove = tile.get_organelle()
+	for vector2i in Global.get_organelle_vectors(organelle_to_remove):
+		var t = get_tile(origin_tile.get_iposition() + vector2i)
+		t.set_organelle()
+	origin_tile.hide_organelle()
+	return organelle_to_remove
 
 func _tile_entered(tile):
 	_clear_organelle_tilemap()
@@ -92,3 +116,7 @@ func _on_expand_cell_pressed():
 
 func _on_shrink_cell_pressed():
 	mode = 'shrink'
+
+
+func _on_move_organelle_pressed():
+	mode = 'move'
