@@ -62,7 +62,17 @@ func _on_mouse_entered():
 	selection.show()
 	selection.play()
 
+func selected():
+	hovered = true
+	emit_signal('tile_entered')
+	selection.show()
+	selection.play()
+
 func _on_mouse_exited():
+	hovered = false
+	selection.hide()
+
+func deselected():
 	hovered = false
 	selection.hide()
 
