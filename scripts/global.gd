@@ -1,5 +1,10 @@
 extends Node
 
+var master_volume = 1
+var music_volume = .5
+var effects_volume = .5
+var volume_scale = 1
+
 const tilemap_key = {
 	[0,0,0,0]: Vector2i(0,3),
 	[1,0,0,0]: Vector2i(3,3),
