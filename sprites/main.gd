@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var tile_scene = preload("res://tile.tscn")
+@onready var tile_scene = preload("res://scenes/tile.tscn")
 @onready var game_tiles = $game_tiles
 @onready var display_tilemap = $display_tilemap
 

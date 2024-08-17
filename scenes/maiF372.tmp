@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=4 uid="uid://dw3dg4mra64he"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_ciodt"]
-[ext_resource type="Texture2D" uid="uid://cu0tjacc3ltkr" path="res://sprites/cell_on_petri1.png" id="2_50mgd"]
-[ext_resource type="Texture2D" uid="uid://bq225psujedtm" path="res://sprites/cell_on_petri2.png" id="3_stnrl"]
+[ext_resource type="Script" path="res://sprites/main.gd" id="1_vvm3s"]
+[ext_resource type="Texture2D" uid="uid://cu0tjacc3ltkr" path="res://sprites/cell_on_petri1.png" id="2_gce5q"]
+[ext_resource type="Texture2D" uid="uid://bq225psujedtm" path="res://sprites/cell_on_petri2.png" id="3_lecxp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkpd5"]
-texture = ExtResource("2_50mgd")
+texture = ExtResource("2_gce5q")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -73,7 +73,7 @@ texture_region_size = Vector2i(64, 64)
 7:7/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i1b65"]
-texture = ExtResource("3_stnrl")
+texture = ExtResource("3_lecxp")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -98,7 +98,7 @@ sources/0 = SubResource("TileSetAtlasSource_dkpd5")
 sources/1 = SubResource("TileSetAtlasSource_i1b65")
 
 [node name="main" type="Node2D"]
-script = ExtResource("1_ciodt")
+script = ExtResource("1_vvm3s")
 
 [node name="display_tilemap" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAMAAAABAAAAAAAAAAMAAAACAAAAAAAAAAMAAAADAAAAAAAAAAMAAAAEAAAAAAAAAAMAAAAAAAEAAAAAAAMAAAABAAEAAAAAAAMAAAACAAEAAAAAAAMAAAADAAEAAAAAAAMAAAAEAAEAAAAAAAMAAAAAAAIAAAAAAAMAAAABAAIAAAAAAAMAAAACAAIAAAAAAAMAAAADAAIAAAAAAAMAAAAEAAIAAAAAAAMAAAAAAAMAAAAAAAMAAAABAAMAAAAAAAMAAAACAAMAAAAAAAMAAAADAAMAAAAAAAMAAAAEAAMAAAAAAAMAAAAAAAQAAAAAAAMAAAABAAQAAAAAAAMAAAACAAQAAAAAAAMAAAADAAQAAAAAAAMAAAAEAAQAAAAAAAMAAAAFAAQAAAAAAAMAAAAFAAAAAAAAAAMAAAAFAAEAAAAAAAMAAAAFAAIAAAAAAAMAAAAFAAMAAAAAAAMAAAAAAAUAAAAAAAMAAAABAAUAAAAAAAMAAAACAAUAAAAAAAMAAAADAAUAAAAAAAMAAAAEAAUAAAAAAAMAAAAFAAUAAAAAAAMAAAA=")
