@@ -121,3 +121,13 @@ func _on_shrink_cell_pressed():
 
 func _on_move_organelle_pressed():
 	mode = 'move'
+
+
+func _on_waste_button_pressed():
+	$waste_button/waste.play('trashed')
+	active_organelle = null
+	mode = 'move'
+
+func _on_waste_animation_looped():
+	$waste_button/waste.play('default')
+	$waste_button/waste.stop()
