@@ -12,6 +12,8 @@ var valid_placement = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$waste_button/waste.play('default')
+	$waste_button/waste.stop()
 	for xi in range(6,11):
 		for yi in range(2,7):
 			var new_tile = tile_scene.instantiate()
@@ -48,7 +50,8 @@ func _tile_clicked(tile):
 	if mode == 'expand':
 		tile.set_incel()
 	elif mode == 'shrink':
-		tile.set_incel(false)
+		if tile.get_organelle() == null:
+			tile.set_incel(false)
 	elif mode == 'organelle':
 		if valid_placement:
 			_place_organelle(tile,active_organelle)
@@ -129,5 +132,28 @@ func _on_waste_button_pressed():
 	mode = 'move'
 
 func _on_waste_animation_looped():
+	if $waste_button.has_focus():
+		$waste_button/waste.play('highlight')
+	else:
+		$waste_button/waste.play('default')
+	$waste_button/waste.stop()
+
+
+func _on_waste_button_focus_entered():
+	$waste_button/waste.play('highlight')
+	$waste_button/waste.stop()
+
+func _on_waste_button_focus_exited():
 	$waste_button/waste.play('default')
 	$waste_button/waste.stop()
+
+
+func _on_waste_button_mouse_entered():
+	$waste_button/waste.play('hover')
+	$waste_button/waste.stop()
+
+
+func _on_waste_button_mouse_exited():
+	if $waste_button/waste.animation != 'trashed':
+		$waste_button/waste.play('default')
+		$waste_button/waste.stop()
