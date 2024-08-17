@@ -5,6 +5,7 @@ extends Node2D
 var incel = false
 var id = 0
 var organelle = null
+var organelle_origin = null
 var hovered = false
 signal tile_clicked
 signal tile_entered
@@ -44,12 +45,16 @@ func get_id():
 func get_incel():
 	return incel
 
-func set_organelle(new_organelle):
+func set_organelle(new_organelle=null,origin=null):
 	organelle = new_organelle
-	organelle_sprite.play(organelle)
+	organelle_origin = origin
+	organelle_sprite.play(str(organelle))
 
 func get_organelle():
 	return organelle
+
+func get_organelle_origin():
+	return organelle_origin
 
 func _on_mouse_entered():
 	hovered = true

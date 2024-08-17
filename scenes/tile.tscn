@@ -48,6 +48,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("7_ijh67")
+}],
+"loop": true,
+"name": &"null",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("6_vuxos")
 }],
 "loop": true,
@@ -99,7 +107,7 @@ sprite_frames = SubResource("SpriteFrames_banx2")
 [node name="organelle" type="AnimatedSprite2D" parent="."]
 position = Vector2(64, 64)
 sprite_frames = SubResource("SpriteFrames_r6l4a")
-animation = &"test4"
+animation = &"null"
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

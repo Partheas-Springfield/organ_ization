@@ -52,15 +52,29 @@ func _tile_clicked(tile):
 		if valid_placement:
 			_place_organelle(tile,active_organelle)
 			active_organelle = null
-			mode = null
+			mode = 'move'
+			valid_placement = false
 			_clear_organelle_tilemap()
+	elif mode == 'move':
+		if tile.organelle != null:
+			active_organelle = _remove_organelle(tile)
+			mode = 'organelle'
 	for used_tile in display_tilemap.get_used_cells():
 		set_display_tile(used_tile)
 
 func _place_organelle(tile,organelle):
 	for vector2i in Global.get_organelle_vectors(organelle):
-		get_tile(tile.get_iposition() + vector2i).set_organelle(organelle)
+		get_tile(tile.get_iposition() + vector2i).set_organelle(organelle,tile.get_iposition())
 	tile.show_organelle()
+
+func _remove_organelle(tile):
+	var origin_tile = get_tile(tile.get_organelle_origin())
+	var organelle_to_remove = tile.get_organelle()
+	for vector2i in Global.get_organelle_vectors(organelle_to_remove):
+		var t = get_tile(origin_tile.get_iposition() + vector2i)
+		t.set_organelle()
+	origin_tile.hide_organelle()
+	return organelle_to_remove
 
 func _tile_entered(tile):
 	_clear_organelle_tilemap()
@@ -102,3 +116,7 @@ func _on_expand_cell_pressed():
 
 func _on_shrink_cell_pressed():
 	mode = 'shrink'
+
+
+func _on_move_organelle_pressed():
+	mode = 'move'

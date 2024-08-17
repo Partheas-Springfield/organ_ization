@@ -186,23 +186,30 @@ tile_set = SubResource("TileSet_6jqnj")
 [node name="get_organelle" type="Button" parent="."]
 offset_left = 912.0
 offset_top = 320.0
-offset_right = 1129.0
+offset_right = 1128.0
 offset_bottom = 392.0
 text = "get organelle"
 
 [node name="expand_cell" type="Button" parent="."]
 offset_left = 912.0
 offset_top = 160.0
-offset_right = 1129.0
+offset_right = 1128.0
 offset_bottom = 232.0
 text = "expand cell"
 
 [node name="shrink_cell" type="Button" parent="."]
 offset_left = 912.0
 offset_top = 240.0
-offset_right = 1129.0
+offset_right = 1128.0
 offset_bottom = 312.0
 text = "shrink cell"
+
+[node name="move_organelle" type="Button" parent="."]
+offset_left = 912.0
+offset_top = 400.0
+offset_right = 1128.0
+offset_bottom = 472.0
+text = "move organelle"
 
 [node name="organelle_tilemap" type="TileMapLayer" parent="."]
 z_index = 20
@@ -212,3 +219,4 @@ tile_set = SubResource("TileSet_e0qun")
 [connection signal="pressed" from="get_organelle" to="." method="_on_get_organelle_pressed"]
 [connection signal="pressed" from="expand_cell" to="." method="_on_expand_cell_pressed"]
 [connection signal="pressed" from="shrink_cell" to="." method="_on_shrink_cell_pressed"]
+[connection signal="pressed" from="move_organelle" to="." method="_on_move_organelle_pressed"]
