@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dw3dg4mra64he"]
+[gd_scene load_steps=20 format=4 uid="uid://dw3dg4mra64he"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0ns07"]
 [ext_resource type="Texture2D" uid="uid://bawt0bs4dsmiv" path="res://sprites/cell_on_petri1.png" id="2_gce5q"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://caeci6rig2f7b" path="res://sprites/organelles1.png" id="4_pxque"]
 [ext_resource type="Texture2D" uid="uid://esywlbyso7tf" path="res://sprites/organelles2.png" id="5_g1qlk"]
 [ext_resource type="Texture2D" uid="uid://bg6gos6nnm2h6" path="res://sprites/organelles3.png" id="6_t3bh2"]
+[ext_resource type="Texture2D" uid="uid://dgnuwm64d5sco" path="res://sprites/biohazard1.png" id="8_napfp"]
+[ext_resource type="Texture2D" uid="uid://dbwxw5kthm7bb" path="res://sprites/biohazard3.png" id="9_jttll"]
+[ext_resource type="Texture2D" uid="uid://b0ageon1wfi4" path="res://sprites/biohazard2.png" id="9_q44p0"]
+[ext_resource type="Texture2D" uid="uid://dlkdpblknun62" path="res://sprites/biohazard4.png" id="10_qsexh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkpd5"]
 texture = ExtResource("2_gce5q")
@@ -170,6 +174,44 @@ sources/1 = SubResource("TileSetAtlasSource_13bob")
 sources/2 = SubResource("TileSetAtlasSource_irt6n")
 sources/3 = SubResource("TileSetAtlasSource_vhmam")
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_sjssy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_napfp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_jttll")
+}],
+"loop": true,
+"name": &"highlight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_qsexh")
+}],
+"loop": true,
+"name": &"hover",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_q44p0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_napfp")
+}],
+"loop": true,
+"name": &"trashed",
+"speed": 3.0
+}]
+
 [node name="main" type="Node2D"]
 script = ExtResource("1_0ns07")
 
@@ -216,7 +258,7 @@ offset_top = 400.0
 offset_right = 1128.0
 offset_bottom = 472.0
 focus_neighbor_top = NodePath("../get_organelle")
-focus_neighbor_bottom = NodePath("../expand_cell")
+focus_neighbor_bottom = NodePath("../waste_button")
 text = "move organelle"
 
 [node name="organelle_tilemap" type="TileMapLayer" parent="."]
@@ -224,7 +266,26 @@ z_index = 20
 position = Vector2(32, 32)
 tile_set = SubResource("TileSet_e0qun")
 
+[node name="waste_button" type="Button" parent="."]
+offset_left = 996.0
+offset_top = 520.0
+offset_right = 1036.0
+offset_bottom = 561.0
+focus_neighbor_top = NodePath("../move_organelle")
+
+[node name="waste" type="AnimatedSprite2D" parent="waste_button"]
+position = Vector2(20, 18)
+sprite_frames = SubResource("SpriteFrames_sjssy")
+animation = &"trashed"
+
 [connection signal="pressed" from="get_organelle" to="." method="_on_get_organelle_pressed"]
 [connection signal="pressed" from="expand_cell" to="." method="_on_expand_cell_pressed"]
 [connection signal="pressed" from="shrink_cell" to="." method="_on_shrink_cell_pressed"]
 [connection signal="pressed" from="move_organelle" to="." method="_on_move_organelle_pressed"]
+[connection signal="focus_entered" from="waste_button" to="." method="_on_waste_button_focus_entered"]
+[connection signal="focus_exited" from="waste_button" to="." method="_on_waste_button_focus_exited"]
+[connection signal="mouse_entered" from="waste_button" to="." method="_on_waste_button_mouse_entered"]
+[connection signal="mouse_exited" from="waste_button" to="." method="_on_waste_button_mouse_exited"]
+[connection signal="pressed" from="waste_button" to="." method="_on_waste_button_pressed"]
+[connection signal="animation_looped" from="waste_button/waste" to="." method="_on_waste_animation_looped"]
+[connection signal="frame_changed" from="waste_button/waste" to="." method="_on_waste_frame_changed"]

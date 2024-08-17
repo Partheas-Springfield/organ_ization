@@ -1,15 +1,22 @@
-[gd_scene load_steps=14 format=3 uid="uid://mlfs7ps56hoo"]
+[gd_scene load_steps=21 format=3 uid="uid://mlfs7ps56hoo"]
 
 [ext_resource type="Script" path="res://scripts/tile.gd" id="1_r284q"]
 [ext_resource type="Texture2D" uid="uid://csg27e4axy0qc" path="res://sprites/selection1.png" id="2_pi1b0"]
 [ext_resource type="Texture2D" uid="uid://cpo10c5hto6ih" path="res://sprites/selection2.png" id="3_vfj5n"]
 [ext_resource type="Texture2D" uid="uid://drajfpk7winsj" path="res://sprites/organelle7.png" id="4_x1abj"]
+[ext_resource type="Texture2D" uid="uid://upgfibuown6e" path="res://sprites/organelle14.png" id="5_7fswh"]
 [ext_resource type="Texture2D" uid="uid://ba2q7e7ekb2ax" path="res://sprites/organelle4.png" id="5_m045d"]
 [ext_resource type="Texture2D" uid="uid://ccg7r6jseypnc" path="res://sprites/organelle6.png" id="6_vuxos"]
 [ext_resource type="Texture2D" uid="uid://j5v6roeovdlp" path="res://sprites/organelle1.png" id="7_ijh67"]
+[ext_resource type="Texture2D" uid="uid://6doyeebeb3at" path="res://sprites/organelle11.png" id="7_m01jn"]
 [ext_resource type="Texture2D" uid="uid://dyxv6a3303x03" path="res://sprites/organelle2.png" id="8_3xxm1"]
 [ext_resource type="Texture2D" uid="uid://bm6ta4x75grk3" path="res://sprites/organelle3.png" id="9_i60hs"]
+[ext_resource type="Texture2D" uid="uid://6jocd7d1qigi" path="res://sprites/organelle8.png" id="9_sfvkk"]
 [ext_resource type="Texture2D" uid="uid://b40uyxl5ocxo1" path="res://sprites/organelle5.png" id="10_5unyl"]
+[ext_resource type="Texture2D" uid="uid://dm8y3ouxm45en" path="res://sprites/organelle13.png" id="11_6uhab"]
+[ext_resource type="Texture2D" uid="uid://8g14jid4pn3" path="res://sprites/organelle9.png" id="13_gnw6u"]
+[ext_resource type="Texture2D" uid="uid://40oay6nkibm3" path="res://sprites/organelle10.png" id="15_ysna4"]
+[ext_resource type="Texture2D" uid="uid://nv4j3feq3h4k" path="res://sprites/organelle12.png" id="17_kdpw2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxopx"]
 size = Vector2(64, 64)
@@ -33,66 +40,90 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("4_x1abj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7fswh")
 }],
 "loop": true,
 "name": &"cellwall",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("5_m045d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_m01jn")
 }],
 "loop": true,
 "name": &"nucleus",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("7_ijh67")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_sfvkk")
 }],
 "loop": true,
 "name": &"null",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("6_vuxos")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6uhab")
 }],
 "loop": true,
 "name": &"rna",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("7_ijh67")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_sfvkk")
 }],
 "loop": true,
 "name": &"test1",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("8_3xxm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_gnw6u")
 }],
 "loop": true,
 "name": &"test2",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("9_i60hs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ysna4")
 }],
 "loop": true,
 "name": &"test3",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("10_5unyl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_kdpw2")
 }],
 "loop": true,
 "name": &"test4",
-"speed": 5.0
+"speed": 3.0
 }]
 
 [node name="tile" type="Area2D"]
@@ -107,7 +138,7 @@ sprite_frames = SubResource("SpriteFrames_banx2")
 [node name="organelle" type="AnimatedSprite2D" parent="."]
 position = Vector2(64, 64)
 sprite_frames = SubResource("SpriteFrames_r6l4a")
-animation = &"null"
+animation = &"nucleus"
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
