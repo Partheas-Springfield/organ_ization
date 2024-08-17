@@ -1,8 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://mlfs7ps56hoo"]
+[gd_scene load_steps=14 format=3 uid="uid://mlfs7ps56hoo"]
 
 [ext_resource type="Script" path="res://scripts/tile.gd" id="1_r284q"]
-[ext_resource type="Texture2D" uid="uid://cb4t45lrmd4ow" path="res://sprites/selection1.png" id="2_pi1b0"]
-[ext_resource type="Texture2D" uid="uid://cdwehit4k6utp" path="res://sprites/selection2.png" id="3_vfj5n"]
+[ext_resource type="Texture2D" uid="uid://bbmw5wawj2d2o" path="res://sprites/selection1.png" id="2_pi1b0"]
+[ext_resource type="Texture2D" uid="uid://dhaoel0xug2xf" path="res://sprites/selection2.png" id="3_vfj5n"]
+[ext_resource type="Texture2D" uid="uid://bag6jl66b4kse" path="res://sprites/organelle7.png" id="4_x1abj"]
+[ext_resource type="Texture2D" uid="uid://g8s5epxy7iq5" path="res://sprites/organelle4.png" id="5_m045d"]
+[ext_resource type="Texture2D" uid="uid://2c8vxqepx28a" path="res://sprites/organelle6.png" id="6_vuxos"]
+[ext_resource type="Texture2D" uid="uid://bi0ow7ydbsrfs" path="res://sprites/organelle1.png" id="7_ijh67"]
+[ext_resource type="Texture2D" uid="uid://b4a51p8ul30jl" path="res://sprites/organelle2.png" id="8_3xxm1"]
+[ext_resource type="Texture2D" uid="uid://b2hfwsqcfsq8b" path="res://sprites/organelle3.png" id="9_i60hs"]
+[ext_resource type="Texture2D" uid="uid://beoetmivbohen" path="res://sprites/organelle5.png" id="10_5unyl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxopx"]
 size = Vector2(64, 64)
@@ -21,6 +28,65 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_r6l4a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_x1abj")
+}],
+"loop": true,
+"name": &"cellwall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_m045d")
+}],
+"loop": true,
+"name": &"nucleus",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_vuxos")
+}],
+"loop": true,
+"name": &"rna",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ijh67")
+}],
+"loop": true,
+"name": &"test1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_3xxm1")
+}],
+"loop": true,
+"name": &"test2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_i60hs")
+}],
+"loop": true,
+"name": &"test3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_5unyl")
+}],
+"loop": true,
+"name": &"test4",
+"speed": 5.0
+}]
+
 [node name="tile" type="Area2D"]
 script = ExtResource("1_r284q")
 
@@ -29,6 +95,11 @@ shape = SubResource("RectangleShape2D_nxopx")
 
 [node name="selection" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_banx2")
+
+[node name="organelle" type="AnimatedSprite2D" parent="."]
+position = Vector2(64, 64)
+sprite_frames = SubResource("SpriteFrames_r6l4a")
+animation = &"test4"
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
