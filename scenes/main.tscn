@@ -1,11 +1,12 @@
-[gd_scene load_steps=14 format=4 uid="uid://dw3dg4mra64he"]
+[gd_scene load_steps=15 format=4 uid="uid://dw3dg4mra64he"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0ns07"]
-[ext_resource type="Texture2D" uid="uid://b04fbtpng8eyt" path="res://sprites/cell_on_petri1.png" id="2_gce5q"]
-[ext_resource type="Texture2D" uid="uid://dg0616xws5puv" path="res://sprites/cell_on_petri2.png" id="3_lecxp"]
-[ext_resource type="Texture2D" uid="uid://corfkmfa442vc" path="res://sprites/organelles1.png" id="4_pxque"]
-[ext_resource type="Texture2D" uid="uid://c7qrriwrcrvld" path="res://sprites/organelles2.png" id="5_g1qlk"]
-[ext_resource type="Texture2D" uid="uid://dkddy6uk6c503" path="res://sprites/organelles3.png" id="6_t3bh2"]
+[ext_resource type="Texture2D" uid="uid://bawt0bs4dsmiv" path="res://sprites/cell_on_petri1.png" id="2_gce5q"]
+[ext_resource type="Texture2D" uid="uid://c6gc1lwgyubeu" path="res://sprites/petri_dish.png" id="2_s4grk"]
+[ext_resource type="Texture2D" uid="uid://ccfsgkb7l17bl" path="res://sprites/cell_on_petri2.png" id="3_lecxp"]
+[ext_resource type="Texture2D" uid="uid://caeci6rig2f7b" path="res://sprites/organelles1.png" id="4_pxque"]
+[ext_resource type="Texture2D" uid="uid://esywlbyso7tf" path="res://sprites/organelles2.png" id="5_g1qlk"]
+[ext_resource type="Texture2D" uid="uid://bg6gos6nnm2h6" path="res://sprites/organelles3.png" id="6_t3bh2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkpd5"]
 texture = ExtResource("2_gce5q")
@@ -172,31 +173,35 @@ sources/3 = SubResource("TileSetAtlasSource_vhmam")
 [node name="main" type="Node2D"]
 script = ExtResource("1_0ns07")
 
+[node name="petri_dish" type="Sprite2D" parent="."]
+position = Vector2(576, 320)
+texture = ExtResource("2_s4grk")
+
 [node name="display_tilemap" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAMAAAABAAAAAAAAAAMAAAACAAAAAAAAAAMAAAADAAAAAAAAAAMAAAAEAAAAAAAAAAMAAAAAAAEAAAAAAAMAAAABAAEAAAAAAAMAAAACAAEAAAAAAAMAAAADAAEAAAAAAAMAAAAEAAEAAAAAAAMAAAAAAAIAAAAAAAMAAAABAAIAAAAAAAMAAAACAAIAAAAAAAMAAAADAAIAAAAAAAMAAAAEAAIAAAAAAAMAAAAAAAMAAAAAAAMAAAABAAMAAAAAAAMAAAACAAMAAAAAAAMAAAADAAMAAAAAAAMAAAAEAAMAAAAAAAMAAAAAAAQAAAAAAAMAAAABAAQAAAAAAAMAAAACAAQAAAAAAAMAAAADAAQAAAAAAAMAAAAEAAQAAAAAAAMAAAAFAAQAAAAAAAMAAAAFAAAAAAAAAAMAAAAFAAEAAAAAAAMAAAAFAAIAAAAAAAMAAAAFAAMAAAAAAAMAAAAAAAUAAAAAAAMAAAABAAUAAAAAAAMAAAACAAUAAAAAAAMAAAADAAUAAAAAAAMAAAAEAAUAAAAAAAMAAAAFAAUAAAAAAAMAAAA=")
+tile_map_data = PackedByteArray("AAAGAAcAAAAAAAMAAAALAAcAAAAAAAMAAAALAAIAAAAAAAMAAAAGAAIAAAAAAAMAAAAHAAIAAAAAAAMAAAAIAAIAAAAAAAMAAAAJAAIAAAAAAAMAAAAKAAIAAAAAAAMAAAALAAMAAAAAAAMAAAALAAQAAAAAAAMAAAALAAUAAAAAAAMAAAALAAYAAAAAAAMAAAAKAAcAAAAAAAMAAAAJAAcAAAAAAAMAAAAIAAcAAAAAAAMAAAAHAAcAAAAAAAMAAAAGAAYAAAAAAAMAAAAGAAUAAAAAAAMAAAAGAAQAAAAAAAMAAAAGAAMAAAAAAAMAAAAHAAMAAAAAAAMAAAAIAAMAAAAAAAMAAAAJAAMAAAAAAAMAAAAKAAMAAAAAAAMAAAAKAAQAAAAAAAMAAAAJAAQAAAAAAAMAAAAIAAQAAAAAAAMAAAAHAAQAAAAAAAMAAAAHAAUAAAAAAAMAAAAIAAUAAAAAAAMAAAAJAAUAAAAAAAMAAAAKAAUAAAAAAAMAAAAJAAYAAAAAAAMAAAAIAAYAAAAAAAMAAAAHAAYAAAAAAAMAAAAKAAYAAAAAAAMAAAA=")
 tile_set = SubResource("TileSet_6jqnj")
 
 [node name="game_tiles" type="Node" parent="."]
 
 [node name="get_organelle" type="Button" parent="."]
-offset_left = 424.0
-offset_top = 204.0
-offset_right = 641.0
-offset_bottom = 281.0
+offset_left = 912.0
+offset_top = 320.0
+offset_right = 1129.0
+offset_bottom = 392.0
 text = "get organelle"
 
 [node name="expand_cell" type="Button" parent="."]
-offset_left = 424.0
-offset_top = 36.0
-offset_right = 641.0
-offset_bottom = 112.0
+offset_left = 912.0
+offset_top = 160.0
+offset_right = 1129.0
+offset_bottom = 232.0
 text = "expand cell"
 
 [node name="shrink_cell" type="Button" parent="."]
-offset_left = 424.0
-offset_top = 118.0
-offset_right = 641.0
-offset_bottom = 197.0
+offset_left = 912.0
+offset_top = 240.0
+offset_right = 1129.0
+offset_bottom = 312.0
 text = "shrink cell"
 
 [node name="organelle_tilemap" type="TileMapLayer" parent="."]
