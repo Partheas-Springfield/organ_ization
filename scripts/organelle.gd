@@ -10,7 +10,6 @@ var organelle_dictionary = {
 	[1,0,1,0] : ['test3']
 	}
 
-
 func get_shape(t):
 	for key in organelle_dictionary:
 		if t in organelle_dictionary[key]:
