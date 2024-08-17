@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://dw3dg4mra64he"]
+[gd_scene load_steps=14 format=4 uid="uid://dw3dg4mra64he"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0ns07"]
-[ext_resource type="Texture2D" uid="uid://lqtryr0gvkx5" path="res://sprites/cell_on_petri1.png" id="2_gce5q"]
-[ext_resource type="Texture2D" uid="uid://dlvblsnvck21n" path="res://sprites/cell_on_petri2.png" id="3_lecxp"]
+[ext_resource type="Texture2D" uid="uid://b04fbtpng8eyt" path="res://sprites/cell_on_petri1.png" id="2_gce5q"]
+[ext_resource type="Texture2D" uid="uid://dg0616xws5puv" path="res://sprites/cell_on_petri2.png" id="3_lecxp"]
+[ext_resource type="Texture2D" uid="uid://corfkmfa442vc" path="res://sprites/organelles1.png" id="4_pxque"]
+[ext_resource type="Texture2D" uid="uid://c7qrriwrcrvld" path="res://sprites/organelles2.png" id="5_g1qlk"]
+[ext_resource type="Texture2D" uid="uid://dkddy6uk6c503" path="res://sprites/organelles3.png" id="6_t3bh2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkpd5"]
 texture = ExtResource("2_gce5q")
@@ -97,6 +100,75 @@ tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_dkpd5")
 sources/1 = SubResource("TileSetAtlasSource_i1b65")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_13bob"]
+resource_name = "placed"
+texture = ExtResource("4_pxque")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_irt6n"]
+resource_name = "valid"
+texture = ExtResource("5_g1qlk")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vhmam"]
+resource_name = "invalid"
+texture = ExtResource("6_t3bh2")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_e0qun"]
+tile_size = Vector2i(64, 64)
+sources/1 = SubResource("TileSetAtlasSource_13bob")
+sources/2 = SubResource("TileSetAtlasSource_irt6n")
+sources/3 = SubResource("TileSetAtlasSource_vhmam")
+
 [node name="main" type="Node2D"]
 script = ExtResource("1_0ns07")
 
@@ -106,9 +178,32 @@ tile_set = SubResource("TileSet_6jqnj")
 
 [node name="game_tiles" type="Node" parent="."]
 
-[node name="Button" type="Button" parent="."]
-offset_left = 421.0
-offset_top = 48.0
-offset_right = 638.0
-offset_bottom = 125.0
+[node name="get_organelle" type="Button" parent="."]
+offset_left = 424.0
+offset_top = 204.0
+offset_right = 641.0
+offset_bottom = 281.0
 text = "get organelle"
+
+[node name="expand_cell" type="Button" parent="."]
+offset_left = 424.0
+offset_top = 36.0
+offset_right = 641.0
+offset_bottom = 112.0
+text = "expand cell"
+
+[node name="shrink_cell" type="Button" parent="."]
+offset_left = 424.0
+offset_top = 118.0
+offset_right = 641.0
+offset_bottom = 197.0
+text = "shrink cell"
+
+[node name="organelle_tilemap" type="TileMapLayer" parent="."]
+z_index = 20
+position = Vector2(32, 32)
+tile_set = SubResource("TileSet_e0qun")
+
+[connection signal="pressed" from="get_organelle" to="." method="_on_get_organelle_pressed"]
+[connection signal="pressed" from="expand_cell" to="." method="_on_expand_cell_pressed"]
+[connection signal="pressed" from="shrink_cell" to="." method="_on_shrink_cell_pressed"]
