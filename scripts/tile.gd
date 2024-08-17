@@ -7,7 +7,6 @@ var hovered = false
 signal tile_clicked
 var iposition = Vector2i()
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	selection.hide()
