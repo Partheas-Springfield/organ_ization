@@ -1,3 +1,36 @@
-[gd_scene format=3 uid="uid://bqklwy88vautq"]
+[gd_scene load_steps=2 format=3 uid="uid://bqklwy88vautq"]
+
+[ext_resource type="Script" path="res://scripts/intro.gd" id="1_n580y"]
 
 [node name="Intro" type="Node2D"]
+script = ExtResource("1_n580y")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 256.0
+offset_top = 288.0
+offset_right = 896.0
+offset_bottom = 352.0
+step = 0.0
+show_percentage = false
+
+[node name="Text" type="RichTextLabel" parent="ProgressBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 64.0
+theme_override_font_sizes/normal_font_size = 43
+bbcode_enabled = true
+text = "[center]Welcome to the intro![/center]"
+
+[node name="Skip" type="Button" parent="ProgressBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 272.0
+offset_top = 80.0
+offset_right = 368.0
+offset_bottom = 111.0
+text = "Skip Intro"
+
+[connection signal="value_changed" from="ProgressBar" to="." method="progress"]
+[connection signal="button_down" from="ProgressBar/Skip" to="." method="skip_down"]
+[connection signal="pressed" from="ProgressBar/Skip" to="." method="skip_press"]

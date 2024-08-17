@@ -5,11 +5,6 @@
 [node name="Title" type="Node2D"]
 script = ExtResource("1_3yn27")
 
-[node name="BasicBackground" type="ColorRect" parent="."]
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0.325441, 0.325441, 0.325441, 1)
-
 [node name="TitleBox" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0

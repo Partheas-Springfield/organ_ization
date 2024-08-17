@@ -3,13 +3,10 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Set the sliders' values based on the global values
 	$Settings/VolumeControls/MusicVolumeSlider.value = Global.music_volume
 	$Settings/VolumeControls/SoundEffectsVolumeSlider.value = Global.effects_volume
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+	
 func on_start():
 	get_tree().change_scene_to_file('res://scenes/main.tscn')
 	on_settings()
