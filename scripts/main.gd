@@ -32,6 +32,10 @@ func get_tile(vector2i):
 func _process(delta):
 	pass
 
+func _clear_organelle_tilemap():
+	for cell in organelle_tilemap.get_used_cells():
+		organelle_tilemap.set_cell(cell)
+
 func _tile_clicked(tile):
 	if mode == 'expand':
 		tile.set_incel()
@@ -42,13 +46,14 @@ func _tile_clicked(tile):
 			for vector2i in Global.get_organelle_vectors(active_organelle):
 				get_tile(tile.get_iposition() + vector2i).set_organelle(active_organelle)
 			tile.show_organelle()
+			active_organelle = null
+			mode = null
+			_clear_organelle_tilemap()
 	for used_tile in display_tilemap.get_used_cells():
 		set_display_tile(used_tile)
 
 func _tile_entered(tile):
-	for cell in organelle_tilemap.get_used_cells():
-		if organelle_tilemap.get_cell_source_id(cell) > 1:
-			organelle_tilemap.set_cell(cell)
+	_clear_organelle_tilemap()
 	if mode == 'organelle':
 		var affected_tiles = []
 		var atlas_position = Global.get_organelle_atlas_position(active_organelle)
