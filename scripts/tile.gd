@@ -10,7 +10,6 @@ signal tile_clicked
 signal tile_entered
 var iposition = Vector2i()
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	selection.hide()
