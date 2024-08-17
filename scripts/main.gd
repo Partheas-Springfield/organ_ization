@@ -28,6 +28,7 @@ func _ready():
 		set_display_tile(used_tile)
 	_place_organelle(get_tile(Vector2i(8,4)),'nucleus')
 	_place_organelle(get_tile(Vector2i(10,4)),'test1')
+	$expand_cell.grab_focus()
 
 func get_tile(vector2i):
 	for tile in game_tiles.get_children():

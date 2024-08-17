@@ -188,6 +188,8 @@ offset_left = 912.0
 offset_top = 320.0
 offset_right = 1128.0
 offset_bottom = 392.0
+focus_neighbor_top = NodePath("../shrink_cell")
+focus_neighbor_bottom = NodePath("../move_organelle")
 text = "get organelle"
 
 [node name="expand_cell" type="Button" parent="."]
@@ -195,6 +197,8 @@ offset_left = 912.0
 offset_top = 160.0
 offset_right = 1128.0
 offset_bottom = 232.0
+focus_neighbor_top = NodePath("../move_organelle")
+focus_neighbor_bottom = NodePath("../shrink_cell")
 text = "expand cell"
 
 [node name="shrink_cell" type="Button" parent="."]
@@ -202,6 +206,8 @@ offset_left = 912.0
 offset_top = 240.0
 offset_right = 1128.0
 offset_bottom = 312.0
+focus_neighbor_top = NodePath("../expand_cell")
+focus_neighbor_bottom = NodePath("../get_organelle")
 text = "shrink cell"
 
 [node name="move_organelle" type="Button" parent="."]
@@ -209,6 +215,8 @@ offset_left = 912.0
 offset_top = 400.0
 offset_right = 1128.0
 offset_bottom = 472.0
+focus_neighbor_top = NodePath("../get_organelle")
+focus_neighbor_bottom = NodePath("../expand_cell")
 text = "move organelle"
 
 [node name="organelle_tilemap" type="TileMapLayer" parent="."]
