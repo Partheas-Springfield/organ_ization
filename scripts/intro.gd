@@ -7,11 +7,11 @@ var progress_bar
 func _ready():
 	progress_bar = $ProgressBar
 	progress_bar.max_value = max_time
-	%Skip.grab_focus()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	progress_bar.value+=delta
+
 
 func progress(value):
 	if value == max_time:
@@ -21,8 +21,18 @@ func progress(value):
 	elif value > max_time/2:
 		%Text.text="[center][shake]Halfway there..."
 
+
 func skip_press():
 	get_tree().change_scene_to_file('res://scenes/title.tscn')
 
+
 func skip_down():
 	%Skip.text = ":("
+
+
+func _input(event):
+	if Global.controller:
+		pass
+	else:
+		Global.controller = true
+		%Skip.grab_focus()

@@ -6,7 +6,7 @@ func _ready():
 	# Set the sliders' values based on the global values
 	$Settings/VolumeControls/MusicVolumeSlider.value = Global.music_volume
 	$Settings/VolumeControls/SoundEffectsVolumeSlider.value = Global.effects_volume
-	$TitleBox/Start.grab_focus()
+	if Global.controller: $TitleBox/Start.grab_focus()
 	
 func on_start():
 	get_tree().change_scene_to_file('res://scenes/main.tscn')
@@ -42,3 +42,11 @@ func music_volume_changed(value):
 func effects_volume_changed(value):
 	Global.effects_volume = value
 #endregion
+
+
+func _input(event):
+	if Global.controller:
+		pass
+	else:
+		Global.controller = true
+		$TitleBox/Start.grab_focus()

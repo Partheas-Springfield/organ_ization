@@ -5,6 +5,8 @@ var music_volume = .5
 var effects_volume = .5
 var volume_scale = 1
 
+var controller = false
+
 const organelle_list = ['test1','test2','test3','nucleus','rna','test4','cellwall']
 
 const tilemap_key = {
