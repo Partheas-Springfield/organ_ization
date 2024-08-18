@@ -1,11 +1,13 @@
 extends Node2D
 
+var last_box = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Set the sliders' values based on the global values
 	$Settings/VolumeControls/MusicVolumeSlider.value = Global.music_volume
 	$Settings/VolumeControls/SoundEffectsVolumeSlider.value = Global.effects_volume
+	last_box = $TitleBox/Start
 	if Global.controller: $TitleBox/Start.grab_focus()
 	
 func on_start():
@@ -17,21 +19,27 @@ func on_start():
 func on_settings(): 
 	$TitleBox.hide()
 	$Settings.show()
+	$Settings/Back.grab_focus()
 func on_instructions():
 	$TitleBox.hide()
 	$Instructions.show()
+	$Instructions/Back.grab_focus()
 func on_credits():
 	$TitleBox.hide()
 	$Credits.show()
+	$Credits/Back.grab_focus()
 func on_settings_back():
 	$TitleBox.show()
 	$Settings.hide()
+	$TitleBox/SettingsButton.grab_focus()
 func on_instructions_back():
 	$TitleBox.show()
 	$Instructions.hide()
+	$TitleBox/InstructionsButton.grab_focus()
 func on_credits_back():
 	$TitleBox.show()
 	$Credits.hide()
+	$TitleBox/CreditsButton.grab_focus()
 #endregion
 
 #region Slider Logic
@@ -48,8 +56,9 @@ func _input(event):
 	if Global.controller:
 		if event.as_text().contains("Mouse"):
 			Global.controller = false
-			get_viewport().gui_release_focus()
+			last_box = get_viewport().gui_get_focus_owner()
+			last_box.release_focus()
 	else:
 		if !event.as_text().contains("Mouse"):
 			Global.controller = true
-			$TitleBox/Start.grab_focus()
+			last_box.grab_focus()
