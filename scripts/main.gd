@@ -13,8 +13,6 @@ var valid_placement = false
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
-	$waste_button/waste.play('default')
-	$waste_button/waste.stop()
 	for xi in range(2,7):
 		for yi in range(1,6):
 			var new_tile = tile_scene.instantiate()
