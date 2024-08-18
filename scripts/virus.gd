@@ -46,3 +46,22 @@ func difficulty_scale(scalar):
 func randomize_color():
 	const colors = ['red','green','purple']
 	set_color(colors[randi_range(0,colors.size()-1)])
+
+func highlight(boo = true):
+	if boo:
+		virus_sprite.play(color + '_h')
+	else:
+		virus_sprite.play(color)
+
+
+func _on_virus_name_focus_entered():
+	highlight()
+
+func _on_virus_name_mouse_entered():
+	highlight()
+
+func _on_virus_name_mouse_exited():
+	highlight(false)
+
+func _on_virus_name_focus_exited():
+	highlight(false)

@@ -52,9 +52,10 @@ texture = ExtResource("2_fih41")
 centered = false
 
 [node name="text_display" type="RichTextLabel" parent="."]
-offset_left = 21.0
-offset_top = 2.0
-offset_right = 101.0
-offset_bottom = 42.0
-theme_override_font_sizes/normal_font_size = 8
-text = "..."
+offset_top = 4.0
+offset_right = 64.0
+offset_bottom = 20.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[center]100/100"

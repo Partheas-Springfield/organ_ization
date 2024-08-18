@@ -20,7 +20,7 @@ func _update_display():
 		bar.play('yellow')
 	else:
 		bar.play('red')
-	text_display.text = str(current_hp)+'/'+str(max_hp)
+	text_display.text = '[center]'+str(current_hp)+'/'+str(max_hp)
 
 
 func set_max_hp(hp_value):
@@ -37,3 +37,6 @@ func set_current_hp(hp_value):
 func update_hp(hp_change):
 	current_hp += hp_change
 	_update_display()
+
+func is_alive():
+	return current_hp > 0

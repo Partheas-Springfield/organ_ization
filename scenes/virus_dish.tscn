@@ -10,11 +10,13 @@ script = ExtResource("1_vj4ic")
 [node name="dish" type="Sprite2D" parent="."]
 texture = ExtResource("2_47fiw")
 
-[node name="virus1" parent="." instance=ExtResource("3_7qpod")]
+[node name="viruses" type="Node2D" parent="."]
+
+[node name="virus1" parent="viruses" instance=ExtResource("3_7qpod")]
 position = Vector2(-10, -104)
 
-[node name="virus2" parent="." instance=ExtResource("3_7qpod")]
+[node name="virus2" parent="viruses" instance=ExtResource("3_7qpod")]
 position = Vector2(-112, 64)
 
-[node name="virus3" parent="." instance=ExtResource("3_7qpod")]
+[node name="virus3" parent="viruses" instance=ExtResource("3_7qpod")]
 position = Vector2(112, 64)

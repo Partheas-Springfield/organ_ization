@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds5x6tdgg575b"]
+
+[ext_resource type="Script" path="res://scripts/info_bar.gd" id="1_4sxmw"]
+[ext_resource type="Texture2D" uid="uid://dsr8bbxyerst8" path="res://sprites/attribute_icons1.png" id="1_xttrk"]
+[ext_resource type="Texture2D" uid="uid://bb4deq7k0lb8u" path="res://sprites/attribute_icons2.png" id="2_t3ytu"]
+[ext_resource type="Texture2D" uid="uid://dmcs4qedo4ln6" path="res://sprites/attribute_icons3.png" id="3_4pfn8"]
+[ext_resource type="Texture2D" uid="uid://dff6ij2ldmhx" path="res://sprites/attribute_icons4.png" id="4_io4de"]
+
+[node name="info_bar" type="Node2D"]
+script = ExtResource("1_4sxmw")
+
+[node name="atk_icon" type="Sprite2D" parent="."]
+position = Vector2(64, 40)
+texture = ExtResource("1_xttrk")
+
+[node name="def_icon" type="Sprite2D" parent="."]
+position = Vector2(256, 40)
+texture = ExtResource("2_t3ytu")
+
+[node name="rec_icon" type="Sprite2D" parent="."]
+position = Vector2(448, 40)
+texture = ExtResource("3_4pfn8")
+
+[node name="atp_icon" type="Sprite2D" parent="."]
+position = Vector2(640, 40)
+texture = ExtResource("4_io4de")

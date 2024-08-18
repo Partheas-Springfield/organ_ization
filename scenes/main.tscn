@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dw3dg4mra64he"]
+[gd_scene load_steps=22 format=4 uid="uid://dw3dg4mra64he"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0ns07"]
 [ext_resource type="Texture2D" uid="uid://bawt0bs4dsmiv" path="res://sprites/cell_on_petri1.png" id="2_gce5q"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dbwxw5kthm7bb" path="res://sprites/biohazard3.png" id="9_jttll"]
 [ext_resource type="Texture2D" uid="uid://b0ageon1wfi4" path="res://sprites/biohazard2.png" id="9_q44p0"]
 [ext_resource type="Texture2D" uid="uid://dlkdpblknun62" path="res://sprites/biohazard4.png" id="10_qsexh"]
+[ext_resource type="PackedScene" uid="uid://ds5x6tdgg575b" path="res://scenes/info_bar.tscn" id="13_e6uy5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkpd5"]
 texture = ExtResource("2_gce5q")
@@ -203,19 +204,21 @@ animations = [{
 script = ExtResource("1_0ns07")
 
 [node name="petri_dish" type="Sprite2D" parent="."]
-position = Vector2(320, 257)
+position = Vector2(288, 288)
 texture = ExtResource("2_s4grk")
 
 [node name="virus_dish" parent="." instance=ExtResource("3_7wab2")]
-position = Vector2(832, 257)
+position = Vector2(800, 288)
 
 [node name="display_tilemap" type="TileMapLayer" parent="."]
+position = Vector2(-32, 32)
 tile_map_data = PackedByteArray("AAACAAIAAAAAAAMAAAADAAIAAAAAAAMAAAAEAAIAAAAAAAMAAAAFAAIAAAAAAAMAAAAGAAIAAAAAAAMAAAACAAMAAAAAAAMAAAADAAMAAAAAAAMAAAAEAAMAAAAAAAMAAAAFAAMAAAAAAAMAAAAGAAMAAAAAAAMAAAAHAAIAAAAAAAMAAAAHAAMAAAAAAAMAAAAHAAQAAAAAAAMAAAAHAAUAAAAAAAMAAAAHAAYAAAAAAAMAAAACAAQAAAAAAAMAAAACAAUAAAAAAAMAAAACAAYAAAAAAAMAAAADAAYAAAAAAAMAAAAEAAYAAAAAAAMAAAAFAAYAAAAAAAMAAAAGAAYAAAAAAAMAAAAGAAUAAAAAAAMAAAAGAAQAAAAAAAMAAAAEAAQAAAAAAAMAAAADAAQAAAAAAAMAAAADAAUAAAAAAAMAAAAEAAUAAAAAAAMAAAAFAAUAAAAAAAMAAAAFAAQAAAAAAAMAAAACAAEAAAAAAAMAAAADAAEAAAAAAAMAAAAEAAEAAAAAAAMAAAAFAAEAAAAAAAMAAAAGAAEAAAAAAAMAAAAHAAEAAAAAAAMAAAA=")
 tile_set = SubResource("TileSet_6jqnj")
 
 [node name="game_tiles" type="Node" parent="."]
 
 [node name="get_organelle" type="Button" parent="."]
+visible = false
 offset_left = 504.0
 offset_top = 288.0
 offset_right = 720.0
@@ -225,6 +228,7 @@ focus_neighbor_bottom = NodePath("../move_organelle")
 text = "get organelle"
 
 [node name="expand_cell" type="Button" parent="."]
+visible = false
 offset_left = 504.0
 offset_top = 128.0
 offset_right = 720.0
@@ -234,6 +238,7 @@ focus_neighbor_bottom = NodePath("../shrink_cell")
 text = "expand cell"
 
 [node name="shrink_cell" type="Button" parent="."]
+visible = false
 offset_left = 504.0
 offset_top = 208.0
 offset_right = 720.0
@@ -243,6 +248,7 @@ focus_neighbor_bottom = NodePath("../get_organelle")
 text = "shrink cell"
 
 [node name="move_organelle" type="Button" parent="."]
+visible = false
 offset_left = 504.0
 offset_top = 368.0
 offset_right = 720.0
@@ -253,10 +259,11 @@ text = "move organelle"
 
 [node name="organelle_tilemap" type="TileMapLayer" parent="."]
 z_index = 50
-position = Vector2(32, 32)
+position = Vector2(0, 64)
 tile_set = SubResource("TileSet_e0qun")
 
 [node name="waste_button" type="Button" parent="."]
+visible = false
 offset_left = 592.0
 offset_top = 464.0
 offset_right = 632.0
@@ -268,6 +275,8 @@ metadata/_edit_group_ = true
 [node name="waste" type="AnimatedSprite2D" parent="waste_button"]
 position = Vector2(20, 18)
 sprite_frames = SubResource("SpriteFrames_sjssy")
+
+[node name="info_bar" parent="." instance=ExtResource("13_e6uy5")]
 
 [connection signal="pressed" from="get_organelle" to="." method="_on_get_organelle_pressed"]
 [connection signal="pressed" from="expand_cell" to="." method="_on_expand_cell_pressed"]
