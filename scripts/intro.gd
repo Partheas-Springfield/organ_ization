@@ -32,7 +32,10 @@ func skip_down():
 
 func _input(event):
 	if Global.controller:
-		pass
+		if event.as_text().contains("Mouse"):
+			Global.controller = false
+			get_viewport().gui_release_focus()
 	else:
-		Global.controller = true
-		%Skip.grab_focus()
+		if !event.as_text().contains("Mouse"):
+			Global.controller = true
+			%Skip.grab_focus()
