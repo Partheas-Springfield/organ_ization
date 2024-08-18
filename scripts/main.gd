@@ -29,7 +29,7 @@ func _ready():
 	for used_tile in display_tilemap.get_used_cells():
 		set_display_tile(used_tile)
 	_place_organelle(get_tile(Vector2i(8,4)),'nucleus')
-	_place_organelle(get_tile(Vector2i(10,4)),'test1')
+	_place_organelle(get_tile(Vector2i(10,4)),'mitochondria')
 	if Global.controller: $expand_cell.grab_focus()
 
 ## Returns the tile scene with the given iposition vector
@@ -66,6 +66,7 @@ func _tile_clicked(tile):
 		if tile.organelle != null:
 			active_organelle = _remove_organelle(tile)
 			mode = 'organelle'
+			_tile_entered(tile)
 	for used_tile in display_tilemap.get_used_cells():
 		set_display_tile(used_tile)
 
