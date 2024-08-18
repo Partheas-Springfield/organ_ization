@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://dw3dg4mra64he"]
+[gd_scene load_steps=18 format=4 uid="uid://dw3dg4mra64he"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0ns07"]
 [ext_resource type="Texture2D" uid="uid://bawt0bs4dsmiv" path="res://sprites/cell_on_petri1.png" id="2_gce5q"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://ccfsgkb7l17bl" path="res://sprites/cell_on_petri2.png" id="3_lecxp"]
 [ext_resource type="Texture2D" uid="uid://caeci6rig2f7b" path="res://sprites/organelles1.png" id="4_pxque"]
 [ext_resource type="Texture2D" uid="uid://esywlbyso7tf" path="res://sprites/organelles2.png" id="5_g1qlk"]
-[ext_resource type="Texture2D" uid="uid://bg6gos6nnm2h6" path="res://sprites/organelles3.png" id="6_t3bh2"]
 [ext_resource type="Texture2D" uid="uid://dgnuwm64d5sco" path="res://sprites/biohazard1.png" id="8_napfp"]
 [ext_resource type="Texture2D" uid="uid://dbwxw5kthm7bb" path="res://sprites/biohazard3.png" id="9_jttll"]
 [ext_resource type="Texture2D" uid="uid://b0ageon1wfi4" path="res://sprites/biohazard2.png" id="9_q44p0"]
@@ -105,30 +104,9 @@ tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_dkpd5")
 sources/1 = SubResource("TileSetAtlasSource_i1b65")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_13bob"]
-resource_name = "placed"
-texture = ExtResource("4_pxque")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_irt6n"]
 resource_name = "valid"
-texture = ExtResource("5_g1qlk")
+texture = ExtResource("4_pxque")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -149,7 +127,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vhmam"]
 resource_name = "invalid"
-texture = ExtResource("6_t3bh2")
+texture = ExtResource("5_g1qlk")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -170,7 +148,6 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_e0qun"]
 tile_size = Vector2i(64, 64)
-sources/1 = SubResource("TileSetAtlasSource_13bob")
 sources/2 = SubResource("TileSetAtlasSource_irt6n")
 sources/3 = SubResource("TileSetAtlasSource_vhmam")
 

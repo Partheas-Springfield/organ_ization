@@ -7,7 +7,7 @@ var volume_scale = 1
 
 var controller = false
 
-const organelle_list = ['test1','test2','test3','nucleus','rna','test4','cellwall']
+const organelle_list = ['ribosome','mitochondria','golgibody','nucleus','proteinchannel','endoplasmicreticulum','cellwall']
 
 const tilemap_key = {
 	[0,0,0,0]: Vector2i(0,3),
@@ -29,22 +29,22 @@ const tilemap_key = {
 }
 
 const shape_dict = {
-	'test1' : [Vector2i(0,0)],
-	'test2' : [Vector2i(0,0),Vector2i(0,1)],
-	'test3' : [Vector2i(0,0),Vector2i(1,0)],
+	'ribosome' : [Vector2i(0,0)],
+	'mitochondria' : [Vector2i(0,0),Vector2i(0,1)],
+	'golgibody' : [Vector2i(0,0),Vector2i(1,0)],
 	'nucleus' : [Vector2i(0,0),Vector2i(0,1),Vector2i(1,0),Vector2i(1,1)],
-	'rna' : [Vector2i(0,0),Vector2i(0,1),Vector2i(0,2)],
-	'test4' : [Vector2i(0,0),Vector2i(1,0),Vector2i(2,0)],
+	'proteinchannel' : [Vector2i(0,0),Vector2i(0,1),Vector2i(0,2)],
+	'endoplasmicreticulum' : [Vector2i(0,0),Vector2i(1,0),Vector2i(2,0)],
 	'cellwall' : [Vector2i(0,0)]
 }
 
 const organelle_tilemap_dict = {
-	'test1' : Vector2i(0,0),
-	'test2' : Vector2i(0,1),
-	'test3' : Vector2i(1,0),
+	'ribosome' : Vector2i(0,0),
+	'mitochondria' : Vector2i(0,1),
+	'golgibody' : Vector2i(1,0),
 	'nucleus' : Vector2i(1,1),
-	'rna' : Vector2i(3,0),
-	'test4' : Vector2i(0,3),
+	'proteinchannel' : Vector2i(3,0),
+	'endoplasmicreticulum' : Vector2i(0,3),
 	'cellwall' : Vector2i(3,3)
 }
 
