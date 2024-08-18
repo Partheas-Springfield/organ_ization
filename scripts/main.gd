@@ -7,6 +7,7 @@ extends Node2D
 
 var mode = null
 var active_tile = null
+var last_tile = null
 var active_organelle = null
 var valid_placement = false
 
@@ -121,18 +122,38 @@ func set_display_tile(vector2i):
 func _on_get_organelle_pressed():
 	mode = 'organelle'
 	active_organelle = Global.random_organelle()
+	if Global.controller:
+		$get_organelle.release_focus()
+		if last_tile != null: active_tile = last_tile
+		else: active_tile = game_tiles.get_child(0)
+		active_tile.selected()
 
 ## Activates when the debug "expand cell" button is pressed
 func _on_expand_cell_pressed():
 	mode = 'expand'
+	if Global.controller:
+		$expand_cell.release_focus()
+		if last_tile != null: active_tile = last_tile
+		else: active_tile = game_tiles.get_child(0)
+		active_tile.selected()
 
 ## Activates when the debug "shrink cell" button is pressed
 func _on_shrink_cell_pressed():
 	mode = 'shrink'
+	if Global.controller:
+		$shrink_cell.release_focus()
+		if last_tile != null: active_tile = last_tile
+		else: active_tile = game_tiles.get_child(0)
+		active_tile.selected()
 
 ## Activates when the debug "move organelle" button is pressed
 func _on_move_organelle_pressed():
 	mode = 'move'
+	if Global.controller:
+		$move_organelle.release_focus()
+		if last_tile != null: active_tile = last_tile
+		else: active_tile = game_tiles.get_child(0)
+		active_tile.selected()
 
 
 ## Handles the hazardous waste bin button
@@ -141,6 +162,11 @@ func _on_waste_button_pressed():
 	$waste_button/waste.play('trashed')
 	active_organelle = null
 	mode = 'move'
+	if Global.controller:
+		$waste_button.release_focus()
+		if last_tile != null: active_tile = last_tile
+		else: active_tile = game_tiles.get_child(0)
+		active_tile.selected()
 
 func _on_waste_animation_looped():
 	if $waste_button.has_focus():
@@ -172,13 +198,43 @@ func _on_waste_button_mouse_exited():
 #endregion
 
 func _input(event):
-	print(event.as_text())
-	if event.is_action_type() && event.as_text() != "MOUSE_BUTTON_LEFT":
-		if Global.controller:
-			pass
-		else:
+	if Global.controller:
+		if event.as_text().contains("Mouse"):
+			Global.controller = false
+			get_viewport().gui_release_focus()
+		elif  mode != null:
+			if event.is_action_pressed("ui_cancel"):
+				last_tile = active_tile
+				active_tile.deselected()
+				active_tile = null
+				match mode:
+					"expand":$expand_cell.grab_focus()
+					"shrink":$shrink_cell.grab_focus()
+					"organelle":$get_organelle.grab_focus()
+					"move":$move_organelle.grab_focus()
+				mode = null
+				
+			elif event.is_action_pressed("ui_up") && get_tile(active_tile.get_iposition() + Vector2i(0,-1)) != null:
+				active_tile.deselected()
+				active_tile = get_tile(active_tile.get_iposition() + Vector2i(0,-1))
+				active_tile.selected()
+				
+			elif event.is_action_pressed("ui_down") && get_tile(active_tile.get_iposition() + Vector2i(0,1)) != null:
+				active_tile.deselected()
+				active_tile = get_tile(active_tile.get_iposition() + Vector2i(0,1))
+				active_tile.selected()
+				
+			elif event.is_action_pressed("ui_left") && get_tile(active_tile.get_iposition() + Vector2i(-1,0)) != null:
+				active_tile.deselected()
+				active_tile = get_tile(active_tile.get_iposition() + Vector2i(-1,0))
+				active_tile.selected()
+				
+			elif event.is_action_pressed("ui_right") && get_tile(active_tile.get_iposition() + Vector2i(1,0)) != null:
+				active_tile.deselected()
+				active_tile = get_tile(active_tile.get_iposition() + Vector2i(1,0))
+				active_tile.selected()
+	
+	else:
+		if !event.as_text().contains("Mouse"):
 			Global.controller = true
 			$expand_cell.grab_focus()
-	else:
-		Global.controller = false
-		get_viewport().gui_release_focus()

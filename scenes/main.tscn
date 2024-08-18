@@ -239,7 +239,7 @@ offset_left = 912.0
 offset_top = 160.0
 offset_right = 1128.0
 offset_bottom = 232.0
-focus_neighbor_top = NodePath("../move_organelle")
+focus_neighbor_top = NodePath("../waste_button")
 focus_neighbor_bottom = NodePath("../shrink_cell")
 text = "expand cell"
 
@@ -272,6 +272,7 @@ offset_top = 520.0
 offset_right = 1036.0
 offset_bottom = 561.0
 focus_neighbor_top = NodePath("../move_organelle")
+focus_neighbor_bottom = NodePath("../expand_cell")
 
 [node name="waste" type="AnimatedSprite2D" parent="waste_button"]
 position = Vector2(20, 18)
