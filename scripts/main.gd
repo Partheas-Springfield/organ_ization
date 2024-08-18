@@ -15,8 +15,8 @@ var valid_placement = false
 func _ready():
 	$waste_button/waste.play('default')
 	$waste_button/waste.stop()
-	for xi in range(6,11):
-		for yi in range(2,7):
+	for xi in range(2,7):
+		for yi in range(1,6):
 			var new_tile = tile_scene.instantiate()
 			game_tiles.add_child(new_tile)
 			new_tile.set_iposition(xi,yi)
@@ -24,13 +24,13 @@ func _ready():
 	for tile in game_tiles.get_children():
 		tile.tile_clicked.connect(_tile_clicked.bind(tile))
 		tile.tile_entered.connect(_tile_entered.bind(tile))
-	for xi in range(8,11):
-		for yi in range(4,7):
+	for xi in range(4,7):
+		for yi in range(3,6):
 			get_tile(Vector2i(xi,yi)).set_incel()
 	for used_tile in display_tilemap.get_used_cells():
 		set_display_tile(used_tile)
-	_place_organelle(get_tile(Vector2i(8,4)),'nucleus')
-	_place_organelle(get_tile(Vector2i(10,4)),'mitochondria')
+	_place_organelle(get_tile(Vector2i(4,3)),'nucleus')
+	_place_organelle(get_tile(Vector2i(6,3)),'mitochondria')
 	if Global.controller: $expand_cell.grab_focus()
 
 ## Returns the tile scene with the given iposition vector
