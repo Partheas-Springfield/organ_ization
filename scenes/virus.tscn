@@ -49,4 +49,4 @@ script = ExtResource("1_30uf6")
 
 [node name="virus_sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_t2wx5")
-animation = &"red"
+animation = &"green"
