@@ -15,6 +15,7 @@ show_percentage = false
 
 [node name="Text" type="RichTextLabel" parent="ProgressBar"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 64.0
@@ -22,15 +23,24 @@ theme_override_font_sizes/normal_font_size = 43
 bbcode_enabled = true
 text = "[center]Welcome to the intro![/center]"
 
-[node name="Skip" type="Button" parent="ProgressBar"]
+[node name="Skip" type="Button" parent="."]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 272.0
-offset_top = 80.0
-offset_right = 368.0
-offset_bottom = 111.0
+offset_left = 528.0
+offset_top = 368.0
+offset_right = 624.0
+offset_bottom = 399.0
 text = "Skip Intro"
 
+[node name="Story" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+offset_left = 256.0
+offset_top = 144.0
+offset_right = 896.0
+offset_bottom = 256.0
+theme_override_constants/line_separation = 4
+bbcode_enabled = true
+text = "CEO grants Vicky with her own microbiology lab due to her revolutionary new cell creator in the hopes that she can create a life extending superimmune cell. Assistant Inga, a grad student comes with the lab as free labor. Grad students in their barely waking state can only communicate in grunts though."
+
 [connection signal="value_changed" from="ProgressBar" to="." method="progress"]
-[connection signal="button_down" from="ProgressBar/Skip" to="." method="skip_down"]
-[connection signal="pressed" from="ProgressBar/Skip" to="." method="skip_press"]
+[connection signal="button_down" from="Skip" to="." method="skip_down"]
+[connection signal="pressed" from="Skip" to="." method="skip_press"]
