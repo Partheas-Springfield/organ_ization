@@ -44,9 +44,17 @@ centered = false
 [node name="bar" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, 0)
 sprite_frames = SubResource("SpriteFrames_lmyed")
-animation = &"yellow"
+animation = &"green"
 centered = false
 
 [node name="shell" type="Sprite2D" parent="."]
 texture = ExtResource("2_fih41")
 centered = false
+
+[node name="text_display" type="RichTextLabel" parent="."]
+offset_left = 21.0
+offset_top = 2.0
+offset_right = 101.0
+offset_bottom = 42.0
+theme_override_font_sizes/normal_font_size = 8
+text = "..."

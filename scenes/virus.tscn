@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkd87rw7fxh3c"]
+[gd_scene load_steps=10 format=3 uid="uid://bkd87rw7fxh3c"]
 
 [ext_resource type="Script" path="res://scripts/virus.gd" id="1_30uf6"]
 [ext_resource type="Texture2D" uid="uid://puwbc4w6d7uc" path="res://sprites/virus5.png" id="2_482p0"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bad4aq2vnknrh" path="res://sprites/virus4.png" id="5_t2i2u"]
 [ext_resource type="Texture2D" uid="uid://cu0cojb3rvfjv" path="res://sprites/virus1.png" id="6_cp4ym"]
 [ext_resource type="Texture2D" uid="uid://do4xl1o6fmv2h" path="res://sprites/virus2.png" id="7_5mvnk"]
+[ext_resource type="PackedScene" uid="uid://e3lkey06pt81" path="res://scenes/health_bar.tscn" id="8_8xrkq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t2wx5"]
 animations = [{
@@ -50,3 +51,13 @@ script = ExtResource("1_30uf6")
 [node name="virus_sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_t2wx5")
 animation = &"green"
+
+[node name="virus_health_bar" parent="." instance=ExtResource("8_8xrkq")]
+position = Vector2(-32, 64)
+
+[node name="virus_name" type="RichTextLabel" parent="."]
+offset_left = -44.0
+offset_top = 80.0
+offset_right = 68.0
+offset_bottom = 120.0
+text = "Sneaky Virus"
