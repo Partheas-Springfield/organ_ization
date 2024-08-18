@@ -12,7 +12,6 @@ func _ready():
 	
 func on_start():
 	get_tree().change_scene_to_file('res://scenes/main.tscn')
-	on_settings()
 
 
 #region Button Pressing Logic
