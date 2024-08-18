@@ -10,7 +10,7 @@ var active_tile = null
 var active_organelle = null
 var valid_placement = false
 
-# Called when the node enters the scene tree for the first time.
+## Called when the node enters the scene tree for the first time.
 func _ready():
 	$waste_button/waste.play('default')
 	$waste_button/waste.stop()
@@ -32,14 +32,14 @@ func _ready():
 	_place_organelle(get_tile(Vector2i(10,4)),'test1')
 	if Global.controller: $expand_cell.grab_focus()
 
-#returns the tile scene with the given iposition vector
+## Returns the tile scene with the given iposition vector
 func get_tile(vector2i):
 	for tile in game_tiles.get_children():
 		if tile.get_iposition() == vector2i:
 			return tile
 	return null
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
@@ -48,7 +48,7 @@ func _clear_organelle_tilemap():
 	for cell in organelle_tilemap.get_used_cells():
 		organelle_tilemap.set_cell(cell)
 
-# Activates when any of the functional "game tiles" are clicked
+## Activates when any of the functional "game tiles" are clicked
 func _tile_clicked(tile):
 	if mode == 'expand':
 		tile.set_incel()
@@ -69,13 +69,13 @@ func _tile_clicked(tile):
 	for used_tile in display_tilemap.get_used_cells():
 		set_display_tile(used_tile)
 
-# Places given organelle with top left "origin" at given tile
+## Places given organelle with top left "origin" at given tile
 func _place_organelle(tile,organelle):
 	for vector2i in Global.get_organelle_vectors(organelle):
 		get_tile(tile.get_iposition() + vector2i).set_organelle(organelle,tile.get_iposition())
 	tile.show_organelle()
 
-# Removes the organelle present at given tile
+## Removes the organelle present at given tile
 func _remove_organelle(tile):
 	var origin_tile = get_tile(tile.get_organelle_origin())
 	var organelle_to_remove = tile.get_organelle()
@@ -85,7 +85,7 @@ func _remove_organelle(tile):
 	origin_tile.hide_organelle()
 	return organelle_to_remove
 
-# Activates when the mouse hovers over a tile. Displays preview organelle in organelle mode
+## Activates when the mouse hovers over a tile. Displays preview organelle in organelle mode
 func _tile_entered(tile):
 	_clear_organelle_tilemap()
 	if mode == 'organelle':
@@ -105,7 +105,7 @@ func _tile_entered(tile):
 		for vector2i in Global.get_organelle_vectors(active_organelle):
 			organelle_tilemap.set_cell(tile.get_iposition()+vector2i,atlas_id,atlas_position+vector2i)
 
-# Used to calculate which tile for the display tilemap to draw
+## Used to calculate which tile for the display tilemap to draw
 func set_display_tile(vector2i):
 	var game_tile_data = []
 	for v2 in [Vector2i(-1,-1),Vector2i(0,-1),Vector2i(0,0),Vector2i(-1,0)]:
@@ -115,26 +115,27 @@ func set_display_tile(vector2i):
 			game_tile_data.append(get_tile(vector2i + v2).get_id())
 	display_tilemap.set_cell(vector2i,randi_range(0,1),Global.tilemap_key[game_tile_data])
 
-# Handles all buttons
+## Handles all buttons
 #region Buttons
-# Activates when the debug "get organelle" button is pressed
+## Activates when the debug "get organelle" button is pressed
 func _on_get_organelle_pressed():
 	mode = 'organelle'
 	active_organelle = Global.random_organelle()
 
-# Activates when the debug "expand cell" button is pressed
+## Activates when the debug "expand cell" button is pressed
 func _on_expand_cell_pressed():
 	mode = 'expand'
 
-# Activates when the debug "shrink cell" button is pressed
+## Activates when the debug "shrink cell" button is pressed
 func _on_shrink_cell_pressed():
 	mode = 'shrink'
 
-# Activates when the debug "move organelle" button is pressed
+## Activates when the debug "move organelle" button is pressed
 func _on_move_organelle_pressed():
 	mode = 'move'
 
-# Handles the hazardous waste bin button
+
+## Handles the hazardous waste bin button
 #region Waste Bin
 func _on_waste_button_pressed():
 	$waste_button/waste.play('trashed')
