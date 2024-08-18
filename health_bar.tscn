@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://e3lkey06pt81"]
+
+[ext_resource type="Script" path="res://health_bar.gd" id="1_fiyy6"]
+[ext_resource type="Texture2D" uid="uid://kgngfm7v4htl" path="res://sprites/hp_bar1.png" id="2_fih41"]
+[ext_resource type="Texture2D" uid="uid://8odi8m3v6agr" path="res://sprites/hp_bar2.png" id="3_x1nhi"]
+[ext_resource type="Texture2D" uid="uid://oja7vd3xsgds" path="res://sprites/hp_bar4.png" id="4_q46np"]
+[ext_resource type="Texture2D" uid="uid://bf6rpnd1mhtt8" path="res://sprites/hp_bar3.png" id="5_6w34w"]
+[ext_resource type="Texture2D" uid="uid://djgwtvc1v4hi5" path="res://sprites/hp_bar5.png" id="6_1fa6r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lmyed"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_x1nhi")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_q46np")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_6w34w")
+}],
+"loop": true,
+"name": &"yellow",
+"speed": 5.0
+}]
+
+[node name="health_bar" type="Node2D"]
+script = ExtResource("1_fiyy6")
+
+[node name="bg" type="Sprite2D" parent="."]
+texture = ExtResource("6_1fa6r")
+centered = false
+
+[node name="bar" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, 0)
+sprite_frames = SubResource("SpriteFrames_lmyed")
+animation = &"yellow"
+centered = false
+
+[node name="shell" type="Sprite2D" parent="."]
+texture = ExtResource("2_fih41")
+centered = false
