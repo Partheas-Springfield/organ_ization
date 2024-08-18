@@ -134,16 +134,6 @@ func _on_shrink_cell_pressed():
 func _on_move_organelle_pressed():
 	mode = 'move'
 
-func _input(event):
-	if event.is_action_type():
-		if Global.controller:
-			pass
-		else:
-			Global.controller = true
-			$expand_cell.grab_focus()
-	else:
-		Global.controller = false
-		get_viewport().gui_release_focus()
 
 ## Handles the hazardous waste bin button
 #region Waste Bin
@@ -180,3 +170,15 @@ func _on_waste_button_mouse_exited():
 		$waste_button/waste.stop()
 #endregion
 #endregion
+
+func _input(event):
+	print(event.as_text())
+	if event.is_action_type() && event.as_text() != "MOUSE_BUTTON_LEFT":
+		if Global.controller:
+			pass
+		else:
+			Global.controller = true
+			$expand_cell.grab_focus()
+	else:
+		Global.controller = false
+		get_viewport().gui_release_focus()
