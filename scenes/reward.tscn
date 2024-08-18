@@ -1,3 +1,33 @@
 [gd_scene format=3 uid="uid://cqyknuexrg1pf"]
 
 [node name="Reward" type="Node2D"]
+
+[node name="Shade" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.623529)
+
+[node name="MenuBackground" type="ColorRect" parent="."]
+offset_left = 256.0
+offset_top = 128.0
+offset_right = 896.0
+offset_bottom = 512.0
+color = Color(0.0683252, 7.88442e-05, 0.197525, 1)
+
+[node name="Text" type="RichTextLabel" parent="MenuBackground"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 640.0
+offset_bottom = 104.0
+theme_override_font_sizes/normal_font_size = 21
+bbcode_enabled = true
+text = "[center]Select an Organelle"
+
+[node name="Choice" type="Button" parent="."]
+offset_left = 520.0
+offset_top = 264.0
+offset_right = 632.0
+offset_bottom = 376.0
+flat = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Choice"]
