@@ -205,6 +205,10 @@ func _on_waste_button_mouse_exited():
 	if $waste_button/waste.animation != 'trashed':
 		$waste_button/waste.play('default')
 		$waste_button/waste.stop()
+
+func _on_select_button_pressed():
+	#Assign $reward_screen.reward to something - is it the name of the reward as a string
+	$reward_screen.hide()
 #endregion
 #endregion
 
