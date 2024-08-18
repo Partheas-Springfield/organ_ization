@@ -44,6 +44,15 @@ func get_tile(vector2i):
 func _process(delta):
 	pass
 
+## Returns an array including all adjacent tiles to the given tile
+func _get_neighbors(tile):
+	var neighbors = []
+	for vector2i in [Vector2i(-1,0),Vector2i(0,-1),Vector2i(1,0),Vector2i(0,1)]:
+		var neighbor = get_tile(tile.get_iposition()+vector2i)
+		if neighbor != null:
+			neighbors.append(neighbor)
+	return neighbors
+
 # Helper function that removes organelle placement overlay
 func _clear_organelle_tilemap():
 	for cell in organelle_tilemap.get_used_cells():
@@ -76,6 +85,7 @@ func _place_organelle(tile,organelle):
 	for vector2i in Global.get_organelle_vectors(organelle):
 		get_tile(tile.get_iposition() + vector2i).set_organelle(organelle,tile.get_iposition())
 	tile.show_organelle()
+	tile.set_organelle_stats(organelle)
 
 ## Removes the organelle present at given tile
 func _remove_organelle(tile):

@@ -21,20 +21,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxopx"]
 size = Vector2(64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_banx2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_pi1b0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_vfj5n")
-}],
-"loop": true,
-"name": &"default",
-"speed": 2.0
-}]
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_r6l4a"]
 animations = [{
 "frames": [{
@@ -126,19 +112,33 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_banx2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pi1b0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vfj5n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
 [node name="tile" type="Area2D"]
 script = ExtResource("1_r284q")
 
 [node name="tile_collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nxopx")
 
-[node name="selection" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_banx2")
-
 [node name="organelle" type="AnimatedSprite2D" parent="."]
 position = Vector2(64, 64)
 sprite_frames = SubResource("SpriteFrames_r6l4a")
 animation = &"endoplasmicreticulum"
+
+[node name="selection" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_banx2")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

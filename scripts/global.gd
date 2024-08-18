@@ -48,6 +48,19 @@ const organelle_tilemap_dict = {
 	'cellwall' : Vector2i(3,3)
 }
 
+const organelle_stat_dict = {
+	'ribosome' : [50],
+	'mitochondria' : [50],
+	'golgibody' : [50],
+	'nucleus' : [150],
+	'proteinchannel' : [50],
+	'endoplasmicreticulum' : [50],
+	'cellwall' : [100]
+}
+
+func get_organelle_hp(organelle):
+	return organelle_stat_dict[organelle][0]
+
 func random_organelle():
 	var i = randi_range(0,organelle_list.size()-1)
 	return organelle_list[i]

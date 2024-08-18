@@ -239,7 +239,7 @@ focus_neighbor_bottom = NodePath("../waste_button")
 text = "move organelle"
 
 [node name="organelle_tilemap" type="TileMapLayer" parent="."]
-z_index = 20
+z_index = 50
 position = Vector2(32, 32)
 tile_set = SubResource("TileSet_e0qun")
 

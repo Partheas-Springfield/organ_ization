@@ -11,6 +11,8 @@ signal tile_clicked
 signal tile_entered
 var iposition = Vector2i()
 
+var organelle_hp = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	selection.hide()
@@ -49,6 +51,8 @@ func set_organelle(new_organelle=null,origin=null):
 	organelle = new_organelle
 	organelle_origin = origin
 	organelle_sprite.play(str(organelle))
+	if new_organelle == null:
+		organelle_hp = null
 
 func get_organelle():
 	return organelle
@@ -79,3 +83,6 @@ func deselected():
 func _unhandled_input(event):
 	if hovered and Input.is_action_just_pressed('select'):
 		emit_signal('tile_clicked')
+
+func set_organelle_stats(new_organelle):
+	organelle_hp = Global.get_organelle_hp(new_organelle)
