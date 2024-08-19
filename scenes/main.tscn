@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://dw3dg4mra64he"]
+[gd_scene load_steps=27 format=4 uid="uid://dw3dg4mra64he"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0ns07"]
 [ext_resource type="Texture2D" uid="uid://bvhca36jeug4u" path="res://sprites/Background2.png" id="2_cu64w"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://ds5x6tdgg575b" path="res://scenes/info_bar.tscn" id="13_e6uy5"]
 [ext_resource type="PackedScene" uid="uid://uxx3lucnkrns" path="res://scenes/organelle_bank.tscn" id="15_43esn"]
 [ext_resource type="PackedScene" uid="uid://bqklwy88vautq" path="res://scenes/intro.tscn" id="15_don1q"]
+[ext_resource type="PackedScene" uid="uid://bs85uwcnr0kst" path="res://mini_cutscene.tscn" id="17_rirbn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkpd5"]
 texture = ExtResource("2_gce5q")
@@ -306,9 +307,9 @@ position = Vector2(20, 18)
 sprite_frames = SubResource("SpriteFrames_sjssy")
 
 [node name="proceed" type="Button" parent="build_overlay"]
-offset_left = 848.0
+offset_left = 832.0
 offset_top = 552.0
-offset_right = 1040.0
+offset_right = 1024.0
 offset_bottom = 600.0
 text = "Proceed to Trial ->"
 
@@ -317,6 +318,9 @@ offset_left = 800.0
 offset_top = 88.0
 offset_right = 1024.0
 offset_bottom = 432.0
+
+[node name="mini_cutscene" parent="build_overlay" instance=ExtResource("17_rirbn")]
+position = Vector2(-8, 88)
 
 [node name="cutscenes" parent="." node_paths=PackedStringArray("focus_send") instance=ExtResource("15_don1q")]
 visible = false
