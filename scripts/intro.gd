@@ -13,7 +13,8 @@ var text_list
 func _ready():
 	speaker_list = Global.intro_speaker
 	text_list = Global.intro_text
-	$Nameplate.text = speaker_list[story_index]
+	$Nameplate.text = "[center]" + speaker_list[story_index]
+	$Portrait.play(speaker_list[story_index])
 	show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,7 +47,8 @@ func _on_next_pressed():
 	elif story_index<text_list.size()-1:
 		story_index+=1
 		fade = fade_start
-		$Nameplate.text = speaker_list[story_index]
+		$Nameplate.text = "[center]" + speaker_list[story_index]
+		$Portrait.play(speaker_list[story_index])
 	else: _advance()
 		
 
