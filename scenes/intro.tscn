@@ -5,42 +5,41 @@
 [node name="Intro" type="Node2D"]
 script = ExtResource("1_n580y")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="Nameplate" type="RichTextLabel" parent="."]
 offset_left = 256.0
-offset_top = 288.0
-offset_right = 896.0
-offset_bottom = 352.0
-step = 0.0
-show_percentage = false
-
-[node name="Text" type="RichTextLabel" parent="ProgressBar"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_right = 640.0
-offset_bottom = 64.0
-theme_override_font_sizes/normal_font_size = 43
+offset_top = 352.0
+offset_right = 416.0
+offset_bottom = 392.0
+theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
-text = "[center]Welcome to the intro![/center]"
-
-[node name="Skip" type="Button" parent="."]
-unique_name_in_owner = true
-offset_left = 528.0
-offset_top = 368.0
-offset_right = 624.0
-offset_bottom = 399.0
-text = "Skip Intro"
+text = "Name"
 
 [node name="Story" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
 offset_left = 256.0
-offset_top = 144.0
+offset_top = 400.0
 offset_right = 896.0
-offset_bottom = 256.0
+offset_bottom = 512.0
 theme_override_constants/line_separation = 4
+theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
-text = "CEO grants Vicky with her own microbiology lab due to her revolutionary new cell creator in the hopes that she can create a life extending superimmune cell. Assistant Inga, a grad student comes with the lab as free labor. Grad students in their barely waking state can only communicate in grunts though."
+text = "Story text goes here."
 
-[connection signal="value_changed" from="ProgressBar" to="." method="progress"]
+[node name="Skip" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 856.0
+offset_top = 544.0
+offset_right = 952.0
+offset_bottom = 575.0
+text = "Skip Intro"
+
+[node name="Next" type="Button" parent="."]
+offset_left = 760.0
+offset_top = 544.0
+offset_right = 840.0
+offset_bottom = 576.0
+text = "Next"
+
 [connection signal="button_down" from="Skip" to="." method="skip_down"]
 [connection signal="pressed" from="Skip" to="." method="skip_press"]
+[connection signal="pressed" from="Next" to="." method="_on_next_pressed"]

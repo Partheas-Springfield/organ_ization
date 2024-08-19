@@ -128,6 +128,7 @@ offset_left = 256.0
 offset_top = 224.0
 offset_right = 896.0
 offset_bottom = 448.0
+metadata/_edit_lock_ = true
 
 [node name="Choice1" type="Button" parent="Choices"]
 unique_name_in_owner = true
@@ -138,6 +139,7 @@ offset_bottom = 192.0
 focus_neighbor_right = NodePath("../Choice2")
 flat = true
 icon_alignment = 1
+metadata/_edit_group_ = true
 
 [node name="organelle" type="AnimatedSprite2D" parent="Choices/Choice1"]
 position = Vector2(96, 96)
@@ -153,6 +155,7 @@ offset_bottom = 192.0
 focus_neighbor_left = NodePath("../Choice1")
 focus_neighbor_right = NodePath("../Choice3")
 flat = true
+metadata/_edit_group_ = true
 
 [node name="organelle" type="AnimatedSprite2D" parent="Choices/Choice2"]
 position = Vector2(96, 96)
@@ -167,6 +170,7 @@ offset_right = 608.0
 offset_bottom = 192.0
 focus_neighbor_left = NodePath("../Choice2")
 flat = true
+metadata/_edit_group_ = true
 
 [node name="organelle" type="AnimatedSprite2D" parent="Choices/Choice3"]
 position = Vector2(96, 96)

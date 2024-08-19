@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dw3dg4mra64he"]
+[gd_scene load_steps=23 format=4 uid="uid://dw3dg4mra64he"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0ns07"]
 [ext_resource type="Texture2D" uid="uid://bawt0bs4dsmiv" path="res://sprites/cell_on_petri1.png" id="2_gce5q"]
@@ -286,6 +286,7 @@ offset_top = 464.0
 offset_right = 672.0
 offset_bottom = 495.0
 text = "Select Reward"
+
 [node name="info_bar" parent="." instance=ExtResource("13_e6uy5")]
 
 [connection signal="pressed" from="get_organelle" to="." method="_on_get_organelle_pressed"]

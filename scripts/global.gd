@@ -81,3 +81,38 @@ func get_organelle_vectors(organelle):
 
 func get_organelle_atlas_position(organelle):
 	return organelle_tilemap_dict[organelle]
+
+#region Text Information
+
+#region Intro
+const intro_speaker = [
+	"Shelly",
+	"Vicky",
+	"Shelly",
+	"Vicky",
+	"Inga",
+	"Vicky",
+	"Shelly",
+	"Inga",
+	"Vicky",
+	"Shelly",
+	"Inga",
+	"Shelly",
+]
+const intro_text = [
+	"Congratulations Dr. Fraulenstein, not many people get their own lab at your age.",
+	"Thank you, Mrs Shelly. This is a dream come true.",
+	"Well Vicky, you deserve it. This revolutionary new Crisp-st cell modifier you made could change the world.",
+	"Yes with the right modifications, I hope to create a new type of superimmune cell. Perhaps we could cure diseases, extend life, maybe even raise the d-",
+	"*grunt*",
+	"Wait, who is this?",
+	"Oh that's just Inga, your new lab assistant!",
+	"*grunt* [Hello, nice to meet you, Dr. Fraulenstein]",
+	"Oh, um, hello Inga, you can just call me Vicky. Is she... okay?",
+	"No, she's a grad student. She comes with the lab. In their semi-conscious caffeine fueled state they can pretty much only make grunting noises, but at least they don’t need money, sleep or rights. You can usually figure out what the grunts mean.",
+	"*grunt* [The inequities of our society can only be addressed by proletarian rule]",
+	"Didn't quite catch that one. Anyway, good luck!",
+]
+#endregion
+
+#endregion
