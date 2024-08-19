@@ -28,8 +28,6 @@ func _ready():
 			get_tile(Vector2i(xi,yi)).set_incel()
 	for used_tile in display_tilemap.get_used_cells():
 		set_display_tile(used_tile)
-	_place_organelle(get_tile(Vector2i(4,3)),'nucleus')
-	_place_organelle(get_tile(Vector2i(6,3)),'mitochondria')
 	if Global.controller: $cutscenes/Next.grab_focus()
 	calculate_stats()
 
@@ -92,11 +90,24 @@ func _clear_organelle_tilemap():
 
 ## Activates when any of the functional "game tiles" are clicked
 func _tile_clicked(tile):
-	if mode == 'expand':
-		tile.set_incel()
-	elif mode == 'shrink':
-		if tile.get_organelle() == null:
-			tile.set_incel(false)
+	if Global.held_organelle != null:
+		if valid_placement:
+			_place_organelle(tile,Global.held_organelle)
+			Global.held_organelle = null
+			mode = 'move'
+			valid_placement = false
+			_clear_organelle_tilemap()
+	elif tile.get_organelle() == null:
+		if mode == 'expand':
+			tile.set_incel()
+		elif mode == 'shrink':
+			if tile.get_organelle() == null:
+				tile.set_incel(false)
+	else: 
+		Global.held_organelle = _remove_organelle(tile)
+		mode = 'organelle'
+		_tile_entered(tile)
+	'''
 	elif mode == 'organelle':
 		if valid_placement:
 			_place_organelle(tile,active_organelle)
@@ -109,6 +120,7 @@ func _tile_clicked(tile):
 			active_organelle = _remove_organelle(tile)
 			mode = 'organelle'
 			_tile_entered(tile)
+	'''
 	for used_tile in display_tilemap.get_used_cells():
 		set_display_tile(used_tile)
 	calculate_stats()
@@ -133,11 +145,11 @@ func _remove_organelle(tile):
 ## Activates when the mouse hovers over a tile. Displays preview organelle in organelle mode
 func _tile_entered(tile):
 	_clear_organelle_tilemap()
-	if mode == 'organelle':
+	if Global.held_organelle != null:
 		var affected_tiles = []
-		var atlas_position = Global.get_organelle_atlas_position(active_organelle)
-		var total_tiles = Global.get_organelle_vectors(active_organelle).size()
-		for vector2i in Global.get_organelle_vectors(active_organelle):
+		var atlas_position = Global.get_organelle_atlas_position(Global.held_organelle)
+		var total_tiles = Global.get_organelle_vectors(Global.held_organelle).size()
+		for vector2i in Global.get_organelle_vectors(Global.held_organelle):
 			var t = get_tile(tile.get_iposition() + vector2i)
 			if t != null:
 				if t.get_incel() and t.get_organelle() == null:
@@ -147,7 +159,7 @@ func _tile_entered(tile):
 		if affected_tiles.size() == total_tiles:
 			atlas_id = 2
 			valid_placement = true
-		for vector2i in Global.get_organelle_vectors(active_organelle):
+		for vector2i in Global.get_organelle_vectors(Global.held_organelle):
 			organelle_tilemap.set_cell(tile.get_iposition()+vector2i,atlas_id,atlas_position+vector2i)
 
 ## Used to calculate which tile for the display tilemap to draw
@@ -199,12 +211,11 @@ func _on_move_organelle_pressed():
 		else: active_tile = game_tiles.get_child(0)
 		active_tile.selected()
 
-
 ## Handles the hazardous waste bin button
 #region Waste Bin
 func _on_waste_button_pressed():
 	$build_overlay/waste_button/waste.play('trashed')
-	active_organelle = null
+	Global.held_organelle = null
 	mode = 'move'
 	if Global.controller:
 		$build_overlay/waste_button.release_focus()
@@ -218,7 +229,6 @@ func _on_waste_animation_looped():
 	else:
 		$build_overlay/waste_button/waste.play('default')
 	$build_overlay/waste_button/waste.stop()
-
 
 func _on_waste_button_focus_entered():
 	$build_overlay/waste_button/waste.play('highlight')

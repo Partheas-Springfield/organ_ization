@@ -7,6 +7,8 @@ func _ready():
 	for s in slots.get_children():
 		s.pressed.connect(_slot_pressed.bind(s))
 	add_to_next_slot('nucleus')
+	add_to_next_slot('cellwall')
+	add_to_next_slot('cellwall')
 
 func _get_next_slot():
 	for s in slots.get_children():
@@ -31,9 +33,9 @@ func _slot_pressed(slot):
 			var icon = Image.load_from_file(Global.get_icon_path(Global.held_organelle))
 			slot.set_button_icon(ImageTexture.create_from_image(icon))
 			organelle_array[get_slot_num(slot)] = Global.held_organelle
+			Global.held_organelle = null
 	else:
 		var to_return = organelle_array[get_slot_num(slot)]
 		slot.set_button_icon(null)
 		organelle_array[get_slot_num(slot)] = ''
-		print(to_return)
-		return to_return
+		Global.held_organelle = to_return
