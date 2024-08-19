@@ -82,7 +82,9 @@ func _virus_unhighlight(virus):
 
 func _organelle_death(tile):
 	if tile.get_organelle() == 'nucleus':
-		_game_over()
+		#_game_over()
+		$cutscenes.show()
+		$cutscenes/GameOverScreen.switch("loss")
 	else:
 		_remove_organelle(tile)
 

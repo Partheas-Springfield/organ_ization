@@ -11,7 +11,6 @@ var credits
 func _ready():
 	credits = $Credits.get_children()
 	hide()
-	switch("win")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,6 +28,7 @@ func switch(state = "win"):
 	else:
 		$Header.text = "[center]Game Over"
 		music.stop()
+	fade_start = 0
 	show()
 
 

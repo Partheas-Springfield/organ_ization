@@ -68,7 +68,7 @@ func _advance():
 	if Global.controller:focus_send.grab_focus()
 
 func _input(event):
-	if !is_visible_in_tree():pass
+	if !is_visible_in_tree()||$GameOverScreen.is_visible_in_tree():pass
 	elif Global.controller:
 		if event.as_text().contains("Mouse"):
 			Global.controller = false
