@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var slots = $slots
-var organelle_array = ['','','','','','','','','','','','']
+var organelle_array = ['','','','','','','','','','','','','']
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for s in slots.get_children():

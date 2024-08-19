@@ -44,7 +44,19 @@ func _ready():
 func _process(_delta):
 	if Global.held_organelle != null:
 		$build_overlay/organelle_tips.text = Global.get_organelle_info(Global.held_organelle)
-		
+	if mode in ['attack','defend','battle','heal']:
+		if info_bar.get_curr_atp()<50:
+			if mode == 'attack':
+				mode = 'battle'
+			$battle_overlay/attack.disabled = true
+		if info_bar.get_curr_atp()<40:
+			if mode == 'heal':
+				mode = 'battle'
+			$battle_overlay/heal.disabled = true
+		if info_bar.get_curr_atp()<30:
+			if mode == 'defend':
+				mode = 'battle'
+			$battle_overlay/defend.disabled = true
 
 ## Returns the tile scene with the given iposition vector
 func get_tile(vector2i):
@@ -107,6 +119,9 @@ func _to_phase(phase):
 		_start_round()
 
 func _start_round():
+	$battle_overlay/attack.disabled = false
+	$battle_overlay/defend.disabled = false
+	$battle_overlay/heal.disabled = false
 	_get_targets()
 	info_bar.restore_atp()
 
@@ -124,9 +139,9 @@ func calculate_stats():
 				def += 3
 				for neighbor in _get_neighbors(t):
 					if neighbor.get_organelle() == 'cellwall':
-						def += 1
+						def += 2
 			elif t.get_organelle() == 'golgibody':
-				atk += 5
+				atk += 4
 			elif t.get_organelle() == 'mitochondria':
 				for neighbor in _get_neighbors(t):
 					if neighbor.get_organelle() != null:
@@ -172,10 +187,12 @@ func _tile_clicked(tile):
 		if tile.get_organelle() != null and info_bar.get_curr_atp() >= 40:
 			get_tile(tile.get_organelle_origin()).organelle_hp_change(info_bar.get_rec()*info_bar.duo_activation())
 			info_bar.use_atp(40)
+			mode = 'battle'
 	elif mode == 'defend':
 		if tile.get_organelle() != null and info_bar.get_curr_atp() >= 30:
 			get_tile(tile.get_organelle_origin()).add_defense(info_bar.get_def())
 			info_bar.use_atp(30)
+			mode = 'battle'
 	elif mode not in ['battle','attack','reward']:
 		if Global.held_organelle != null:
 			if valid_placement:
@@ -391,6 +408,7 @@ func _input(event):
 
 func _on_proceed_pressed():
 	if $build_overlay/organelle_bank.all_slots_empty() and Global.held_organelle == null:
+		mode = 'battle'
 		_to_phase('battle')
 
 func _on_battle_overlay_end_turn():
@@ -412,35 +430,11 @@ func _on_battle_overlay_end_turn():
 func _on_battle_overlay_defend():
 	if mode != 'defend':
 		mode = 'defend'
-		$battle_overlay/attack.disabled = true
-		$battle_overlay/heal.disabled = true
-		$battle_overlay/end_turn.disabled = true
-	else:
-		mode = 'battle'
-		$battle_overlay/attack.disabled = false
-		$battle_overlay/heal.disabled = false
-		$battle_overlay/end_turn.disabled = false
 
 func _on_battle_overlay_attack():
 	if mode != 'attack':
 		mode = 'attack'
-		$battle_overlay/defend.disabled = true
-		$battle_overlay/heal.disabled = true
-		$battle_overlay/end_turn.disabled = true
-	else:
-		mode = 'battle'
-		$battle_overlay/defend.disabled = false
-		$battle_overlay/heal.disabled = false
-		$battle_overlay/end_turn.disabled = false
 
 func _on_battle_overlay_heal():
 	if mode != 'heal':
 		mode = 'heal'
-		$battle_overlay/attack.disabled = true
-		$battle_overlay/defend.disabled = true
-		$battle_overlay/end_turn.disabled = true
-	else:
-		mode = 'battle'
-		$battle_overlay/attack.disabled = false
-		$battle_overlay/defend.disabled = false
-		$battle_overlay/end_turn.disabled = false
