@@ -1,12 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkd87rw7fxh3c"]
+[gd_scene load_steps=16 format=3 uid="uid://bkd87rw7fxh3c"]
 
 [ext_resource type="Script" path="res://scripts/virus.gd" id="1_30uf6"]
 [ext_resource type="Texture2D" uid="uid://puwbc4w6d7uc" path="res://sprites/virus5.png" id="2_482p0"]
 [ext_resource type="Texture2D" uid="uid://if33g8p0afol" path="res://sprites/virus6.png" id="3_bykfv"]
+[ext_resource type="Texture2D" uid="uid://y14plsc41ys1" path="res://sprites/virus11.png" id="4_3pi0a"]
 [ext_resource type="Texture2D" uid="uid://b12a0kjgm32p4" path="res://sprites/virus3.png" id="4_ah1ny"]
 [ext_resource type="Texture2D" uid="uid://bad4aq2vnknrh" path="res://sprites/virus4.png" id="5_t2i2u"]
+[ext_resource type="Texture2D" uid="uid://ct8us0g81wgcb" path="res://sprites/virus12.png" id="5_uddwe"]
 [ext_resource type="Texture2D" uid="uid://cu0cojb3rvfjv" path="res://sprites/virus1.png" id="6_cp4ym"]
 [ext_resource type="Texture2D" uid="uid://do4xl1o6fmv2h" path="res://sprites/virus2.png" id="7_5mvnk"]
+[ext_resource type="PackedScene" uid="uid://e3lkey06pt81" path="res://scenes/health_bar.tscn" id="8_8xrkq"]
+[ext_resource type="Texture2D" uid="uid://c73chydd0c8tc" path="res://sprites/virus9.png" id="8_ex1b1"]
+[ext_resource type="Texture2D" uid="uid://b3twbkwx2yoa0" path="res://sprites/virus10.png" id="9_dyg81"]
+[ext_resource type="Texture2D" uid="uid://8vseo58c36f" path="res://sprites/virus7.png" id="12_mnpgj"]
+[ext_resource type="Texture2D" uid="uid://bm7ofvyo71emy" path="res://sprites/virus8.png" id="13_3eeoe"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t2wx5"]
 animations = [{
@@ -23,6 +30,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("4_3pi0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uddwe")
+}],
+"loop": true,
+"name": &"green_h",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("4_ah1ny")
 }, {
 "duration": 1.0,
@@ -30,6 +48,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"purple",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_ex1b1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_dyg81")
+}],
+"loop": true,
+"name": &"purple_h",
 "speed": 3.0
 }, {
 "frames": [{
@@ -42,6 +71,17 @@ animations = [{
 "loop": true,
 "name": &"red",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_mnpgj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_3eeoe")
+}],
+"loop": true,
+"name": &"red_h",
+"speed": 3.0
 }]
 
 [node name="virus" type="Node2D"]
@@ -49,4 +89,23 @@ script = ExtResource("1_30uf6")
 
 [node name="virus_sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_t2wx5")
-animation = &"green"
+animation = &"red_h"
+
+[node name="virus_health_bar" parent="." instance=ExtResource("8_8xrkq")]
+position = Vector2(-32, 64)
+
+[node name="virus_name" type="Button" parent="."]
+offset_left = -56.0
+offset_top = 80.0
+offset_right = 56.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Sneaky Virus"
+flat = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="focus_entered" from="virus_name" to="." method="_on_virus_name_focus_entered"]
+[connection signal="focus_exited" from="virus_name" to="." method="_on_virus_name_focus_exited"]
+[connection signal="mouse_entered" from="virus_name" to="." method="_on_virus_name_mouse_entered"]
+[connection signal="mouse_exited" from="virus_name" to="." method="_on_virus_name_mouse_exited"]

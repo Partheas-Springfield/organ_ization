@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtb62lmeic5he"]
+
+[ext_resource type="Script" path="res://scripts/virus_dish.gd" id="1_vj4ic"]
+[ext_resource type="Texture2D" uid="uid://cq57088shk0o8" path="res://sprites/petri_dish2.png" id="2_47fiw"]
+[ext_resource type="PackedScene" uid="uid://bkd87rw7fxh3c" path="res://scenes/virus.tscn" id="3_7qpod"]
+
+[node name="virus_dish" type="Node2D"]
+script = ExtResource("1_vj4ic")
+
+[node name="dish" type="Sprite2D" parent="."]
+texture = ExtResource("2_47fiw")
+
+[node name="viruses" type="Node2D" parent="."]
+
+[node name="virus1" parent="viruses" instance=ExtResource("3_7qpod")]
+position = Vector2(-10, -104)
+
+[node name="virus2" parent="viruses" instance=ExtResource("3_7qpod")]
+position = Vector2(-112, 64)
+
+[node name="virus3" parent="viruses" instance=ExtResource("3_7qpod")]
+position = Vector2(112, 64)

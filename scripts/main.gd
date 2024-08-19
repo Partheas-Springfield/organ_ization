@@ -20,7 +20,7 @@ func _ready():
 			var new_tile = tile_scene.instantiate()
 			game_tiles.add_child(new_tile)
 			new_tile.set_iposition(xi,yi)
-			new_tile.position = Vector2(64+64*xi,64+64*yi)
+			new_tile.position = Vector2(32+64*xi,96+64*yi)
 	for tile in game_tiles.get_children():
 		tile.tile_clicked.connect(_tile_clicked.bind(tile))
 		tile.tile_entered.connect(_tile_entered.bind(tile))
