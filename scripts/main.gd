@@ -43,8 +43,8 @@ func get_tile(vector2i):
 func calculate_stats():
 	var atp_modifier = 0
 	var atk = 5
-	var def = 0
-	var heal = 0
+	var def = 2
+	var heal = 2
 	var crit = 0
 	var scalar = 1.0
 	for t in game_tiles.get_children():
@@ -167,7 +167,7 @@ func _on_get_organelle_pressed():
 	mode = 'organelle'
 	active_organelle = Global.random_organelle()
 	if Global.controller:
-		$get_organelle.release_focus()
+		$debug_overlay/get_organelle.release_focus()
 		if last_tile != null: active_tile = last_tile
 		else: active_tile = game_tiles.get_child(0)
 		active_tile.selected()
@@ -176,7 +176,7 @@ func _on_get_organelle_pressed():
 func _on_expand_cell_pressed():
 	mode = 'expand'
 	if Global.controller:
-		$expand_cell.release_focus()
+		$debug_overlay/expand_cell.release_focus()
 		if last_tile != null: active_tile = last_tile
 		else: active_tile = game_tiles.get_child(0)
 		active_tile.selected()
@@ -185,7 +185,7 @@ func _on_expand_cell_pressed():
 func _on_shrink_cell_pressed():
 	mode = 'shrink'
 	if Global.controller:
-		$shrink_cell.release_focus()
+		$debug_overlay/shrink_cell.release_focus()
 		if last_tile != null: active_tile = last_tile
 		else: active_tile = game_tiles.get_child(0)
 		active_tile.selected()
@@ -194,7 +194,7 @@ func _on_shrink_cell_pressed():
 func _on_move_organelle_pressed():
 	mode = 'move'
 	if Global.controller:
-		$move_organelle.release_focus()
+		$debug_overlay/move_organelle.release_focus()
 		if last_tile != null: active_tile = last_tile
 		else: active_tile = game_tiles.get_child(0)
 		active_tile.selected()
@@ -256,10 +256,10 @@ func _input(event):
 				active_tile.deselected()
 				active_tile = null
 				match mode:
-					"expand":$expand_cell.grab_focus()
-					"shrink":$shrink_cell.grab_focus()
-					"organelle":$get_organelle.grab_focus()
-					"move":$move_organelle.grab_focus()
+					"expand":$debug_overlay/expand_cell.grab_focus()
+					"shrink":$debug_overlay/shrink_cell.grab_focus()
+					"organelle":$debug_overlay/get_organelle.grab_focus()
+					"move":$debug_overlay/move_organelle.grab_focus()
 				mode = null
 				
 			elif event.is_action_pressed("ui_up") && get_tile(active_tile.get_iposition() + Vector2i(0,-1)) != null:
@@ -285,4 +285,4 @@ func _input(event):
 	else:
 		if !event.as_text().contains("Mouse"):
 			Global.controller = true
-			$expand_cell.grab_focus()
+			$debug_overlay/expand_cell.grab_focus()

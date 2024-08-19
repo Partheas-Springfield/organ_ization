@@ -21,7 +21,6 @@ func _process(delta):
 	pass
 
 func set_display_stats(atp_modifier,atk,def,heal,crit,scalar):
-	print(scalar)
 	atp_adjustment = atp_modifier
 	attack = int(atk * scalar)
 	defense = int(def * scalar)
