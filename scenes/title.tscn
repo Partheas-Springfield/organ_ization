@@ -9,13 +9,13 @@ script = ExtResource("1_3yn27")
 layout_mode = 3
 anchors_preset = 0
 offset_top = 1.0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 1088.0
+offset_bottom = 640.0
 
 [node name="Title" type="RichTextLabel" parent="TitleBox"]
 layout_mode = 0
 offset_top = 175.0
-offset_right = 1152.0
+offset_right = 1088.0
 offset_bottom = 222.0
 theme_override_font_sizes/mono_font_size = 1
 theme_override_font_sizes/normal_font_size = 30
@@ -24,33 +24,33 @@ text = "[center]Organ-Ization[/center]"
 
 [node name="Start" type="Button" parent="TitleBox"]
 layout_mode = 0
-offset_left = 544.0
+offset_left = 512.0
 offset_top = 423.0
-offset_right = 608.0
+offset_right = 576.0
 offset_bottom = 454.0
 text = "Start"
 
 [node name="SettingsButton" type="Button" parent="TitleBox"]
 layout_mode = 0
-offset_left = 432.0
+offset_left = 400.0
 offset_top = 479.0
-offset_right = 512.0
+offset_right = 480.0
 offset_bottom = 510.0
 text = "Settings"
 
 [node name="InstructionsButton" type="Button" parent="TitleBox"]
 layout_mode = 0
-offset_left = 520.0
+offset_left = 488.0
 offset_top = 479.0
-offset_right = 632.0
+offset_right = 600.0
 offset_bottom = 510.0
 text = "Instructions"
 
 [node name="CreditsButton" type="Button" parent="TitleBox"]
 layout_mode = 0
-offset_left = 640.0
+offset_left = 608.0
 offset_top = 479.0
-offset_right = 720.0
+offset_right = 688.0
 offset_bottom = 510.0
 text = "Credits"
 
@@ -64,7 +64,7 @@ offset_bottom = 648.0
 [node name="Heading" type="RichTextLabel" parent="Settings"]
 layout_mode = 0
 offset_top = 72.0
-offset_right = 1152.0
+offset_right = 1088.0
 offset_bottom = 119.0
 theme_override_font_sizes/mono_font_size = 1
 theme_override_font_sizes/normal_font_size = 30
@@ -153,7 +153,7 @@ offset_bottom = 648.0
 [node name="Heading" type="RichTextLabel" parent="Instructions"]
 layout_mode = 0
 offset_top = 72.0
-offset_right = 1152.0
+offset_right = 1088.0
 offset_bottom = 119.0
 theme_override_font_sizes/mono_font_size = 1
 theme_override_font_sizes/normal_font_size = 30
@@ -191,7 +191,7 @@ offset_bottom = 648.0
 [node name="Heading" type="RichTextLabel" parent="Credits"]
 layout_mode = 0
 offset_top = 72.0
-offset_right = 1152.0
+offset_right = 1088.0
 offset_bottom = 119.0
 theme_override_font_sizes/mono_font_size = 1
 theme_override_font_sizes/normal_font_size = 30
@@ -200,23 +200,26 @@ text = "[center]Credits[/center]"
 
 [node name="CreditsPlaceholder" type="RichTextLabel" parent="Credits"]
 layout_mode = 0
-offset_left = 384.0
-offset_top = 272.0
-offset_right = 768.0
+offset_top = 232.0
+offset_right = 1088.0
 offset_bottom = 416.0
+theme_override_constants/line_separation = 4
 bbcode_enabled = true
-text = "[center]Anneke: Lottsa Stuff
-Patrick: Menu Stuff and Silliness
-Justin: intro.tscn
-Hayley: Cool Ideas and Artsy Stuff
-Waz: More Stuff
-Adam: Being The Man[/center]"
+text = "[center]Project Lead: Anneke van Renesse
+Programming: Anneke van Renesse, Patrick Mayville
+Story Design: Justin Sun, Betrayalis
+Writing: Justin Sun
+Sprites: Anneke van Renesse
+Portraits and Scenes: Betrayalis
+Victory Music: Justin Sun
+Brainstorming, Playtesting, and General Support: Adam Holder, MatthewCole Waschezyn"
+scroll_active = false
 
 [node name="Back" type="Button" parent="Credits"]
 layout_mode = 0
-offset_left = 552.0
+offset_left = 520.0
 offset_top = 560.0
-offset_right = 600.0
+offset_right = 568.0
 offset_bottom = 591.0
 text = "Back"
 
