@@ -257,12 +257,13 @@ const loss_text = [
 #region Credits
 const credits=[
 	"Project Lead: Anneke van Renesse",
-	"Programming: Anneke van Renesse,     Patrick Mayville",
-	"Story Design: Justin Sun",
+	"Programming: Anneke van Renesse, Patrick Mayville",
+	"Story Design: Justin Sun, Betrayalis",
 	"Writing: Justin Sun",
-	"Graphics: Anneke van Renesse, Betrayalis",
+	"Sprites: Anneke van Renesse",
+	"Portraits and Backgrounds: Betrayalis",
 	"Victory Music: Justin Sun",
-	"Playtesting: Adam Holder",
+	"Brainstorming, Playtesting, and General Support: Adam Holder, MatthewCole Waschezyn",
 ]
 #endregion
 

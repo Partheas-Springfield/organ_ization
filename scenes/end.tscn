@@ -49,9 +49,8 @@ offset_bottom = 40.0
 
 [node name="Line1" type="RichTextLabel" parent="Credits"]
 layout_mode = 0
-offset_left = 384.0
 offset_top = 192.0
-offset_right = 704.0
+offset_right = 1088.0
 offset_bottom = 232.0
 bbcode_enabled = true
 text = "Line1"
@@ -59,62 +58,65 @@ scroll_active = false
 
 [node name="Line2" type="RichTextLabel" parent="Credits"]
 layout_mode = 0
-offset_left = 384.0
-offset_top = 240.0
-offset_right = 704.0
-offset_bottom = 280.0
+offset_top = 232.0
+offset_right = 1088.0
+offset_bottom = 272.0
 bbcode_enabled = true
 text = "Line2"
 scroll_active = false
 
 [node name="Line3" type="RichTextLabel" parent="Credits"]
 layout_mode = 0
-offset_left = 384.0
-offset_top = 288.0
-offset_right = 704.0
-offset_bottom = 328.0
+offset_top = 272.0
+offset_right = 1088.0
+offset_bottom = 312.0
 bbcode_enabled = true
 text = "Line3"
 scroll_active = false
 
 [node name="Line4" type="RichTextLabel" parent="Credits"]
 layout_mode = 0
-offset_left = 384.0
-offset_top = 336.0
-offset_right = 704.0
-offset_bottom = 376.0
+offset_top = 312.0
+offset_right = 1088.0
+offset_bottom = 352.0
 bbcode_enabled = true
 text = "Line4"
 scroll_active = false
 
 [node name="Line5" type="RichTextLabel" parent="Credits"]
 layout_mode = 0
-offset_left = 384.0
-offset_top = 384.0
-offset_right = 704.0
-offset_bottom = 424.0
+offset_top = 352.0
+offset_right = 1088.0
+offset_bottom = 392.0
 bbcode_enabled = true
 text = "Line5"
 scroll_active = false
 
 [node name="Line6" type="RichTextLabel" parent="Credits"]
 layout_mode = 0
-offset_left = 384.0
-offset_top = 432.0
-offset_right = 704.0
-offset_bottom = 472.0
+offset_top = 392.0
+offset_right = 1088.0
+offset_bottom = 432.0
 bbcode_enabled = true
 text = "Line6"
 scroll_active = false
 
 [node name="Line7" type="RichTextLabel" parent="Credits"]
 layout_mode = 0
-offset_left = 384.0
-offset_top = 480.0
-offset_right = 704.0
-offset_bottom = 520.0
+offset_top = 432.0
+offset_right = 1088.0
+offset_bottom = 472.0
 bbcode_enabled = true
 text = "Line7"
+scroll_active = false
+
+[node name="Line8" type="RichTextLabel" parent="Credits"]
+layout_mode = 0
+offset_top = 472.0
+offset_right = 1088.0
+offset_bottom = 512.0
+bbcode_enabled = true
+text = "Line8"
 scroll_active = false
 
 [connection signal="pressed" from="Title" to="." method="_on_title_pressed"]
