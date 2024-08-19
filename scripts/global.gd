@@ -107,7 +107,7 @@ func get_organelle_from_icon_path(path):
 			return key
 	return null
 
-#region Text Information
+#region Cutscene Text Information
 
 #region Intro
 const intro_speaker = [
@@ -137,6 +137,92 @@ const intro_text = [
 	"No, she's a grad student. She comes with the lab. In their semi-conscious caffeine fueled state they can pretty much only make grunting noises, but at least they don’t need money, sleep or rights. You can usually figure out what the grunts mean.",
 	"*grunt* [The inequities of our society can only be addressed by proletarian rule]",
 	"Didn't quite catch that one. Anyway, good luck!",
+]
+#endregion
+#region Post First Build Phase
+const post_build_speaker = [
+	"Vicky",
+	"Inga",
+	"Vicky",
+	"Inga",
+	#"Card",
+	#"Scene",
+	"Inga",
+]
+
+const post_build_text = [
+	"It’s alive! Thank you for your help, Inga.",
+	"*grunt* [My pleasure, Vicky]",
+	"This specimen looks promising, let’s keep it for observation for now.",
+	"*grunt* [Will do. I will see you tomorrow.]",
+	#"That Evening",
+	#"Cell POV, inga backlit, looming sinister",
+	"So, this is the cell that Vicky is so excited about becoming superimmune? You don’t look so tough. Let’s see if you can survive this.",
+]
+#endregion
+#region Post First Battle Phase
+const post_battle_speaker = [
+	"Vicky",
+	"Inga",
+	"Vicky",
+	"Inga",
+	"Vicky",
+]
+
+const post_battle_text = [
+	"Inga, this is incredible! The specimen has somehow developed new ATP capacity overnight.",
+	"*grunt* [So it survived and got stronger? Congratulations Vicky.]",
+	"I could probably modify it further now. But I wonder what triggered this change?",
+	"*grunt* [Who knows, maybe you should make those modifications though, next time it may not be so lucky.]",
+	"Good idea, let’s get to work.",
+]
+#endregion
+#region Win
+const win_speaker = [
+	#"Scene",
+	"Vicky",
+	"Inga",
+	"Vicky",
+	"Inga",
+	"Vicky",
+	#"Scene",
+	#"Scene",
+	#"Scene",
+	#"Scene",
+	#"Scene",
+	#"Card",
+	#"Card",
+]
+const win_text = [
+	#"The lab",
+	"Wow, this cell is so powerful now, I’m not sure anything could kill it, Inga!",
+	"Yes, I was hoping to quietly eliminate it before this point.",
+	"Wait, what? You can talk? Also you were plotting to destroy the specimen?",
+	"Your work is too powerful to be left in the hands of this company. Now that it’s come to this, I’ll just have to steal it!",
+	"No! You can’t!",
+	#"Struggle in the lab, the petri dish slips and breaks by the open door.",
+	#"Containment Breach sign lights up",
+	#"An expanding mass of goo",
+	#"Vicky and Inga look up in horror as the shadow of the mass towers towers over them",
+	#"The silhouette of a city skyline covered in goo",
+	#"Dr. Fraulenstein’s superimmune monster. You have become the dominant lifeform on earth, completely immune to death.",
+	#"Congratulations!",
+]
+#endregion
+#region Loss
+const loss_speaker = [
+	#"Scene",
+	"Vicky",
+	"Inga",
+	"Vicky",
+	"Inga"
+]
+const loss_text = [
+	#"The lab, Vicky tearful, Inga comforting somewhat insincerely",
+	"Oh no! What happened?",
+	"*grunt* [Sorry, Vicky. It seems the specimen was too weak to survive the night. Perhaps we should consider a different use for Crisp-st]",
+	"No, Inga. I’m more determined than ever now. Next time I will make a Cell that truly changes the world!",
+	"*grunt* [Then be here to contribute too.]",
 ]
 #endregion
 

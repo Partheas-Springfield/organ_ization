@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var focus_send = Control.new()
+@export var focus_send = Control.new() ## Which UI element to make grab_focus() when cutscenes end
 var scene = 0
 var fade_start = 0
 var fade = fade_start
@@ -44,7 +44,7 @@ func skip_down():
 
 func _on_next_pressed():
 	if fade<text_list[story_index].length(): fade=text_list[story_index].length()
-	elif story_index<text_list.size()-1:
+	elif story_index<text_list.size()-1&&story_index<speaker_list.size()-1:
 		story_index+=1
 		fade = fade_start
 		$Nameplate.text = "[center]" + speaker_list[story_index]
@@ -54,12 +54,16 @@ func _on_next_pressed():
 
 func _advance():
 	scene+=1
+	match scene:
+		1: #intro>post first build
+			speaker_list=Global.post_build_speaker
+			text_list=Global.post_build_text
+		2: #post first build>post first fight
+			speaker_list=Global.post_battle_speaker
+			text_list=Global.post_battle_text
+		_:pass
 	fade=0
 	story_index=0
-	match scene:
-		#1:
-			#speaker_list=
-		_:pass
 	hide()
 	if Global.controller:focus_send.grab_focus()
 

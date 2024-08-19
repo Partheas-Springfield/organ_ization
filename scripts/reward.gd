@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var exit_button = Button
+@export var exit_button = Button.new() ## The button being overlayed over top of the reward screen
 var reward = null
 var organelles=['','','']
 var size = Vector2(0,0)
