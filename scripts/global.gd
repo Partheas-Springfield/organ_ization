@@ -5,6 +5,8 @@ var music_volume = .5
 var effects_volume = .5
 var volume_scale = 1
 
+var stats = [0,5,0,0,0,0]
+
 var controller = false
 
 const organelle_list = ['ribosome','mitochondria','golgibody','nucleus','proteinchannel','endoplasmicreticulum','cellwall']
@@ -81,6 +83,9 @@ func get_organelle_vectors(organelle):
 
 func get_organelle_atlas_position(organelle):
 	return organelle_tilemap_dict[organelle]
+
+func set_stats(stat_array):
+	stats = stat_array
 
 #region Text Information
 
