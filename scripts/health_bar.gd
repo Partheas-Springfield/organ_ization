@@ -35,8 +35,6 @@ func set_current_hp(hp_value):
 	_update_display()
 
 func update_hp(hp_change):
-	print(current_hp)
-	print(hp_change)
 	current_hp += hp_change
 	_update_display()
 

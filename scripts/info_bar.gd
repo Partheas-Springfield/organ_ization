@@ -29,6 +29,9 @@ func set_display_stats(atp_modifier,atk,def,heal,crit,scalar):
 	defense = int(def * scalar)
 	recovery = int(heal * scalar)
 	critical_chance = crit
+	_update_display()
+
+func _update_display():
 	atk_icon.text = str(attack)
 	def_icon.text = str(defense)
 	rec_icon.text = str(recovery)
@@ -46,6 +49,19 @@ func get_rec():
 
 func get_duo():
 	return float(critical_chance)/100.
+
+func use_atp(amount):
+	current_atp -= amount
+	_update_display()
+
+func duo_activation():
+	if randf() <= get_duo():
+		print('CRIT')
+		return 2
+	return 1
+
+func restore_atp():
+	current_atp = get_max_atp()
 
 func get_max_atp():
 	return 300+atp_adjustment

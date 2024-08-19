@@ -17,7 +17,8 @@ offset_left = 64.0
 offset_top = 544.0
 offset_right = 256.0
 offset_bottom = 608.0
-text = "Attack!"
+text = "Attack!
+(-50 ATP)"
 icon = ExtResource("3_s4tti")
 
 [node name="defend" type="Button" parent="."]
@@ -25,7 +26,8 @@ offset_left = 320.0
 offset_top = 544.0
 offset_right = 512.0
 offset_bottom = 608.0
-text = "Fortify Organelle"
+text = "Fortify Organelle
+(-30 ATP)"
 icon = ExtResource("4_4778b")
 
 [node name="heal" type="Button" parent="."]
@@ -33,7 +35,8 @@ offset_left = 576.0
 offset_top = 544.0
 offset_right = 768.0
 offset_bottom = 608.0
-text = "Repair Organelle"
+text = "Repair Organelle
+(-40 ATP)"
 icon = ExtResource("5_k2b75")
 
 [node name="end_turn" type="Button" parent="."]

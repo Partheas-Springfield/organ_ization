@@ -6,6 +6,7 @@ extends Node2D
 @onready var organelle_tilemap = $organelle_tilemap
 @onready var info_bar = $info_bar
 @onready var battle_overlay = $battle_overlay
+@onready var reward_screen = $reward_screen
 
 var mode = null
 var active_tile = null
@@ -34,6 +35,7 @@ func _ready():
 	for used_tile in display_tilemap.get_used_cells():
 		set_display_tile(used_tile)
 	for v in battle_overlay.get_all_viruses():
+		v.virus_clicked.connect(_virus_clicked.bind(v))
 		v.virus_highlight.connect(_virus_highlight.bind(v))
 		v.virus_unhighlight.connect(_virus_unhighlight.bind(v))
 	if Global.controller: $cutscenes/Next.grab_focus()
@@ -46,6 +48,15 @@ func get_tile(vector2i):
 			return tile
 	return null
 
+func _virus_clicked(virus):
+	if mode == 'attack':
+		if info_bar.get_curr_atp() >=50:
+			info_bar.use_atp(50)
+			virus.update_hp(info_bar.get_atk()*info_bar.duo_activation())
+			if not virus.is_alive():
+				target_tiles[virus.get_id()].set_target()
+				_on_battle_overlay_attack()
+
 func _virus_highlight(virus):
 	target_tiles[virus.get_id()].highlight()
 
@@ -53,7 +64,13 @@ func _virus_unhighlight(virus):
 	target_tiles[virus.get_id()].highlight(false)
 
 func _organelle_death(tile):
-	_remove_organelle(tile)
+	if tile.get_organelle() == 'nucleus':
+		_game_over()
+	else:
+		_remove_organelle(tile)
+
+func _game_over():
+	get_tree().change_scene_to_file.bind("res://scenes/title.tscn").call_deferred()
 
 func _get_targets(num = 3):
 	var valid_targets = []
@@ -64,20 +81,27 @@ func _get_targets(num = 3):
 	valid_targets.shuffle()
 	target_tiles = valid_targets.slice(0,num)
 	for i in range(0,3):
-		var target_color = battle_overlay.get_virus(i).get_color()
-		target_tiles[i].set_target(target_color,i)
+		if battle_overlay.get_virus(i).is_alive():
+			var target_color = battle_overlay.get_virus(i).get_color()
+			target_tiles[i].set_target(target_color,i)
+		else:
+			target_tiles[i].set_target()
 
 func _to_phase(phase):
 	if phase == 'build':
+		mode = 'move'
 		battle_overlay.hide()
 		$build_overlay.show()
 	elif phase == 'battle':
+		Global.level += 1
+		battle_overlay.reset()
 		battle_overlay.show()
 		$build_overlay.hide()
 		_start_round()
 
 func _start_round():
 	_get_targets()
+	info_bar.restore_atp()
 
 func calculate_stats():
 	var atp_modifier = 0
@@ -137,23 +161,31 @@ func _target_unhighlight(tile):
 
 ## Activates when any of the functional "game tiles" are clicked
 func _tile_clicked(tile):
-	if Global.held_organelle != null:
-		if valid_placement:
-			_place_organelle(tile,Global.held_organelle)
-			Global.held_organelle = null
-			mode = 'move'
-			valid_placement = false
-			_clear_organelle_tilemap()
-	elif tile.get_organelle() == null:
-		if mode == 'expand':
-			tile.set_incel()
-		elif mode == 'shrink':
-			if tile.get_organelle() == null:
-				tile.set_incel(false)
-	else: 
-		Global.held_organelle = _remove_organelle(tile)
-		mode = 'organelle'
-		_tile_entered(tile)
+	if mode == 'heal':
+		if tile.get_organelle() != null and info_bar.get_curr_atp() >= 40:
+			get_tile(tile.get_organelle_origin()).organelle_hp_change(info_bar.get_rec()*info_bar.duo_activation())
+			info_bar.use_atp(40)
+	elif mode == 'defend':
+		pass
+	elif mode not in ['battle','attack','reward']:
+		if Global.held_organelle != null:
+			if valid_placement:
+				_place_organelle(tile,Global.held_organelle)
+				Global.held_organelle = null
+				mode = 'move'
+				valid_placement = false
+				_clear_organelle_tilemap()
+		elif tile.get_organelle() == null:
+			if mode == 'expand':
+				tile.set_incel()
+			elif mode == 'shrink':
+				if tile.get_organelle() == null:
+					tile.set_incel(false)
+		else: 
+			Global.held_organelle = _remove_organelle(tile)
+			mode = 'organelle'
+			_tile_entered(tile)
+		calculate_stats()
 	'''
 	elif mode == 'organelle':
 		if valid_placement:
@@ -170,7 +202,6 @@ func _tile_clicked(tile):
 	'''
 	for used_tile in display_tilemap.get_used_cells():
 		set_display_tile(used_tile)
-	calculate_stats()
 
 ## Places given organelle with top left "origin" at given tile
 func _place_organelle(tile,organelle):
@@ -299,6 +330,9 @@ func _on_waste_button_mouse_exited():
 func _on_select_button_pressed():
 	#Assign $reward_screen.reward to something - is it the name of the reward as a string
 	$reward_screen.hide()
+	var new_organelle = $reward_screen.selected()
+	_to_phase('build')
+	$build_overlay/organelle_bank.add_to_next_slot(new_organelle)
 #endregion
 #endregion
 
@@ -347,11 +381,18 @@ func _input(event):
 			get_viewport().set_input_as_handled()
 
 func _on_proceed_pressed():
-	_to_phase('battle')
+	if $build_overlay/organelle_bank.all_slots_empty() and Global.held_organelle == null:
+		_to_phase('battle')
 
 func _on_battle_overlay_end_turn():
+	if battle_overlay.all_dead():
+		mode = 'reward'
+		reward_screen.reset()
+		reward_screen.show()
+		battle_overlay.hide()
 	for virus in battle_overlay.get_all_viruses():
-		get_tile(target_tiles[virus.get_id()].get_organelle_origin()).organelle_hp_change(-virus.get_atk())
+		if target_tiles[virus.get_id()].get_organelle_origin() != null:
+			get_tile(target_tiles[virus.get_id()].get_organelle_origin()).organelle_hp_change(-virus.get_atk())
 	_start_round()
 
 func _on_battle_overlay_defend():

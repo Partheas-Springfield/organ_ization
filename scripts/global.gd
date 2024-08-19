@@ -7,10 +7,13 @@ var volume_scale = 1
 
 var stats = [0,5,0,0,0,0]
 var held_organelle = null
+var held_organelle_hp = null
+var battle_won = false
+var level = 0.
 
 var controller = false
 
-const organelle_list = ['ribosome','mitochondria','golgibody','nucleus','proteinchannel','endoplasmicreticulum','cellwall']
+const organelle_list = ['nucleus','ribosome','mitochondria','golgibody','proteinchannel','endoplasmicreticulum','cellwall']
 
 const tilemap_key = {
 	[0,0,0,0]: Vector2i(0,3),
@@ -71,6 +74,16 @@ const organelle_stat_dict = {
 	'cellwall' : [100]
 }
 
+const organelle_name_dict = {
+	'ribosome' : 'RIBOSOME',
+	'mitochondria' : 'MITOCHONDRIA',
+	'golgibody' : 'GOLGI BODY',
+	'nucleus' : 'NUCLEUS',
+	'proteinchannel' : 'PROTEIN CHANNEL',
+	'endoplasmicreticulum' : 'ENDOPLASMIC RETICULUM',
+	'cellwall' : 'CELL WALL'
+}
+
 ## Organelle bounding size in "tiles"
 const organelle_size_dict = {
 	'ribosome' : Vector2(1,1),
@@ -86,8 +99,11 @@ func get_organelle_hp(organelle):
 	return organelle_stat_dict[organelle][0]
 
 func random_organelle():
-	var i = randi_range(0,organelle_list.size()-1)
+	var i = randi_range(1,organelle_list.size()-1)
 	return organelle_list[i]
+
+func get_organelle_name(organelle):
+	return organelle_name_dict[organelle]
 
 func get_organelle_vectors(organelle):
 	return shape_dict[organelle]

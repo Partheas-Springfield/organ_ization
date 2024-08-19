@@ -89,6 +89,8 @@ func set_organelle(new_organelle=null,origin=null):
 func get_organelle():
 	return organelle
 
+
+## Returns iposition of the organelle's top left origin
 func get_organelle_origin():
 	return organelle_origin
 
