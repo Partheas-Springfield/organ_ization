@@ -8,7 +8,7 @@ script = ExtResource("1_3yn27")
 
 [node name="MusicPlayer" type="Node" parent="."]
 
-[node name="MainMusic" type="AudioStreamPlayer" parent="MusicPlayer"]
+[node name="TitleMusic" type="AudioStreamPlayer" parent="MusicPlayer"]
 
 [node name="ComingForYou" type="AudioStreamPlayer" parent="MusicPlayer"]
 stream = ExtResource("2_j5hkm")
@@ -260,6 +260,8 @@ text = "Back"
 [connection signal="pressed" from="TitleBox/InstructionsButton" to="." method="on_instructions"]
 [connection signal="pressed" from="TitleBox/CreditsButton" to="." method="on_credits"]
 [connection signal="pressed" from="Settings/Back" to="." method="on_settings_back"]
+[connection signal="value_changed" from="Settings/VolumeControls/MusicVolumeSlider" to="." method="_music_volume_changed"]
+[connection signal="value_changed" from="Settings/VolumeControls/SoundEffectsVolumeSlider" to="." method="_effects_volume_changed"]
 [connection signal="item_selected" from="Settings/MusicSelect" to="." method="_on_music_select_item_selected"]
 [connection signal="pressed" from="Instructions/Back" to="." method="on_instructions_back"]
 [connection signal="pressed" from="Credits/Back" to="." method="on_credits_back"]
