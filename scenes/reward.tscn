@@ -113,6 +113,7 @@ offset_bottom = 512.0
 color = Color(0.380392, 0.282353, 0.301961, 1)
 
 [node name="ColorRect" type="ColorRect" parent="MenuBackground"]
+layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0
 offset_right = 624.0

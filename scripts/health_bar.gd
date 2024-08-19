@@ -34,6 +34,9 @@ func set_current_hp(hp_value):
 	current_hp = hp_value
 	_update_display()
 
+func reset_hp():
+	set_current_hp(max_hp)
+
 func update_hp(hp_change):
 	current_hp += hp_change
 	_update_display()

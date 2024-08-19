@@ -47,6 +47,7 @@ func _process(delta):
 func reset_def_hp():
 	organelle_defense = 0
 	organelle_hp = organelle_max_hp
+	hp_bar.reset_hp()
 
 func set_iposition(ix,iy):
 	iposition = Vector2i(ix,iy)
@@ -77,7 +78,7 @@ func reset_def():
 	organelle_defense = 0
 
 func organelle_hp_change(amount):
-	print(amount)
+	print(organelle_hp)
 	if amount <= 0:
 		if -amount >= organelle_defense:
 			amount += organelle_defense
@@ -90,6 +91,7 @@ func organelle_hp_change(amount):
 		hp_bar.hide()
 	elif organelle_hp <= 0:
 		emit_signal('organelle_death')
+	print(organelle_hp)
 
 func get_id():
 	return id
