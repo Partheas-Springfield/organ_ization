@@ -3,7 +3,7 @@ extends Node2D
 @onready var atk_icon = $atk_icon
 @onready var def_icon = $def_icon
 @onready var rec_icon = $rec_icon
-@onready var duo_icon = $du_icon
+@onready var duo_icon = $duo_icon
 @onready var atp_icon = $atp_icon
 
 var atp_adjustment = 0
