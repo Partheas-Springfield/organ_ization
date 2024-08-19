@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=4 uid="uid://dw3dg4mra64he"]
+[gd_scene load_steps=26 format=4 uid="uid://dw3dg4mra64he"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0ns07"]
 [ext_resource type="Texture2D" uid="uid://bawt0bs4dsmiv" path="res://sprites/cell_on_petri1.png" id="2_gce5q"]
+[ext_resource type="Texture2D" uid="uid://ppbeomoilir1" path="res://sprites/lab_sketch.png" id="2_op42y"]
 [ext_resource type="Texture2D" uid="uid://c6gc1lwgyubeu" path="res://sprites/petri_dish.png" id="2_s4grk"]
 [ext_resource type="Texture2D" uid="uid://ccfsgkb7l17bl" path="res://sprites/cell_on_petri2.png" id="3_lecxp"]
 [ext_resource type="Texture2D" uid="uid://caeci6rig2f7b" path="res://sprites/organelles1.png" id="4_pxque"]
@@ -205,6 +206,11 @@ animations = [{
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_0ns07")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(552, 360)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_op42y")
 
 [node name="petri_dish" type="Sprite2D" parent="."]
 position = Vector2(288, 288)

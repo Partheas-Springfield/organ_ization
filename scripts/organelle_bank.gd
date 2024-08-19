@@ -7,8 +7,17 @@ func _ready():
 	for s in slots.get_children():
 		s.pressed.connect(_slot_pressed.bind(s))
 	add_to_next_slot('nucleus')
-	add_to_next_slot('cellwall')
-	add_to_next_slot('cellwall')
+	var start_seed = randi_range(1,4)
+	if start_seed == 1:
+		add_to_next_slot('cellwall')
+		add_to_next_slot('cellwall')
+	elif start_seed == 2:
+		add_to_next_slot('golgibody')
+	elif start_seed == 3:
+		add_to_next_slot('endoplasmicreticulum')
+	elif start_seed == 4:
+		add_to_next_slot('mitochondria')
+		add_to_next_slot('ribosome')
 
 func _get_next_slot():
 	for s in slots.get_children():
