@@ -1,9 +1,9 @@
 extends Node2D
 
-var max_hp
-var current_hp
-var yellow_hp
-var red_hp
+var max_hp = 0
+var current_hp = 0
+var yellow_hp = 0
+var red_hp = 0
 @onready var shell = $shell
 @onready var bar = $bar
 @onready var text_display = $text_display
@@ -35,6 +35,8 @@ func set_current_hp(hp_value):
 	_update_display()
 
 func update_hp(hp_change):
+	print(current_hp)
+	print(hp_change)
 	current_hp += hp_change
 	_update_display()
 

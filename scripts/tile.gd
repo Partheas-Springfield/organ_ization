@@ -16,6 +16,7 @@ var origin = false
 var organelle_max_hp = 0
 var organelle_hp = 0
 var target_color = null
+var target_number = 0
 
 signal tile_clicked
 signal tile_entered
@@ -42,6 +43,7 @@ func get_iposition():
 func show_organelle():
 	organelle_sprite.show()
 	set_organelle_stats(organelle)
+	hp_bar.set_max_hp(organelle_max_hp)
 	origin = true
 
 func hide_organelle():
@@ -60,6 +62,7 @@ func set_incel(is_incel=true):
 func organelle_hp_change(amount):
 	organelle_hp += amount
 	hp_bar.show()
+	hp_bar.update_hp(amount)
 	if organelle_hp > organelle_max_hp:
 		organelle_hp = organelle_max_hp
 		hp_bar.hide()
@@ -105,13 +108,17 @@ func _on_mouse_exited():
 	hovered = false
 	selection.hide()
 
-func set_target(color=null):
+func set_target(color=null,number=0):
+	target_number = number
+	target_color = color
 	if color == null:
-		target.hide()
+		target_button.hide()
 	else:
-		print(color)
-		target_color = color
+		target.play(color)
 		target_button.show()
+
+func get_target_number():
+	return target_number
 
 func deselected():
 	hovered = false
@@ -129,12 +136,16 @@ func set_organelle_stats(new_organelle):
 		organelle_hp = Global.get_organelle_hp(new_organelle)
 		organelle_max_hp = Global.get_organelle_hp(new_organelle)
 
+func highlight(boo=true):
+	if boo: target.play(target_color+'_h')
+	else: target.play(target_color)
+		
 
 func _on_target_button_mouse_entered():
 	emit_signal('target_highlight')
-	target.play(target_color+'_h')
+	highlight()
 
 
 func _on_target_button_mouse_exited():
 	emit_signal('target_unhighlight')
-	target.play(target_color)
+	highlight(false)

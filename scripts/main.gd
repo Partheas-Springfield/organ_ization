@@ -33,6 +33,9 @@ func _ready():
 			get_tile(Vector2i(xi,yi)).set_incel()
 	for used_tile in display_tilemap.get_used_cells():
 		set_display_tile(used_tile)
+	for v in battle_overlay.get_all_viruses():
+		v.virus_highlight.connect(_virus_highlight.bind(v))
+		v.virus_unhighlight.connect(_virus_unhighlight.bind(v))
 	if Global.controller: $cutscenes/Next.grab_focus()
 	calculate_stats()
 
@@ -43,19 +46,26 @@ func get_tile(vector2i):
 			return tile
 	return null
 
+func _virus_highlight(virus):
+	target_tiles[virus.get_id()].highlight()
+
+func _virus_unhighlight(virus):
+	target_tiles[virus.get_id()].highlight(false)
+
 func _organelle_death(tile):
 	_remove_organelle(tile)
 
 func _get_targets(num = 3):
 	var valid_targets = []
 	for t in game_tiles.get_children():
+		t.set_target()
 		if t.get_organelle() != null:
 			valid_targets.append(t)
 	valid_targets.shuffle()
 	target_tiles = valid_targets.slice(0,num)
-	for i in range(1,3):
+	for i in range(0,3):
 		var target_color = battle_overlay.get_virus(i).get_color()
-		target_tiles[i].set_target(target_color)
+		target_tiles[i].set_target(target_color,i)
 
 func _to_phase(phase):
 	if phase == 'build':
@@ -120,10 +130,10 @@ func _clear_organelle_tilemap():
 		organelle_tilemap.set_cell(cell)
 
 func _target_highlight(tile):
-	pass
+	battle_overlay.get_virus(tile.get_target_number()).highlight(true)
 
 func _target_unhighlight(tile):
-	pass
+	battle_overlay.get_virus(tile.get_target_number()).highlight(false)
 
 ## Activates when any of the functional "game tiles" are clicked
 func _tile_clicked(tile):
@@ -335,6 +345,46 @@ func _input(event):
 			Global.controller = true
 			$build_overlay/expand_cell.grab_focus()
 
-
 func _on_proceed_pressed():
 	_to_phase('battle')
+
+func _on_battle_overlay_end_turn():
+	for virus in battle_overlay.get_all_viruses():
+		get_tile(target_tiles[virus.get_id()].get_organelle_origin()).organelle_hp_change(-virus.get_atk())
+	_start_round()
+
+func _on_battle_overlay_defend():
+	if mode != 'defend':
+		mode = 'defend'
+		$battle_overlay/attack.disabled = true
+		$battle_overlay/heal.disabled = true
+		$battle_overlay/end_turn.disabled = true
+	else:
+		mode = 'battle'
+		$battle_overlay/attack.disabled = false
+		$battle_overlay/heal.disabled = false
+		$battle_overlay/end_turn.disabled = false
+
+func _on_battle_overlay_attack():
+	if mode != 'attack':
+		mode = 'attack'
+		$battle_overlay/defend.disabled = true
+		$battle_overlay/heal.disabled = true
+		$battle_overlay/end_turn.disabled = true
+	else:
+		mode = 'battle'
+		$battle_overlay/defend.disabled = false
+		$battle_overlay/heal.disabled = false
+		$battle_overlay/end_turn.disabled = false
+
+func _on_battle_overlay_heal():
+	if mode != 'heal':
+		mode = 'heal'
+		$battle_overlay/attack.disabled = true
+		$battle_overlay/defend.disabled = true
+		$battle_overlay/end_turn.disabled = true
+	else:
+		mode = 'battle'
+		$battle_overlay/attack.disabled = false
+		$battle_overlay/defend.disabled = false
+		$battle_overlay/end_turn.disabled = false

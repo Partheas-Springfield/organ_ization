@@ -8,6 +8,10 @@ var color = null
 var hp = randi_range(15,25)
 var atk = randi_range(8,15)
 var def = randi_range(0,3)
+var id
+
+signal virus_highlight
+signal virus_unhighlight
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,6 +45,9 @@ func get_atk():
 func get_def():
 	return def
 
+func get_id():
+	return id
+
 func difficulty_scale(scalar):
 	hp = int(scalar * hp)
 	atk = int(scalar * atk)
@@ -58,13 +65,17 @@ func highlight(boo = true):
 
 
 func _on_virus_name_focus_entered():
+	emit_signal('virus_highlight')
 	highlight()
 
 func _on_virus_name_mouse_entered():
+	emit_signal('virus_highlight')
 	highlight()
 
 func _on_virus_name_mouse_exited():
+	emit_signal('virus_unhighlight')
 	highlight(false)
 
 func _on_virus_name_focus_exited():
+	emit_signal('virus_unhighlight')
 	highlight(false)
