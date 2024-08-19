@@ -89,6 +89,7 @@ func _get_targets(num = 3):
 
 func _to_phase(phase):
 	if phase == 'build':
+		mode = 'move'
 		battle_overlay.hide()
 		$build_overlay.show()
 	elif phase == 'battle':
@@ -160,23 +161,31 @@ func _target_unhighlight(tile):
 
 ## Activates when any of the functional "game tiles" are clicked
 func _tile_clicked(tile):
-	if Global.held_organelle != null:
-		if valid_placement:
-			_place_organelle(tile,Global.held_organelle)
-			Global.held_organelle = null
-			mode = 'move'
-			valid_placement = false
-			_clear_organelle_tilemap()
-	elif tile.get_organelle() == null:
-		if mode == 'expand':
-			tile.set_incel()
-		elif mode == 'shrink':
-			if tile.get_organelle() == null:
-				tile.set_incel(false)
-	else: 
-		Global.held_organelle = _remove_organelle(tile)
-		mode = 'organelle'
-		_tile_entered(tile)
+	if mode == 'heal':
+		if tile.get_organelle() != null and info_bar.get_curr_atp() >= 40:
+			get_tile(tile.get_organelle_origin()).organelle_hp_change(info_bar.get_rec()*info_bar.duo_activation())
+			info_bar.use_atp(40)
+	elif mode == 'defend':
+		pass
+	elif mode not in ['battle','attack','reward']:
+		if Global.held_organelle != null:
+			if valid_placement:
+				_place_organelle(tile,Global.held_organelle)
+				Global.held_organelle = null
+				mode = 'move'
+				valid_placement = false
+				_clear_organelle_tilemap()
+		elif tile.get_organelle() == null:
+			if mode == 'expand':
+				tile.set_incel()
+			elif mode == 'shrink':
+				if tile.get_organelle() == null:
+					tile.set_incel(false)
+		else: 
+			Global.held_organelle = _remove_organelle(tile)
+			mode = 'organelle'
+			_tile_entered(tile)
+		calculate_stats()
 	'''
 	elif mode == 'organelle':
 		if valid_placement:
@@ -193,7 +202,6 @@ func _tile_clicked(tile):
 	'''
 	for used_tile in display_tilemap.get_used_cells():
 		set_display_tile(used_tile)
-	calculate_stats()
 
 ## Places given organelle with top left "origin" at given tile
 func _place_organelle(tile,organelle):
