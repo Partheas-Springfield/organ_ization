@@ -6,6 +6,7 @@ extends Node2D
 @onready var organelle_tilemap = $organelle_tilemap
 @onready var info_bar = $info_bar
 @onready var battle_overlay = $battle_overlay
+@onready var reward_screen = $reward_screen
 
 var mode = null
 var active_tile = null
@@ -54,6 +55,7 @@ func _virus_clicked(virus):
 			virus.update_hp(info_bar.get_atk()*info_bar.duo_activation())
 			if not virus.is_alive():
 				target_tiles[virus.get_id()].set_target()
+				_on_battle_overlay_attack()
 
 func _virus_highlight(virus):
 	target_tiles[virus.get_id()].highlight()
@@ -90,6 +92,7 @@ func _to_phase(phase):
 		battle_overlay.hide()
 		$build_overlay.show()
 	elif phase == 'battle':
+		battle_overlay.reset()
 		battle_overlay.show()
 		$build_overlay.hide()
 		_start_round()
@@ -318,6 +321,9 @@ func _on_waste_button_mouse_exited():
 func _on_select_button_pressed():
 	#Assign $reward_screen.reward to something - is it the name of the reward as a string
 	$reward_screen.hide()
+	var new_organelle = $reward_screen.selected()
+	_to_phase('build')
+	$build_overlay/organelle_bank.add_to_next_slot(new_organelle)
 #endregion
 #endregion
 
@@ -371,6 +377,12 @@ func _on_proceed_pressed():
 		_to_phase('battle')
 
 func _on_battle_overlay_end_turn():
+	if Global.battle_won:
+		mode = 'reward'
+		reward_screen.reset()
+		reward_screen.show()
+		battle_overlay.hide()
+		Global.battle_won = false
 	for virus in battle_overlay.get_all_viruses():
 		if target_tiles[virus.get_id()].get_organelle_origin() != null:
 			get_tile(target_tiles[virus.get_id()].get_organelle_origin()).organelle_hp_change(-virus.get_atk())

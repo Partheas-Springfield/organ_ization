@@ -9,6 +9,12 @@ var size = Vector2(0,0)
 func _ready():
 	randomize_rewards()
 	assign_neighbors(exit_button)
+	exit_button.disabled = true
+
+func reset():
+	randomize_rewards()
+	assign_neighbors(exit_button)
+	exit_button.disabled = true
 
 func randomize_rewards():
 	for num in range(3):
@@ -37,13 +43,19 @@ func assign_neighbors(button):
 #region Button Logic
 func _on_choice_1_pressed():
 	reward = organelles[0]
-	exit_button.text = "Select " + organelles[0]
+	exit_button.text = "Select " + Global.get_organelle_name(organelles[0])
+	exit_button.disabled = false
 
 func _on_choice_2_pressed():
 	reward = organelles[1]
-	exit_button.text = "Select " + organelles[1]
+	exit_button.text = "Select " + Global.get_organelle_name(organelles[1])
+	exit_button.disabled = false
 
 func _on_choice_3_pressed():
 	reward = organelles[2]
-	exit_button.text = "Select " + organelles[2]
+	exit_button.text = "Select " + Global.get_organelle_name(organelles[2])
+	exit_button.disabled = false
 #endregion
+
+func selected():
+	return reward

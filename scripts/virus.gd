@@ -24,6 +24,7 @@ func _ready():
 	virus_sprite.play()
 
 func reroll():
+	show()
 	alive = true
 	hp = randi_range(15,25)
 	atk = randi_range(8,15)
