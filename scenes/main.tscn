@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://dw3dg4mra64he"]
+[gd_scene load_steps=24 format=4 uid="uid://dw3dg4mra64he"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0ns07"]
 [ext_resource type="Texture2D" uid="uid://bawt0bs4dsmiv" path="res://sprites/cell_on_petri1.png" id="2_gce5q"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cqyknuexrg1pf" path="res://scenes/reward.tscn" id="12_jh65c"]
 [ext_resource type="PackedScene" uid="uid://c12rg84b7fh8n" path="res://scenes/battle_overlay.tscn" id="13_75scg"]
 [ext_resource type="PackedScene" uid="uid://ds5x6tdgg575b" path="res://scenes/info_bar.tscn" id="13_e6uy5"]
+[ext_resource type="PackedScene" uid="uid://uxx3lucnkrns" path="res://scenes/organelle_bank.tscn" id="15_43esn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkpd5"]
 texture = ExtResource("2_gce5q")
@@ -222,6 +223,7 @@ position = Vector2(0, 64)
 tile_set = SubResource("TileSet_e0qun")
 
 [node name="battle_overlay" parent="." instance=ExtResource("13_75scg")]
+visible = false
 metadata/_edit_group_ = true
 
 [node name="debug_overlay" type="Node2D" parent="."]
@@ -232,27 +234,9 @@ offset_left = 504.0
 offset_top = 288.0
 offset_right = 720.0
 offset_bottom = 360.0
-focus_neighbor_top = NodePath("../shrink_cell")
+focus_neighbor_top = NodePath("../../build_overlay/shrink_cell")
 focus_neighbor_bottom = NodePath("../move_organelle")
 text = "get organelle"
-
-[node name="expand_cell" type="Button" parent="debug_overlay"]
-offset_left = 504.0
-offset_top = 128.0
-offset_right = 720.0
-offset_bottom = 200.0
-focus_neighbor_top = NodePath("../waste_button")
-focus_neighbor_bottom = NodePath("../shrink_cell")
-text = "expand cell"
-
-[node name="shrink_cell" type="Button" parent="debug_overlay"]
-offset_left = 504.0
-offset_top = 208.0
-offset_right = 720.0
-offset_bottom = 280.0
-focus_neighbor_top = NodePath("../expand_cell")
-focus_neighbor_bottom = NodePath("../get_organelle")
-text = "shrink cell"
 
 [node name="move_organelle" type="Button" parent="debug_overlay"]
 offset_left = 504.0
@@ -269,7 +253,7 @@ offset_top = 464.0
 offset_right = 632.0
 offset_bottom = 505.0
 focus_neighbor_top = NodePath("../move_organelle")
-focus_neighbor_bottom = NodePath("../expand_cell")
+focus_neighbor_bottom = NodePath("../../build_overlay/expand_cell")
 metadata/_edit_group_ = true
 
 [node name="waste" type="AnimatedSprite2D" parent="debug_overlay/waste_button"]
@@ -290,9 +274,32 @@ text = "Select Reward"
 [node name="info_bar" parent="." instance=ExtResource("13_e6uy5")]
 metadata/_edit_group_ = true
 
+[node name="build_overlay" type="Node2D" parent="."]
+
+[node name="expand_cell" type="Button" parent="build_overlay"]
+offset_left = 528.0
+offset_top = 80.0
+offset_right = 784.0
+offset_bottom = 152.0
+focus_neighbor_top = NodePath("../../debug_overlay/waste_button")
+focus_neighbor_bottom = NodePath("../shrink_cell")
+text = "Add Cytoplasm
+(-10 max ATP)"
+
+[node name="shrink_cell" type="Button" parent="build_overlay"]
+offset_left = 528.0
+offset_top = 160.0
+offset_right = 784.0
+offset_bottom = 232.0
+focus_neighbor_top = NodePath("../expand_cell")
+focus_neighbor_bottom = NodePath("../../debug_overlay/get_organelle")
+text = "Remove Cytoplasm
+(+10 max ATP)"
+
+[node name="organelle_bank" parent="build_overlay" instance=ExtResource("15_43esn")]
+position = Vector2(528, 240)
+
 [connection signal="pressed" from="debug_overlay/get_organelle" to="." method="_on_get_organelle_pressed"]
-[connection signal="pressed" from="debug_overlay/expand_cell" to="." method="_on_expand_cell_pressed"]
-[connection signal="pressed" from="debug_overlay/shrink_cell" to="." method="_on_shrink_cell_pressed"]
 [connection signal="pressed" from="debug_overlay/move_organelle" to="." method="_on_move_organelle_pressed"]
 [connection signal="focus_entered" from="debug_overlay/waste_button" to="." method="_on_waste_button_focus_entered"]
 [connection signal="focus_exited" from="debug_overlay/waste_button" to="." method="_on_waste_button_focus_exited"]
@@ -302,3 +309,5 @@ metadata/_edit_group_ = true
 [connection signal="animation_looped" from="debug_overlay/waste_button/waste" to="." method="_on_waste_animation_looped"]
 [connection signal="frame_changed" from="debug_overlay/waste_button/waste" to="." method="_on_waste_frame_changed"]
 [connection signal="pressed" from="reward_screen/Select Button" to="." method="_on_select_button_pressed"]
+[connection signal="pressed" from="build_overlay/expand_cell" to="." method="_on_expand_cell_pressed"]
+[connection signal="pressed" from="build_overlay/shrink_cell" to="." method="_on_shrink_cell_pressed"]

@@ -6,6 +6,7 @@ var effects_volume = .5
 var volume_scale = 1
 
 var stats = [0,5,0,0,0,0]
+var held_organelle = null
 
 var controller = false
 
@@ -28,6 +29,16 @@ const tilemap_key = {
 	[1,0,1,1]: Vector2i(2,0),
 	[0,1,1,1]: Vector2i(1,1),
 	[1,1,1,1]: Vector2i(2,1),
+}
+
+const organelle_icon_path_dict = {
+	'ribosome' : 'res://sprites/organelle_icon1.png',
+	'mitochondria' : 'res://sprites/organelle_icon2.png',
+	'golgibody' : 'res://sprites/organelle_icon3.png',
+	'nucleus' : 'res://sprites/organelle_icon4.png',
+	'proteinchannel' : 'res://sprites/organelle_icon6.png',
+	'endoplasmicreticulum' : 'res://sprites/organelle_icon5.png',
+	'cellwall' : 'res://sprites/organelle_icon7.png'
 }
 
 const shape_dict = {
@@ -86,6 +97,15 @@ func get_organelle_atlas_position(organelle):
 
 func set_stats(stat_array):
 	stats = stat_array
+
+func get_icon_path(organelle):
+	return organelle_icon_path_dict[organelle]
+
+func get_organelle_from_icon_path(path):
+	for key in organelle_icon_path_dict:
+		if organelle_icon_path_dict[key] == path:
+			return key
+	return null
 
 #region Text Information
 
