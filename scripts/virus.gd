@@ -9,12 +9,25 @@ var hp = randi_range(15,25)
 var atk = randi_range(8,15)
 var def = randi_range(0,3)
 var id
+var alive = true
 
 signal virus_highlight
 signal virus_unhighlight
+signal virus_clicked
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize_color()
+	virus_health_bar.set_max_hp(hp)
+	atk_def.text = (str(atk)+'
+'+str(def))
+	virus_sprite.play()
+
+func reroll():
+	alive = true
+	hp = randi_range(15,25)
+	atk = randi_range(8,15)
+	def = randi_range(0,3)
 	randomize_color()
 	virus_health_bar.set_max_hp(hp)
 	atk_def.text = (str(atk)+'
@@ -48,6 +61,24 @@ func get_def():
 func get_id():
 	return id
 
+func update_hp(amount):
+	var adjusted_amount = amount - def
+	if adjusted_amount < 1:
+		adjusted_amount = 1
+	virus_health_bar.update_hp(-adjusted_amount)
+	if not virus_health_bar.is_alive():
+		die()
+
+func die():
+	hide()
+	atk = 0
+	def = 0
+	alive = false
+	
+
+func is_alive():
+	return alive
+
 func difficulty_scale(scalar):
 	hp = int(scalar * hp)
 	atk = int(scalar * atk)
@@ -79,3 +110,7 @@ func _on_virus_name_mouse_exited():
 func _on_virus_name_focus_exited():
 	emit_signal('virus_unhighlight')
 	highlight(false)
+
+
+func _on_virus_name_pressed():
+	emit_signal('virus_clicked')

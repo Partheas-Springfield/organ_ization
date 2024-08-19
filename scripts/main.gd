@@ -34,6 +34,7 @@ func _ready():
 	for used_tile in display_tilemap.get_used_cells():
 		set_display_tile(used_tile)
 	for v in battle_overlay.get_all_viruses():
+		v.virus_clicked.connect(_virus_clicked.bind(v))
 		v.virus_highlight.connect(_virus_highlight.bind(v))
 		v.virus_unhighlight.connect(_virus_unhighlight.bind(v))
 	if Global.controller: $cutscenes/Next.grab_focus()
@@ -46,6 +47,14 @@ func get_tile(vector2i):
 			return tile
 	return null
 
+func _virus_clicked(virus):
+	if mode == 'attack':
+		if info_bar.get_curr_atp() >=50:
+			info_bar.use_atp(50)
+			virus.update_hp(info_bar.get_atk()*info_bar.duo_activation())
+			if not virus.is_alive():
+				target_tiles[virus.get_id()].set_target()
+
 func _virus_highlight(virus):
 	target_tiles[virus.get_id()].highlight()
 
@@ -53,7 +62,13 @@ func _virus_unhighlight(virus):
 	target_tiles[virus.get_id()].highlight(false)
 
 func _organelle_death(tile):
-	_remove_organelle(tile)
+	if tile.get_organelle() == 'nucleus':
+		_game_over()
+	else:
+		_remove_organelle(tile)
+
+func _game_over():
+	get_tree().change_scene_to_file.bind("res://scenes/title.tscn").call_deferred()
 
 func _get_targets(num = 3):
 	var valid_targets = []
@@ -64,8 +79,11 @@ func _get_targets(num = 3):
 	valid_targets.shuffle()
 	target_tiles = valid_targets.slice(0,num)
 	for i in range(0,3):
-		var target_color = battle_overlay.get_virus(i).get_color()
-		target_tiles[i].set_target(target_color,i)
+		if battle_overlay.get_virus(i).is_alive():
+			var target_color = battle_overlay.get_virus(i).get_color()
+			target_tiles[i].set_target(target_color,i)
+		else:
+			target_tiles[i].set_target()
 
 func _to_phase(phase):
 	if phase == 'build':
@@ -78,6 +96,7 @@ func _to_phase(phase):
 
 func _start_round():
 	_get_targets()
+	info_bar.restore_atp()
 
 func calculate_stats():
 	var atp_modifier = 0
@@ -346,11 +365,13 @@ func _input(event):
 			$build_overlay/expand_cell.grab_focus()
 
 func _on_proceed_pressed():
-	_to_phase('battle')
+	if $build_overlay/organelle_bank.all_slots_empty() and Global.held_organelle == null:
+		_to_phase('battle')
 
 func _on_battle_overlay_end_turn():
 	for virus in battle_overlay.get_all_viruses():
-		get_tile(target_tiles[virus.get_id()].get_organelle_origin()).organelle_hp_change(-virus.get_atk())
+		if target_tiles[virus.get_id()].get_organelle_origin() != null:
+			get_tile(target_tiles[virus.get_id()].get_organelle_origin()).organelle_hp_change(-virus.get_atk())
 	_start_round()
 
 func _on_battle_overlay_defend():
