@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://dw3dg4mra64he"]
+[gd_scene load_steps=24 format=4 uid="uid://dw3dg4mra64he"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0ns07"]
 [ext_resource type="Texture2D" uid="uid://bawt0bs4dsmiv" path="res://sprites/cell_on_petri1.png" id="2_gce5q"]
@@ -12,8 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://b0ageon1wfi4" path="res://sprites/biohazard2.png" id="9_q44p0"]
 [ext_resource type="Texture2D" uid="uid://dlkdpblknun62" path="res://sprites/biohazard4.png" id="10_qsexh"]
 [ext_resource type="PackedScene" uid="uid://cqyknuexrg1pf" path="res://scenes/reward.tscn" id="12_jh65c"]
-[ext_resource type="PackedScene" uid="uid://c12rg84b7fh8n" path="res://scenes/battle_overlay.tscn" id="13_75scg"]
+[ext_resource type="PackedScene" path="res://scenes/battle_overlay.tscn" id="13_75scg"]
 [ext_resource type="PackedScene" uid="uid://ds5x6tdgg575b" path="res://scenes/info_bar.tscn" id="13_e6uy5"]
+[ext_resource type="PackedScene" uid="uid://bqklwy88vautq" path="res://scenes/intro.tscn" id="15_don1q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkpd5"]
 texture = ExtResource("2_gce5q")
@@ -289,6 +290,10 @@ text = "Select Reward"
 
 [node name="info_bar" parent="." instance=ExtResource("13_e6uy5")]
 metadata/_edit_group_ = true
+
+[node name="cutscenes" parent="." node_paths=PackedStringArray("focus_send") instance=ExtResource("15_don1q")]
+visible = false
+focus_send = NodePath("../debug_overlay/expand_cell")
 
 [connection signal="pressed" from="debug_overlay/get_organelle" to="." method="_on_get_organelle_pressed"]
 [connection signal="pressed" from="debug_overlay/expand_cell" to="." method="_on_expand_cell_pressed"]

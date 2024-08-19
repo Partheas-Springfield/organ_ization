@@ -3,7 +3,13 @@
 [ext_resource type="Script" path="res://scripts/intro.gd" id="1_n580y"]
 
 [node name="Intro" type="Node2D"]
+z_index = 1
 script = ExtResource("1_n580y")
+
+[node name="TempSplash" type="ColorRect" parent="."]
+offset_right = 1096.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
 
 [node name="Nameplate" type="RichTextLabel" parent="."]
 offset_left = 256.0
@@ -31,13 +37,15 @@ offset_left = 856.0
 offset_top = 544.0
 offset_right = 952.0
 offset_bottom = 575.0
-text = "Skip Intro"
+focus_neighbor_left = NodePath("../Next")
+text = "Skip Scene"
 
 [node name="Next" type="Button" parent="."]
 offset_left = 760.0
 offset_top = 544.0
 offset_right = 840.0
 offset_bottom = 576.0
+focus_neighbor_right = NodePath("../Skip")
 text = "Next"
 
 [connection signal="button_down" from="Skip" to="." method="skip_down"]
