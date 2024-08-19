@@ -176,7 +176,7 @@ func _on_get_organelle_pressed():
 func _on_expand_cell_pressed():
 	mode = 'expand'
 	if Global.controller:
-		$debug_overlay/expand_cell.release_focus()
+		$build_overlay/expand_cell.release_focus()
 		if last_tile != null: active_tile = last_tile
 		else: active_tile = game_tiles.get_child(0)
 		active_tile.selected()
@@ -185,7 +185,7 @@ func _on_expand_cell_pressed():
 func _on_shrink_cell_pressed():
 	mode = 'shrink'
 	if Global.controller:
-		$debug_overlay/shrink_cell.release_focus()
+		$build_overlay/shrink_cell.release_focus()
 		if last_tile != null: active_tile = last_tile
 		else: active_tile = game_tiles.get_child(0)
 		active_tile.selected()
@@ -203,41 +203,41 @@ func _on_move_organelle_pressed():
 ## Handles the hazardous waste bin button
 #region Waste Bin
 func _on_waste_button_pressed():
-	$debug_overlay/waste_button/waste.play('trashed')
+	$build_overlay/waste_button/waste.play('trashed')
 	active_organelle = null
 	mode = 'move'
 	if Global.controller:
-		$debug_overlay/waste_button.release_focus()
+		$build_overlay/waste_button.release_focus()
 		if last_tile != null: active_tile = last_tile
 		else: active_tile = game_tiles.get_child(0)
 		active_tile.selected()
 
 func _on_waste_animation_looped():
-	if $debug_overlay/waste_button.has_focus():
-		$debug_overlay/waste_button/waste.play('highlight')
+	if $build_overlay/waste_button.has_focus():
+		$build_overlay/waste_button/waste.play('highlight')
 	else:
-		$debug_overlay/waste_button/waste.play('default')
-	$debug_overlay/waste_button/waste.stop()
+		$build_overlay/waste_button/waste.play('default')
+	$build_overlay/waste_button/waste.stop()
 
 
 func _on_waste_button_focus_entered():
-	$debug_overlay/waste_button/waste.play('highlight')
-	$debug_overlay/waste_button/waste.stop()
+	$build_overlay/waste_button/waste.play('highlight')
+	$build_overlay/waste_button/waste.stop()
 
 func _on_waste_button_focus_exited():
-	$debug_overlay/waste_button/waste.play('default')
-	$debug_overlay/waste_button/waste.stop()
+	$build_overlay/waste_button/waste.play('default')
+	$build_overlay/waste_button/waste.stop()
 
 
 func _on_waste_button_mouse_entered():
-	$debug_overlay/waste_button/waste.play('hover')
-	$debug_overlay/waste_button/waste.stop()
+	$build_overlay/waste_button/waste.play('hover')
+	$build_overlay/waste_button/waste.stop()
 
 
 func _on_waste_button_mouse_exited():
-	if $debug_overlay/waste_button/waste.animation != 'trashed':
-		$debug_overlay/waste_button/waste.play('default')
-		$debug_overlay/waste_button/waste.stop()
+	if $build_overlay/waste_button/waste.animation != 'trashed':
+		$build_overlay/waste_button/waste.play('default')
+		$build_overlay/waste_button/waste.stop()
 
 func _on_select_button_pressed():
 	#Assign $reward_screen.reward to something - is it the name of the reward as a string
@@ -257,8 +257,8 @@ func _input(event):
 				active_tile.deselected()
 				active_tile = null
 				match mode:
-					"expand":$debug_overlay/expand_cell.grab_focus()
-					"shrink":$debug_overlay/shrink_cell.grab_focus()
+					"expand":$build_overlay/expand_cell.grab_focus()
+					"shrink":$build_overlay/shrink_cell.grab_focus()
 					"organelle":$debug_overlay/get_organelle.grab_focus()
 					"move":$debug_overlay/move_organelle.grab_focus()
 				mode = null
@@ -286,4 +286,4 @@ func _input(event):
 	else:
 		if !event.as_text().contains("Mouse"):
 			Global.controller = true
-			$debug_overlay/expand_cell.grab_focus()
+			$build_overlay/expand_cell.grab_focus()
