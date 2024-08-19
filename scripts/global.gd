@@ -58,6 +58,17 @@ const organelle_stat_dict = {
 	'cellwall' : [100]
 }
 
+## Organelle bounding size in "tiles"
+const organelle_size_dict = {
+	'ribosome' : Vector2(1,1),
+	'mitochondria' : Vector2(1,2),
+	'golgibody' : Vector2(2,1),
+	'nucleus' : Vector2(2,2),
+	'proteinchannel' : Vector2(1,3),
+	'endoplasmicreticulum' : Vector2(3,1),
+	'cellwall' : Vector2(1,1)
+}
+
 func get_organelle_hp(organelle):
 	return organelle_stat_dict[organelle][0]
 

@@ -135,7 +135,7 @@ shape = SubResource("RectangleShape2D_nxopx")
 [node name="organelle" type="AnimatedSprite2D" parent="."]
 position = Vector2(64, 64)
 sprite_frames = SubResource("SpriteFrames_r6l4a")
-animation = &"endoplasmicreticulum"
+animation = &"nucleus"
 
 [node name="selection" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_banx2")

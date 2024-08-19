@@ -1,11 +1,109 @@
-[gd_scene format=3 uid="uid://cqyknuexrg1pf"]
+[gd_scene load_steps=17 format=3 uid="uid://cqyknuexrg1pf"]
+
+[ext_resource type="Script" path="res://scripts/reward.gd" id="1_iqlin"]
+[ext_resource type="Texture2D" uid="uid://drajfpk7winsj" path="res://sprites/organelle7.png" id="3_6s5qd"]
+[ext_resource type="Texture2D" uid="uid://upgfibuown6e" path="res://sprites/organelle14.png" id="4_s0o78"]
+[ext_resource type="Texture2D" uid="uid://b40uyxl5ocxo1" path="res://sprites/organelle5.png" id="5_3gt4p"]
+[ext_resource type="Texture2D" uid="uid://nv4j3feq3h4k" path="res://sprites/organelle12.png" id="6_rva74"]
+[ext_resource type="Texture2D" uid="uid://bm6ta4x75grk3" path="res://sprites/organelle3.png" id="7_c73j4"]
+[ext_resource type="Texture2D" uid="uid://40oay6nkibm3" path="res://sprites/organelle10.png" id="8_4276c"]
+[ext_resource type="Texture2D" uid="uid://dyxv6a3303x03" path="res://sprites/organelle2.png" id="9_608bd"]
+[ext_resource type="Texture2D" uid="uid://8g14jid4pn3" path="res://sprites/organelle9.png" id="10_wtna1"]
+[ext_resource type="Texture2D" uid="uid://ba2q7e7ekb2ax" path="res://sprites/organelle4.png" id="11_rmcia"]
+[ext_resource type="Texture2D" uid="uid://6doyeebeb3at" path="res://sprites/organelle11.png" id="12_lep05"]
+[ext_resource type="Texture2D" uid="uid://j5v6roeovdlp" path="res://sprites/organelle1.png" id="13_k2j03"]
+[ext_resource type="Texture2D" uid="uid://6jocd7d1qigi" path="res://sprites/organelle8.png" id="14_eaopj"]
+[ext_resource type="Texture2D" uid="uid://ccg7r6jseypnc" path="res://sprites/organelle6.png" id="15_vwt65"]
+[ext_resource type="Texture2D" uid="uid://dm8y3ouxm45en" path="res://sprites/organelle13.png" id="16_ne4rp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e5um0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6s5qd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s0o78")
+}],
+"loop": true,
+"name": &"cellwall",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3gt4p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rva74")
+}],
+"loop": true,
+"name": &"endoplasmicreticulum",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_c73j4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4276c")
+}],
+"loop": true,
+"name": &"golgibody",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_608bd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wtna1")
+}],
+"loop": true,
+"name": &"mitochondria",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_rmcia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_lep05")
+}],
+"loop": true,
+"name": &"nucleus",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_vwt65")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ne4rp")
+}],
+"loop": true,
+"name": &"proteinchannel",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_k2j03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_eaopj")
+}],
+"loop": true,
+"name": &"ribosome",
+"speed": 3.0
+}]
 
 [node name="Reward" type="Node2D"]
+z_index = 1
+script = ExtResource("1_iqlin")
 
 [node name="Shade" type="ColorRect" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
-color = Color(0, 0, 0, 0.623529)
+color = Color(0, 0, 0, 0.784314)
 
 [node name="MenuBackground" type="ColorRect" parent="."]
 offset_left = 256.0
@@ -16,18 +114,65 @@ color = Color(0.0683252, 7.88442e-05, 0.197525, 1)
 
 [node name="Text" type="RichTextLabel" parent="MenuBackground"]
 layout_mode = 0
-offset_top = 64.0
+offset_top = 44.0
 offset_right = 640.0
-offset_bottom = 104.0
+offset_bottom = 84.0
 theme_override_font_sizes/normal_font_size = 21
 bbcode_enabled = true
 text = "[center]Select an Organelle"
 
-[node name="Choice" type="Button" parent="."]
-offset_left = 520.0
-offset_top = 264.0
-offset_right = 632.0
-offset_bottom = 376.0
+[node name="Choices" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 256.0
+offset_top = 224.0
+offset_right = 896.0
+offset_bottom = 448.0
+
+[node name="Choice1" type="Button" parent="Choices"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 32.0
+offset_right = 224.0
+offset_bottom = 192.0
+focus_neighbor_right = NodePath("../Choice2")
+flat = true
+icon_alignment = 1
+
+[node name="organelle" type="AnimatedSprite2D" parent="Choices/Choice1"]
+position = Vector2(96, 96)
+sprite_frames = SubResource("SpriteFrames_e5um0")
+animation = &"cellwall"
+
+[node name="Choice2" type="Button" parent="Choices"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 224.0
+offset_right = 416.0
+offset_bottom = 192.0
+focus_neighbor_left = NodePath("../Choice1")
+focus_neighbor_right = NodePath("../Choice3")
 flat = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Choice"]
+[node name="organelle" type="AnimatedSprite2D" parent="Choices/Choice2"]
+position = Vector2(96, 96)
+sprite_frames = SubResource("SpriteFrames_e5um0")
+animation = &"cellwall"
+
+[node name="Choice3" type="Button" parent="Choices"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 416.0
+offset_right = 608.0
+offset_bottom = 192.0
+focus_neighbor_left = NodePath("../Choice2")
+flat = true
+
+[node name="organelle" type="AnimatedSprite2D" parent="Choices/Choice3"]
+position = Vector2(96, 96)
+sprite_frames = SubResource("SpriteFrames_e5um0")
+animation = &"cellwall"
+
+[connection signal="pressed" from="Choices/Choice1" to="." method="_on_choice_1_pressed"]
+[connection signal="pressed" from="Choices/Choice2" to="." method="_on_choice_2_pressed"]
+[connection signal="pressed" from="Choices/Choice3" to="." method="_on_choice_3_pressed"]

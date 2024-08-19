@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b0ageon1wfi4" path="res://sprites/biohazard2.png" id="9_q44p0"]
 [ext_resource type="Texture2D" uid="uid://dlkdpblknun62" path="res://sprites/biohazard4.png" id="10_qsexh"]
 [ext_resource type="PackedScene" uid="uid://c12rg84b7fh8n" path="res://scenes/battle_overlay.tscn" id="13_75scg"]
+[ext_resource type="PackedScene" uid="uid://cqyknuexrg1pf" path="res://scenes/reward.tscn" id="12_jh65c"]
 [ext_resource type="PackedScene" uid="uid://ds5x6tdgg575b" path="res://scenes/info_bar.tscn" id="13_e6uy5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkpd5"]
@@ -274,6 +275,15 @@ metadata/_edit_group_ = true
 position = Vector2(20, 18)
 sprite_frames = SubResource("SpriteFrames_sjssy")
 
+[node name="reward_screen" parent="." node_paths=PackedStringArray("exit_button") instance=ExtResource("12_jh65c")]
+exit_button = NodePath("Select Button")
+
+[node name="Select Button" type="Button" parent="reward_screen"]
+offset_left = 480.0
+offset_top = 464.0
+offset_right = 672.0
+offset_bottom = 495.0
+text = "Select Reward"
 [node name="info_bar" parent="." instance=ExtResource("13_e6uy5")]
 
 [connection signal="pressed" from="debug_overlay/get_organelle" to="." method="_on_get_organelle_pressed"]
@@ -287,3 +297,4 @@ sprite_frames = SubResource("SpriteFrames_sjssy")
 [connection signal="pressed" from="debug_overlay/waste_button" to="." method="_on_waste_button_pressed"]
 [connection signal="animation_looped" from="debug_overlay/waste_button/waste" to="." method="_on_waste_animation_looped"]
 [connection signal="frame_changed" from="debug_overlay/waste_button/waste" to="." method="_on_waste_frame_changed"]
+[connection signal="pressed" from="reward_screen/Select Button" to="." method="_on_select_button_pressed"]
