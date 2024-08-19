@@ -7,7 +7,9 @@ var volume_scale = 1
 
 var stats = [0,5,0,0,0,0]
 var held_organelle = null
+var held_organelle_hp = null
 var battle_won = false
+var level = 0.
 
 var controller = false
 

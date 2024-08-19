@@ -92,6 +92,7 @@ func _to_phase(phase):
 		battle_overlay.hide()
 		$build_overlay.show()
 	elif phase == 'battle':
+		Global.level += 1
 		battle_overlay.reset()
 		battle_overlay.show()
 		$build_overlay.hide()
@@ -377,12 +378,11 @@ func _on_proceed_pressed():
 		_to_phase('battle')
 
 func _on_battle_overlay_end_turn():
-	if Global.battle_won:
+	if battle_overlay.all_dead():
 		mode = 'reward'
 		reward_screen.reset()
 		reward_screen.show()
 		battle_overlay.hide()
-		Global.battle_won = false
 	for virus in battle_overlay.get_all_viruses():
 		if target_tiles[virus.get_id()].get_organelle_origin() != null:
 			get_tile(target_tiles[virus.get_id()].get_organelle_origin()).organelle_hp_change(-virus.get_atk())

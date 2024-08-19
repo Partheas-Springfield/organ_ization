@@ -29,6 +29,9 @@ func reroll():
 	hp = randi_range(15,25)
 	atk = randi_range(8,15)
 	def = randi_range(0,3)
+	hp *= int(1+Global.level/2.)
+	atk *= int(1+Global.level/2.)
+	def *= int(1+Global.level/2.)
 	randomize_color()
 	virus_health_bar.set_max_hp(hp)
 	atk_def.text = (str(atk)+'
