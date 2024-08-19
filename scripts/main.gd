@@ -318,14 +318,15 @@ func _on_move_organelle_pressed():
 ## Handles the hazardous waste bin button
 #region Waste Bin
 func _on_waste_button_pressed():
-	$build_overlay/waste_button/waste.play('trashed')
-	Global.held_organelle = null
-	mode = 'move'
-	if Global.controller:
-		$build_overlay/waste_button.release_focus()
-		if last_tile != null: active_tile = last_tile
-		else: active_tile = game_tiles.get_child(0)
-		active_tile.selected()
+	if Global.held_organelle != 'nucleus':
+		$build_overlay/waste_button/waste.play('trashed')
+		Global.held_organelle = null
+		mode = 'move'
+		if Global.controller:
+			$build_overlay/waste_button.release_focus()
+			if last_tile != null: active_tile = last_tile
+			else: active_tile = game_tiles.get_child(0)
+			active_tile.selected()
 
 func _on_waste_animation_looped():
 	if $build_overlay/waste_button.has_focus():
