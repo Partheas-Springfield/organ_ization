@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ds5x6tdgg575b"]
+[gd_scene load_steps=8 format=3 uid="uid://ds5x6tdgg575b"]
 
 [ext_resource type="Script" path="res://scripts/info_bar.gd" id="1_4sxmw"]
 [ext_resource type="Texture2D" uid="uid://dsr8bbxyerst8" path="res://sprites/attribute_icons1.png" id="1_xttrk"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bb4deq7k0lb8u" path="res://sprites/attribute_icons2.png" id="2_t3ytu"]
 [ext_resource type="Texture2D" uid="uid://dmcs4qedo4ln6" path="res://sprites/attribute_icons3.png" id="3_4pfn8"]
 [ext_resource type="Texture2D" uid="uid://dff6ij2ldmhx" path="res://sprites/attribute_icons4.png" id="4_io4de"]
+[ext_resource type="Texture2D" uid="uid://sic71sm2utc1" path="res://sprites/attribute_icons5.png" id="6_h5yph"]
 
 [node name="info_bar" type="Node2D"]
 script = ExtResource("1_4sxmw")
@@ -44,12 +45,22 @@ text = "50"
 icon = ExtResource("3_4pfn8")
 flat = true
 
-[node name="atp_icon" type="Button" parent="."]
+[node name="duo_icon" type="Button" parent="."]
 offset_left = 432.0
 offset_top = 8.0
-offset_right = 560.0
+offset_right = 528.0
 offset_bottom = 56.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "300 (-100)"
+text = "5%"
+icon = ExtResource("6_h5yph")
+flat = true
+
+[node name="atp_icon" type="Button" parent="."]
+offset_left = 560.0
+offset_top = 8.0
+offset_right = 688.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "300/300 (-0)"
 icon = ExtResource("4_io4de")
 flat = true

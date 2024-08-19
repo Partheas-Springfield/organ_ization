@@ -3,9 +3,11 @@ extends Node2D
 @onready var atk_icon = $atk_icon
 @onready var def_icon = $def_icon
 @onready var rec_icon = $rec_icon
+@onready var duo_icon = $du_icon
 @onready var atp_icon = $atp_icon
 
 var atp_adjustment = 0
+var current_atp = 0
 var attack = 0
 var defense = 0
 var recovery = 0
@@ -22,6 +24,7 @@ func _process(delta):
 
 func set_display_stats(atp_modifier,atk,def,heal,crit,scalar):
 	atp_adjustment = atp_modifier
+	current_atp = 300 + atp_adjustment
 	attack = int(atk * scalar)
 	defense = int(def * scalar)
 	recovery = int(heal * scalar)
@@ -29,4 +32,23 @@ func set_display_stats(atp_modifier,atk,def,heal,crit,scalar):
 	atk_icon.text = str(attack)
 	def_icon.text = str(defense)
 	rec_icon.text = str(recovery)
-	atp_icon.text = str(300+atp_adjustment)+' ('+str(atp_adjustment)+')'
+	atp_icon.text = str(current_atp)+'/'+str(300+atp_adjustment)+' ('+str(atp_adjustment)+')'
+	duo_icon.text = str(critical_chance)+'%'
+
+func get_atk():
+	return attack
+
+func get_def():
+	return defense
+
+func get_rec():
+	return recovery
+
+func get_duo():
+	return float(critical_chance)/100.
+
+func get_max_atp():
+	return 300+atp_adjustment
+
+func get_curr_atp():
+	return current_atp

@@ -60,7 +60,7 @@ func calculate_stats():
 			elif t.get_organelle() == 'mitochondria':
 				for neighbor in _get_neighbors(t):
 					if neighbor.get_organelle() != null:
-						atp_modifier += 5
+						atp_modifier += 7
 			elif t.get_organelle() == 'ribosome':
 				heal += 5
 			elif t.get_organelle() == 'endoplasmicreticulum':
@@ -69,10 +69,10 @@ func calculate_stats():
 					if neighbor.get_organelle() == 'nucleus':
 						crit += 5
 			elif t.get_organelle() == 'proteinchannel':
-				scalar += .4
+				scalar += .6
 				for neighbor in _get_neighbors(t):
 					if neighbor.get_incel():
-						scalar -= .1
+						scalar -= .15
 	Global.set_stats([atp_modifier,atk,def,heal,crit,scalar])
 	info_bar.set_display_stats(atp_modifier,atk,def,heal,crit,scalar)
 
