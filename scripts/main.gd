@@ -30,7 +30,7 @@ func _ready():
 		set_display_tile(used_tile)
 	_place_organelle(get_tile(Vector2i(4,3)),'nucleus')
 	_place_organelle(get_tile(Vector2i(6,3)),'mitochondria')
-	if Global.controller: $expand_cell.grab_focus()
+	if Global.controller: $cutscenes/Next.grab_focus()
 	calculate_stats()
 
 ## Returns the tile scene with the given iposition vector
@@ -246,6 +246,7 @@ func _on_select_button_pressed():
 #endregion
 
 func _input(event):
+	if $reward_screen.is_visible_in_tree() || $cutscenes.is_visible_in_tree():pass
 	if Global.controller:
 		if event.as_text().contains("Mouse"):
 			Global.controller = false
