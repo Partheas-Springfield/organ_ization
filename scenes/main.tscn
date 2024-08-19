@@ -306,6 +306,13 @@ metadata/_edit_group_ = true
 position = Vector2(20, 18)
 sprite_frames = SubResource("SpriteFrames_sjssy")
 
+[node name="proceed" type="Button" parent="build_overlay"]
+offset_left = 848.0
+offset_top = 552.0
+offset_right = 1040.0
+offset_bottom = 600.0
+text = "Proceed to Trial ->"
+
 [node name="cutscenes" parent="." instance=ExtResource("15_don1q")]
 visible = false
 
@@ -321,3 +328,4 @@ visible = false
 [connection signal="pressed" from="build_overlay/waste_button" to="." method="_on_waste_button_pressed"]
 [connection signal="animation_looped" from="build_overlay/waste_button/waste" to="." method="_on_waste_animation_looped"]
 [connection signal="frame_changed" from="build_overlay/waste_button/waste" to="." method="_on_waste_frame_changed"]
+[connection signal="pressed" from="build_overlay/proceed" to="." method="_on_proceed_pressed"]

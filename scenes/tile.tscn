@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://mlfs7ps56hoo"]
+[gd_scene load_steps=29 format=3 uid="uid://mlfs7ps56hoo"]
 
 [ext_resource type="Script" path="res://scripts/tile.gd" id="1_r284q"]
 [ext_resource type="Texture2D" uid="uid://csg27e4axy0qc" path="res://sprites/selection1.png" id="2_pi1b0"]
@@ -17,6 +17,13 @@
 [ext_resource type="Texture2D" uid="uid://8g14jid4pn3" path="res://sprites/organelle9.png" id="13_gnw6u"]
 [ext_resource type="Texture2D" uid="uid://40oay6nkibm3" path="res://sprites/organelle10.png" id="15_ysna4"]
 [ext_resource type="Texture2D" uid="uid://nv4j3feq3h4k" path="res://sprites/organelle12.png" id="17_kdpw2"]
+[ext_resource type="PackedScene" uid="uid://e3lkey06pt81" path="res://scenes/health_bar.tscn" id="18_7164s"]
+[ext_resource type="Texture2D" uid="uid://csgebqm6clxqj" path="res://sprites/virus_targets3.png" id="19_frcpe"]
+[ext_resource type="Texture2D" uid="uid://bh6gkacqfcph8" path="res://sprites/virus_targets6.png" id="20_yc1o4"]
+[ext_resource type="Texture2D" uid="uid://fak5pt3whwo2" path="res://sprites/virus_targets2.png" id="21_hoh4y"]
+[ext_resource type="Texture2D" uid="uid://dgou2jlq6tefq" path="res://sprites/virus_targets5.png" id="22_pl4io"]
+[ext_resource type="Texture2D" uid="uid://cfuyc2vnvmvk3" path="res://sprites/virus_targets1.png" id="23_4xhx4"]
+[ext_resource type="Texture2D" uid="uid://15n82mh0p3sd" path="res://sprites/virus_targets4.png" id="24_vbolo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxopx"]
 size = Vector2(64, 64)
@@ -126,6 +133,57 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_p3ybo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_frcpe")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_yc1o4")
+}],
+"loop": true,
+"name": &"green_h",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_hoh4y")
+}],
+"loop": true,
+"name": &"purple",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_pl4io")
+}],
+"loop": true,
+"name": &"purple_h",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_4xhx4")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_vbolo")
+}],
+"loop": true,
+"name": &"red_h",
+"speed": 5.0
+}]
+
 [node name="tile" type="Area2D"]
 script = ExtResource("1_r284q")
 
@@ -140,6 +198,23 @@ animation = &"nucleus"
 [node name="selection" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_banx2")
 
+[node name="health_bar" parent="." instance=ExtResource("18_7164s")]
+position = Vector2(-40, -32)
+
+[node name="target_button" type="Button" parent="."]
+visible = false
+offset_right = 16.0
+offset_bottom = 16.0
+flat = true
+metadata/_edit_group_ = true
+
+[node name="target" type="AnimatedSprite2D" parent="target_button"]
+position = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_p3ybo")
+animation = &"red_h"
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="target_button" to="." method="_on_target_button_mouse_entered"]
+[connection signal="mouse_exited" from="target_button" to="." method="_on_target_button_mouse_exited"]

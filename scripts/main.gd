@@ -5,12 +5,14 @@ extends Node2D
 @onready var display_tilemap = $display_tilemap
 @onready var organelle_tilemap = $organelle_tilemap
 @onready var info_bar = $info_bar
+@onready var battle_overlay = $battle_overlay
 
 var mode = null
 var active_tile = null
 var last_tile = null
 var active_organelle = null
 var valid_placement = false
+var target_tiles = []
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,6 +25,9 @@ func _ready():
 	for tile in game_tiles.get_children():
 		tile.tile_clicked.connect(_tile_clicked.bind(tile))
 		tile.tile_entered.connect(_tile_entered.bind(tile))
+		tile.organelle_death.connect(_organelle_death.bind(tile))
+		tile.target_highlight.connect(_target_highlight.bind(tile))
+		tile.target_unhighlight.connect(_target_unhighlight.bind(tile))
 	for xi in range(4,7):
 		for yi in range(3,6):
 			get_tile(Vector2i(xi,yi)).set_incel()
@@ -37,6 +42,32 @@ func get_tile(vector2i):
 		if tile.get_iposition() == vector2i:
 			return tile
 	return null
+
+func _organelle_death(tile):
+	_remove_organelle(tile)
+
+func _get_targets(num = 3):
+	var valid_targets = []
+	for t in game_tiles.get_children():
+		if t.get_organelle() != null:
+			valid_targets.append(t)
+	valid_targets.shuffle()
+	target_tiles = valid_targets.slice(0,num)
+	for i in range(1,3):
+		var target_color = battle_overlay.get_virus(i).get_color()
+		target_tiles[i].set_target(target_color)
+
+func _to_phase(phase):
+	if phase == 'build':
+		battle_overlay.hide()
+		$build_overlay.show()
+	elif phase == 'battle':
+		battle_overlay.show()
+		$build_overlay.hide()
+		_start_round()
+
+func _start_round():
+	_get_targets()
 
 func calculate_stats():
 	var atp_modifier = 0
@@ -87,6 +118,12 @@ func _get_neighbors(tile):
 func _clear_organelle_tilemap():
 	for cell in organelle_tilemap.get_used_cells():
 		organelle_tilemap.set_cell(cell)
+
+func _target_highlight(tile):
+	pass
+
+func _target_unhighlight(tile):
+	pass
 
 ## Activates when any of the functional "game tiles" are clicked
 func _tile_clicked(tile):
@@ -297,3 +334,7 @@ func _input(event):
 		if !event.as_text().contains("Mouse"):
 			Global.controller = true
 			$build_overlay/expand_cell.grab_focus()
+
+
+func _on_proceed_pressed():
+	_to_phase('battle')
