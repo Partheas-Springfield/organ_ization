@@ -316,6 +316,10 @@ text = "Proceed to Trial ->"
 [node name="cutscenes" parent="." instance=ExtResource("15_don1q")]
 visible = false
 
+[connection signal="attack" from="battle_overlay" to="." method="_on_battle_overlay_attack"]
+[connection signal="defend" from="battle_overlay" to="." method="_on_battle_overlay_defend"]
+[connection signal="end_turn" from="battle_overlay" to="." method="_on_battle_overlay_end_turn"]
+[connection signal="heal" from="battle_overlay" to="." method="_on_battle_overlay_heal"]
 [connection signal="pressed" from="debug_overlay/get_organelle" to="." method="_on_get_organelle_pressed"]
 [connection signal="pressed" from="debug_overlay/move_organelle" to="." method="_on_move_organelle_pressed"]
 [connection signal="pressed" from="reward_screen/Select Button" to="." method="_on_select_button_pressed"]
