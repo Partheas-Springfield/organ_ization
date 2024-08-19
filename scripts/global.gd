@@ -3,7 +3,7 @@ extends Node
 var master_volume = 1
 var music_volume = .5
 var effects_volume = .5
-var volume_scale = 1
+var volume_scale = 2
 
 var stats = [0,5,0,0,0,0]
 var held_organelle = null

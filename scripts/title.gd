@@ -5,8 +5,7 @@ var last_box = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Set the sliders' values based on the global values
-	$Settings/VolumeControls/MusicVolumeSlider.value = Global.music_volume
-	$Settings/VolumeControls/SoundEffectsVolumeSlider.value = Global.effects_volume
+	for player in $MusicPlayer.get_children():player.volume_db = linear_to_db(Global.music_volume*Global.volume_scale)
 	last_box = $TitleBox/Start
 	if Global.controller: $TitleBox/Start.grab_focus()
 	
@@ -41,13 +40,20 @@ func on_credits_back():
 	$TitleBox/CreditsButton.grab_focus()
 #endregion
 
-#region Slider Logic
-func master_volume_changed(value):
+#region Settings Logic
+func _master_volume_changed(value):
 	Global.master_volume = value
-func music_volume_changed(value):
+func _music_volume_changed(value):
 	Global.music_volume = value
-func effects_volume_changed(value):
+	for player in $MusicPlayer.get_children():player.volume_db = linear_to_db(Global.music_volume*Global.volume_scale)
+func _effects_volume_changed(value):
 	Global.effects_volume = value
+	
+func _on_music_select_item_selected(index):
+	for player in $MusicPlayer.get_children(): player.stop()
+	match index:
+		0:$MusicPlayer/TitleMusic.play()
+		1:$MusicPlayer/ComingForYou.play()
 #endregion
 
 
