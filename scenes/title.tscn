@@ -1,11 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5svm8lt1hywc"]
+[gd_scene load_steps=3 format=3 uid="uid://c5svm8lt1hywc"]
 
 [ext_resource type="Script" path="res://scripts/title.gd" id="1_3yn27"]
+[ext_resource type="AudioStream" uid="uid://1lqlxac7lnk3" path="res://audio/coming_for_you.mp3" id="2_j5hkm"]
 
 [node name="Title" type="Node2D"]
 script = ExtResource("1_3yn27")
 
+[node name="MusicPlayer" type="Node" parent="."]
+
+[node name="MainMusic" type="AudioStreamPlayer" parent="MusicPlayer"]
+
+[node name="ComingForYou" type="AudioStreamPlayer" parent="MusicPlayer"]
+stream = ExtResource("2_j5hkm")
+parameters/looping = true
+
 [node name="TitleBox" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_top = 1.0
@@ -55,7 +65,6 @@ offset_bottom = 510.0
 text = "Credits"
 
 [node name="Settings" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
@@ -73,15 +82,16 @@ text = "[center]Settings[/center]"
 
 [node name="Back" type="Button" parent="Settings"]
 layout_mode = 0
-offset_left = 552.0
+offset_left = 520.0
 offset_top = 560.0
-offset_right = 600.0
+offset_right = 568.0
 offset_bottom = 591.0
 text = "Back"
 
 [node name="VolumeControls" type="Control" parent="Settings"]
 anchors_preset = 0
-offset_right = 40.0
+offset_left = -64.0
+offset_right = -24.0
 offset_bottom = 40.0
 
 [node name="MasterVolumeLabel" type="RichTextLabel" parent="Settings/VolumeControls"]
@@ -105,12 +115,13 @@ text = "[right]Music Volume:[/right]"
 
 [node name="SoundEffectsLabel" type="RichTextLabel" parent="Settings/VolumeControls"]
 layout_mode = 0
-offset_left = 456.0
+offset_left = 472.0
 offset_top = 192.0
 offset_right = 584.0
 offset_bottom = 216.0
 bbcode_enabled = true
 text = "[right]Effects Volume:[/right]"
+scroll_active = false
 
 [node name="MasterVolumeSlider" type="HSlider" parent="Settings/VolumeControls"]
 visible = false
@@ -126,9 +137,9 @@ value = 1.0
 [node name="MusicVolumeSlider" type="HSlider" parent="Settings/VolumeControls"]
 layout_mode = 0
 offset_left = 592.0
-offset_top = 168.0
-offset_right = 696.0
-offset_bottom = 192.0
+offset_top = 164.0
+offset_right = 736.0
+offset_bottom = 188.0
 max_value = 1.0
 step = 0.01
 value = 0.5
@@ -136,12 +147,33 @@ value = 0.5
 [node name="SoundEffectsVolumeSlider" type="HSlider" parent="Settings/VolumeControls"]
 layout_mode = 0
 offset_left = 592.0
-offset_top = 192.0
-offset_right = 696.0
-offset_bottom = 216.0
+offset_top = 188.0
+offset_right = 736.0
+offset_bottom = 212.0
 max_value = 1.0
 step = 0.01
 value = 0.5
+
+[node name="MusicLabel" type="RichTextLabel" parent="Settings"]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 220.0
+offset_right = 520.0
+offset_bottom = 260.0
+bbcode_enabled = true
+text = "[right]Music Player:"
+
+[node name="MusicSelect" type="OptionButton" parent="Settings"]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 216.0
+offset_right = 672.0
+offset_bottom = 242.0
+selected = 0
+item_count = 2
+popup/item_0/text = "Main Menu"
+popup/item_1/text = "Coming for You"
+popup/item_1/id = 1
 
 [node name="Instructions" type="Control" parent="."]
 visible = false
@@ -228,5 +260,6 @@ text = "Back"
 [connection signal="pressed" from="TitleBox/InstructionsButton" to="." method="on_instructions"]
 [connection signal="pressed" from="TitleBox/CreditsButton" to="." method="on_credits"]
 [connection signal="pressed" from="Settings/Back" to="." method="on_settings_back"]
+[connection signal="item_selected" from="Settings/MusicSelect" to="." method="_on_music_select_item_selected"]
 [connection signal="pressed" from="Instructions/Back" to="." method="on_instructions_back"]
 [connection signal="pressed" from="Credits/Back" to="." method="on_credits_back"]

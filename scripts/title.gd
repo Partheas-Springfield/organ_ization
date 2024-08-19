@@ -41,13 +41,19 @@ func on_credits_back():
 	$TitleBox/CreditsButton.grab_focus()
 #endregion
 
-#region Slider Logic
+#region Settings Logic
 func master_volume_changed(value):
 	Global.master_volume = value
 func music_volume_changed(value):
 	Global.music_volume = value
 func effects_volume_changed(value):
 	Global.effects_volume = value
+	
+func _on_music_select_item_selected(index):
+	for player in $MusicPlayer.get_children(): player.stop()
+	match index:
+		0:$MusicPlayer/MainMusic.play()
+		1:$MusicPlayer/ComingForYou.play()
 #endregion
 
 
