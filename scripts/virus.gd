@@ -3,15 +3,18 @@ extends Node2D
 @onready var virus_health_bar = $virus_health_bar
 @onready var virus_sprite = $virus_sprite
 @onready var virus_name = $virus_name
+@onready var atk_def = $atk_def
 var color = null
 var hp = randi_range(15,25)
 var atk = randi_range(8,15)
-var def = randi_range(0,5)
+var def = randi_range(0,3)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize_color()
 	virus_health_bar.set_max_hp(hp)
+	atk_def.text = (str(atk)+'
+'+str(def))
 	virus_sprite.play()
 
 func set_color(new_color):

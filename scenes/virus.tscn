@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bkd87rw7fxh3c"]
+[gd_scene load_steps=17 format=3 uid="uid://bkd87rw7fxh3c"]
 
 [ext_resource type="Script" path="res://scripts/virus.gd" id="1_30uf6"]
 [ext_resource type="Texture2D" uid="uid://puwbc4w6d7uc" path="res://sprites/virus5.png" id="2_482p0"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b3twbkwx2yoa0" path="res://sprites/virus10.png" id="9_dyg81"]
 [ext_resource type="Texture2D" uid="uid://8vseo58c36f" path="res://sprites/virus7.png" id="12_mnpgj"]
 [ext_resource type="Texture2D" uid="uid://bm7ofvyo71emy" path="res://sprites/virus8.png" id="13_3eeoe"]
+[ext_resource type="Texture2D" uid="uid://5rsjpfi23ffl" path="res://sprites/virus_icons.png" id="15_lwu32"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t2wx5"]
 animations = [{
@@ -104,6 +105,19 @@ text = "Sneaky Virus"
 flat = true
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="icons" type="Sprite2D" parent="."]
+position = Vector2(-8, 118)
+texture = ExtResource("15_lwu32")
+
+[node name="atk_def" type="RichTextLabel" parent="."]
+offset_left = 2.0
+offset_top = 102.0
+offset_right = 42.0
+offset_bottom = 142.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "10
+5"
 
 [connection signal="focus_entered" from="virus_name" to="." method="_on_virus_name_focus_entered"]
 [connection signal="focus_exited" from="virus_name" to="." method="_on_virus_name_focus_exited"]
