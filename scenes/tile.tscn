@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://mlfs7ps56hoo"]
+[gd_scene load_steps=30 format=3 uid="uid://mlfs7ps56hoo"]
 
 [ext_resource type="Script" path="res://scripts/tile.gd" id="1_r284q"]
 [ext_resource type="Texture2D" uid="uid://csg27e4axy0qc" path="res://sprites/selection1.png" id="2_pi1b0"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dgou2jlq6tefq" path="res://sprites/virus_targets5.png" id="22_pl4io"]
 [ext_resource type="Texture2D" uid="uid://cfuyc2vnvmvk3" path="res://sprites/virus_targets1.png" id="23_4xhx4"]
 [ext_resource type="Texture2D" uid="uid://15n82mh0p3sd" path="res://sprites/virus_targets4.png" id="24_vbolo"]
+[ext_resource type="Texture2D" uid="uid://c73x2yiow2rod" path="res://sprites/small_shield.png" id="25_8r0k7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxopx"]
 size = Vector2(64, 64)
@@ -212,6 +213,18 @@ metadata/_edit_group_ = true
 position = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_p3ybo")
 animation = &"red_h"
+
+[node name="def_icon" type="Sprite2D" parent="."]
+position = Vector2(-16, -8)
+texture = ExtResource("25_8r0k7")
+
+[node name="def_text" type="RichTextLabel" parent="def_icon"]
+offset_left = 8.0
+offset_top = -7.0
+offset_right = 48.0
+offset_bottom = 33.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "100"
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
