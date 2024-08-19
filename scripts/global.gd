@@ -225,5 +225,16 @@ const loss_text = [
 	"*grunt* [Then be here to contribute too.]",
 ]
 #endregion
+#region Credits
+const credits=[
+	"Project Lead: Anneke van Renesse",
+	"Programming: Anneke van Renesse,     Patrick Mayville",
+	"Story Design: Justin Sun",
+	"Writing: Justin Sun",
+	"Graphics: Anneke van Renesse, Betrayalis",
+	"Victory Music: Justin Sun",
+	"Playtesting: Adam Holder",
+]
+#endregion
 
 #endregion

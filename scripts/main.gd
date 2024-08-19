@@ -303,7 +303,6 @@ func _on_select_button_pressed():
 #endregion
 
 func _input(event):
-	print(str(Global.controller) + str(get_viewport().gui_get_focus_owner()))
 	if $cutscenes.is_visible_in_tree():pass
 	if Global.controller:
 		if event.as_text().contains("Mouse"):
