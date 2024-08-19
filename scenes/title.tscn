@@ -230,7 +230,7 @@ theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[center]Credits[/center]"
 
-[node name="CreditsPlaceholder" type="RichTextLabel" parent="Credits"]
+[node name="Credits" type="RichTextLabel" parent="Credits"]
 layout_mode = 0
 offset_top = 232.0
 offset_right = 1088.0
@@ -239,11 +239,11 @@ theme_override_constants/line_separation = 4
 bbcode_enabled = true
 text = "[center]Project Lead: Anneke van Renesse
 Programming: Anneke van Renesse, Patrick Mayville
-Story Design: Justin Sun, Betrayalis
+Story Design: Justin Sun, Hayley/betrayalis
 Writing: Justin Sun
 Sprites: Anneke van Renesse
-Portraits and Scenes: Betrayalis
-Victory Music: Justin Sun
+Portraits and Scenes: Hayley/betrayalis
+\"Coming for You\": Justin Sun
 Brainstorming, Playtesting, and General Support: Adam Holder, MatthewCole Waschezyn"
 scroll_active = false
 

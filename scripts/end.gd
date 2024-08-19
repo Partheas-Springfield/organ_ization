@@ -22,9 +22,11 @@ func _process(delta):
 		index+=1
 
 func switch(state = "win"):
+	music.stop()
 	if state=="win":
 		$Header.text = "[center]Victory!"
-		music.play()
+		$Victory.volume_db = linear_to_db(Global.music_volume*Global.volume_scale)
+		$Victory.play()
 	else:
 		$Header.text = "[center]Game Over"
 		music.stop()

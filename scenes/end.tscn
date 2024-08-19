@@ -5,7 +5,11 @@
 
 [node name="End" type="Node2D" node_paths=PackedStringArray("music")]
 script = ExtResource("1_4bc7m")
-music = NodePath("AudioStreamPlayer")
+music = NodePath("Victory")
+
+[node name="Victory" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_6yjs2")
+parameters/looping = true
 
 [node name="TempSplash" type="ColorRect" parent="."]
 offset_right = 1096.0
@@ -27,10 +31,6 @@ offset_top = 550.0
 offset_right = 600.0
 offset_bottom = 576.0
 text = "Return to Title"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_6yjs2")
-parameters/looping = true
 
 [node name="CreditsHeader" type="RichTextLabel" parent="."]
 visible = false

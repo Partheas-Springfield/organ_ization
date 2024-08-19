@@ -258,11 +258,11 @@ const loss_text = [
 const credits=[
 	"Project Lead: Anneke van Renesse",
 	"Programming: Anneke van Renesse, Patrick Mayville",
-	"Story Design: Justin Sun, Betrayalis",
+	"Story Design: Justin Sun, Hayley/betrayalis",
 	"Writing: Justin Sun",
 	"Sprites: Anneke van Renesse",
-	"Portraits and Backgrounds: Betrayalis",
-	"Victory Music: Justin Sun",
+	"Portraits and Backgrounds: Hayley/betrayalis",
+	"\"Coming for You\": Justin Sun",
 	"Brainstorming, Playtesting, and General Support: Adam Holder, MatthewCole Waschezyn",
 ]
 #endregion
