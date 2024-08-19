@@ -1,49 +1,94 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqklwy88vautq"]
+[gd_scene load_steps=7 format=3 uid="uid://bqklwy88vautq"]
 
 [ext_resource type="Script" path="res://scripts/intro.gd" id="1_n580y"]
+[ext_resource type="Texture2D" uid="uid://ppbeomoilir1" path="res://sprites/lab_sketch.png" id="2_6cjy5"]
+[ext_resource type="Texture2D" uid="uid://ckhprlkbq1sjq" path="res://sprites/inga_draft.png" id="3_5okxd"]
+[ext_resource type="Texture2D" uid="uid://wby3uhxp7jo8" path="res://sprites/shelly_sketch.png" id="4_5imwx"]
+[ext_resource type="Texture2D" uid="uid://dcq4qef7lm2tf" path="res://sprites/vicky_draft.png" id="5_rcw4y"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hntuh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5okxd")
+}],
+"loop": true,
+"name": &"Inga",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_5imwx")
+}],
+"loop": true,
+"name": &"Shelly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_rcw4y")
+}],
+"loop": true,
+"name": &"Vicky",
+"speed": 5.0
+}]
 
 [node name="Intro" type="Node2D"]
 z_index = 1
 script = ExtResource("1_n580y")
 
+[node name="LabSketch" type="Sprite2D" parent="."]
+position = Vector2(543.529, 420)
+scale = Vector2(0.335686, 0.335686)
+texture = ExtResource("2_6cjy5")
+
 [node name="TempSplash" type="ColorRect" parent="."]
-offset_right = 1096.0
-offset_bottom = 648.0
-color = Color(0, 0, 0, 1)
+offset_left = 8.0
+offset_top = 344.0
+offset_right = 1080.0
+offset_bottom = 584.0
+color = Color(0, 0, 0, 0.588235)
 
 [node name="Nameplate" type="RichTextLabel" parent="."]
-offset_left = 256.0
-offset_top = 352.0
-offset_right = 416.0
-offset_bottom = 392.0
-theme_override_font_sizes/normal_font_size = 26
+offset_left = 32.3136
+offset_top = 540.314
+offset_right = 192.314
+offset_bottom = 588.314
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "Name"
+text = "[center]Name"
+scroll_active = false
+
+[node name="Portrait" type="AnimatedSprite2D" parent="."]
+position = Vector2(112.314, 448.314)
+scale = Vector2(0.313726, 0.313725)
+sprite_frames = SubResource("SpriteFrames_hntuh")
+animation = &"Shelly"
 
 [node name="Story" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
-offset_left = 256.0
-offset_top = 400.0
-offset_right = 896.0
-offset_bottom = 512.0
+offset_left = 208.0
+offset_top = 368.0
+offset_right = 1056.0
+offset_bottom = 536.0
 theme_override_constants/line_separation = 4
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "Story text goes here."
 
 [node name="Skip" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 856.0
+offset_left = 960.0
 offset_top = 544.0
-offset_right = 952.0
+offset_right = 1056.0
 offset_bottom = 575.0
 focus_neighbor_left = NodePath("../Next")
 text = "Skip Scene"
 
 [node name="Next" type="Button" parent="."]
-offset_left = 760.0
+offset_left = 864.0
 offset_top = 544.0
-offset_right = 840.0
+offset_right = 944.0
 offset_bottom = 576.0
 focus_neighbor_right = NodePath("../Skip")
 text = "Next"
