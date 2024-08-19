@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dw3dg4mra64he"]
+[gd_scene load_steps=23 format=4 uid="uid://dw3dg4mra64he"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0ns07"]
 [ext_resource type="Texture2D" uid="uid://bawt0bs4dsmiv" path="res://sprites/cell_on_petri1.png" id="2_gce5q"]
@@ -11,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://dbwxw5kthm7bb" path="res://sprites/biohazard3.png" id="9_jttll"]
 [ext_resource type="Texture2D" uid="uid://b0ageon1wfi4" path="res://sprites/biohazard2.png" id="9_q44p0"]
 [ext_resource type="Texture2D" uid="uid://dlkdpblknun62" path="res://sprites/biohazard4.png" id="10_qsexh"]
-[ext_resource type="PackedScene" uid="uid://c12rg84b7fh8n" path="res://scenes/battle_overlay.tscn" id="13_75scg"]
 [ext_resource type="PackedScene" uid="uid://cqyknuexrg1pf" path="res://scenes/reward.tscn" id="12_jh65c"]
+[ext_resource type="PackedScene" uid="uid://c12rg84b7fh8n" path="res://scenes/battle_overlay.tscn" id="13_75scg"]
 [ext_resource type="PackedScene" uid="uid://ds5x6tdgg575b" path="res://scenes/info_bar.tscn" id="13_e6uy5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkpd5"]
@@ -222,9 +222,10 @@ position = Vector2(0, 64)
 tile_set = SubResource("TileSet_e0qun")
 
 [node name="battle_overlay" parent="." instance=ExtResource("13_75scg")]
+visible = false
+metadata/_edit_group_ = true
 
 [node name="debug_overlay" type="Node2D" parent="."]
-visible = false
 
 [node name="get_organelle" type="Button" parent="debug_overlay"]
 offset_left = 504.0
@@ -276,6 +277,7 @@ position = Vector2(20, 18)
 sprite_frames = SubResource("SpriteFrames_sjssy")
 
 [node name="reward_screen" parent="." node_paths=PackedStringArray("exit_button") instance=ExtResource("12_jh65c")]
+visible = false
 exit_button = NodePath("Select Button")
 
 [node name="Select Button" type="Button" parent="reward_screen"]
@@ -284,7 +286,9 @@ offset_top = 464.0
 offset_right = 672.0
 offset_bottom = 495.0
 text = "Select Reward"
+
 [node name="info_bar" parent="." instance=ExtResource("13_e6uy5")]
+metadata/_edit_group_ = true
 
 [connection signal="pressed" from="debug_overlay/get_organelle" to="." method="_on_get_organelle_pressed"]
 [connection signal="pressed" from="debug_overlay/expand_cell" to="." method="_on_expand_cell_pressed"]

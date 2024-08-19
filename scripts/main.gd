@@ -4,6 +4,7 @@ extends Node2D
 @onready var game_tiles = $game_tiles
 @onready var display_tilemap = $display_tilemap
 @onready var organelle_tilemap = $organelle_tilemap
+@onready var info_bar = $info_bar
 
 var mode = null
 var active_tile = null
@@ -30,6 +31,7 @@ func _ready():
 	_place_organelle(get_tile(Vector2i(4,3)),'nucleus')
 	_place_organelle(get_tile(Vector2i(6,3)),'mitochondria')
 	if Global.controller: $expand_cell.grab_focus()
+	calculate_stats()
 
 ## Returns the tile scene with the given iposition vector
 func get_tile(vector2i):
@@ -38,9 +40,41 @@ func get_tile(vector2i):
 			return tile
 	return null
 
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func calculate_stats():
+	var atp_modifier = 0
+	var atk = 5
+	var def = 0
+	var heal = 0
+	var crit = 0
+	var scalar = 1.0
+	for t in game_tiles.get_children():
+		if t.get_incel():
+			atp_modifier -= 10
+			if t.get_organelle() == 'cellwall':
+				def += 3
+				for neighbor in _get_neighbors(t):
+					if neighbor.get_organelle() == 'cellwall':
+						def += 1
+			elif t.get_organelle() == 'golgibody':
+				atk += 5
+			elif t.get_organelle() == 'mitochondria':
+				for neighbor in _get_neighbors(t):
+					if neighbor.get_organelle() != null:
+						atp_modifier += 5
+			elif t.get_organelle() == 'ribosome':
+				heal += 5
+			elif t.get_organelle() == 'endoplasmicreticulum':
+				crit += 5
+				for neighbor in _get_neighbors(t):
+					if neighbor.get_organelle() == 'nucleus':
+						crit += 5
+			elif t.get_organelle() == 'proteinchannel':
+				scalar += .4
+				for neighbor in _get_neighbors(t):
+					if neighbor.get_incel():
+						scalar -= .1
+	Global.set_stats([atp_modifier,atk,def,heal,crit,scalar])
+	info_bar.set_display_stats(atp_modifier,atk,def,heal,crit,scalar)
 
 ## Returns an array including all adjacent tiles to the given tile
 func _get_neighbors(tile):
@@ -77,6 +111,7 @@ func _tile_clicked(tile):
 			_tile_entered(tile)
 	for used_tile in display_tilemap.get_used_cells():
 		set_display_tile(used_tile)
+	calculate_stats()
 
 ## Places given organelle with top left "origin" at given tile
 func _place_organelle(tile,organelle):
@@ -168,41 +203,41 @@ func _on_move_organelle_pressed():
 ## Handles the hazardous waste bin button
 #region Waste Bin
 func _on_waste_button_pressed():
-	$waste_button/waste.play('trashed')
+	$debug_overlay/waste_button/waste.play('trashed')
 	active_organelle = null
 	mode = 'move'
 	if Global.controller:
-		$waste_button.release_focus()
+		$debug_overlay/waste_button.release_focus()
 		if last_tile != null: active_tile = last_tile
 		else: active_tile = game_tiles.get_child(0)
 		active_tile.selected()
 
 func _on_waste_animation_looped():
-	if $waste_button.has_focus():
-		$waste_button/waste.play('highlight')
+	if $debug_overlay/waste_button.has_focus():
+		$debug_overlay/waste_button/waste.play('highlight')
 	else:
-		$waste_button/waste.play('default')
-	$waste_button/waste.stop()
+		$debug_overlay/waste_button/waste.play('default')
+	$debug_overlay/waste_button/waste.stop()
 
 
 func _on_waste_button_focus_entered():
-	$waste_button/waste.play('highlight')
-	$waste_button/waste.stop()
+	$debug_overlay/waste_button/waste.play('highlight')
+	$debug_overlay/waste_button/waste.stop()
 
 func _on_waste_button_focus_exited():
-	$waste_button/waste.play('default')
-	$waste_button/waste.stop()
+	$debug_overlay/waste_button/waste.play('default')
+	$debug_overlay/waste_button/waste.stop()
 
 
 func _on_waste_button_mouse_entered():
-	$waste_button/waste.play('hover')
-	$waste_button/waste.stop()
+	$debug_overlay/waste_button/waste.play('hover')
+	$debug_overlay/waste_button/waste.stop()
 
 
 func _on_waste_button_mouse_exited():
-	if $waste_button/waste.animation != 'trashed':
-		$waste_button/waste.play('default')
-		$waste_button/waste.stop()
+	if $debug_overlay/waste_button/waste.animation != 'trashed':
+		$debug_overlay/waste_button/waste.play('default')
+		$debug_overlay/waste_button/waste.stop()
 
 func _on_select_button_pressed():
 	#Assign $reward_screen.reward to something - is it the name of the reward as a string

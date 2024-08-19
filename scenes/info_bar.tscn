@@ -14,18 +14,42 @@ script = ExtResource("1_4sxmw")
 position = Vector2(544, 32)
 texture = ExtResource("2_ofjoe")
 
-[node name="atk_icon" type="Sprite2D" parent="."]
-position = Vector2(64, 32)
-texture = ExtResource("1_xttrk")
+[node name="atk_icon" type="Button" parent="."]
+offset_left = 48.0
+offset_top = 8.0
+offset_right = 144.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "50"
+icon = ExtResource("1_xttrk")
+flat = true
 
-[node name="def_icon" type="Sprite2D" parent="."]
-position = Vector2(192, 32)
-texture = ExtResource("2_t3ytu")
+[node name="def_icon" type="Button" parent="."]
+offset_left = 176.0
+offset_top = 8.0
+offset_right = 272.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "50"
+icon = ExtResource("2_t3ytu")
+flat = true
 
-[node name="rec_icon" type="Sprite2D" parent="."]
-position = Vector2(320, 32)
-texture = ExtResource("3_4pfn8")
+[node name="rec_icon" type="Button" parent="."]
+offset_left = 304.0
+offset_top = 8.0
+offset_right = 400.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "50"
+icon = ExtResource("3_4pfn8")
+flat = true
 
-[node name="atp_icon" type="Sprite2D" parent="."]
-position = Vector2(448, 32)
-texture = ExtResource("4_io4de")
+[node name="atp_icon" type="Button" parent="."]
+offset_left = 432.0
+offset_top = 8.0
+offset_right = 560.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "300 (-100)"
+icon = ExtResource("4_io4de")
+flat = true
