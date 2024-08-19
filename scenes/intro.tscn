@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqklwy88vautq"]
+[gd_scene load_steps=8 format=3 uid="uid://bqklwy88vautq"]
 
 [ext_resource type="Script" path="res://scripts/intro.gd" id="1_n580y"]
 [ext_resource type="Texture2D" uid="uid://bvhca36jeug4u" path="res://sprites/Background2.png" id="2_3jagy"]
 [ext_resource type="Texture2D" uid="uid://hvpcvitq2udl" path="res://sprites/inga.png" id="3_ochr0"]
 [ext_resource type="Texture2D" uid="uid://crq8fgppkg5er" path="res://sprites/shelly1.png" id="4_qedjd"]
 [ext_resource type="Texture2D" uid="uid://dq05lwj84a6pa" path="res://sprites/vicky.png" id="5_fc0y1"]
+[ext_resource type="PackedScene" uid="uid://dvs0nug5kbfdo" path="res://scenes/end.tscn" id="6_pyrab"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hntuh"]
 animations = [{
@@ -97,6 +98,9 @@ offset_right = 944.0
 offset_bottom = 600.0
 focus_neighbor_right = NodePath("../Skip")
 text = "Next"
+
+[node name="GameOverScreen" parent="." instance=ExtResource("6_pyrab")]
+visible = false
 
 [connection signal="button_down" from="Skip" to="." method="skip_down"]
 [connection signal="pressed" from="Skip" to="." method="skip_press"]
