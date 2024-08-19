@@ -313,8 +313,9 @@ offset_right = 1040.0
 offset_bottom = 600.0
 text = "Proceed to Trial ->"
 
-[node name="cutscenes" parent="." instance=ExtResource("15_don1q")]
+[node name="cutscenes" parent="." node_paths=PackedStringArray("focus_send") instance=ExtResource("15_don1q")]
 visible = false
+focus_send = NodePath("../build_overlay/expand_cell")
 
 [connection signal="attack" from="battle_overlay" to="." method="_on_battle_overlay_attack"]
 [connection signal="defend" from="battle_overlay" to="." method="_on_battle_overlay_defend"]

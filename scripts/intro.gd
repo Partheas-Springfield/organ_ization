@@ -69,7 +69,7 @@ func _advance():
 
 func _input(event):
 	if !is_visible_in_tree():pass
-	if Global.controller:
+	elif Global.controller:
 		if event.as_text().contains("Mouse"):
 			Global.controller = false
 			get_viewport().gui_release_focus()
@@ -77,3 +77,4 @@ func _input(event):
 		if !event.as_text().contains("Mouse"):
 			Global.controller = true
 			$Next.grab_focus()
+			get_viewport().set_input_as_handled()
