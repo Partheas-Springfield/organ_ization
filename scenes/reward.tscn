@@ -110,16 +110,23 @@ offset_left = 256.0
 offset_top = 128.0
 offset_right = 896.0
 offset_bottom = 512.0
-color = Color(0.0683252, 7.88442e-05, 0.197525, 1)
+color = Color(0.380392, 0.282353, 0.301961, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MenuBackground"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 624.0
+offset_bottom = 368.0
+color = Color(0.189048, 0.335869, 0.344574, 1)
 
 [node name="Text" type="RichTextLabel" parent="MenuBackground"]
 layout_mode = 0
-offset_top = 44.0
+offset_top = 32.0
 offset_right = 640.0
-offset_bottom = 84.0
-theme_override_font_sizes/normal_font_size = 21
+offset_bottom = 92.0
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "[center]Select an Organelle"
+text = "[center]Select an Organelle:"
 
 [node name="Choices" type="Control" parent="."]
 layout_mode = 3

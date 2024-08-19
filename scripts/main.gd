@@ -41,6 +41,11 @@ func _ready():
 	if Global.controller: $cutscenes/Next.grab_focus()
 	calculate_stats()
 
+func _process(_delta):
+	if Global.held_organelle != null:
+		$build_overlay/organelle_tips.text = Global.get_organelle_info(Global.held_organelle)
+		
+
 ## Returns the tile scene with the given iposition vector
 func get_tile(vector2i):
 	for tile in game_tiles.get_children():

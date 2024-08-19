@@ -312,6 +312,12 @@ offset_right = 1040.0
 offset_bottom = 600.0
 text = "Proceed to Trial ->"
 
+[node name="organelle_tips" type="RichTextLabel" parent="build_overlay"]
+offset_left = 800.0
+offset_top = 88.0
+offset_right = 1024.0
+offset_bottom = 432.0
+
 [node name="cutscenes" parent="." node_paths=PackedStringArray("focus_send") instance=ExtResource("15_don1q")]
 visible = false
 focus_send = NodePath("../build_overlay/expand_cell")

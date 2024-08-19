@@ -34,6 +34,16 @@ const tilemap_key = {
 	[1,1,1,1]: Vector2i(2,1),
 }
 
+const organelle_info_dict = {
+	'ribosome' : 'The RIBOSOME boosts cell recovery, allowing the repair of damaged organelles.',
+	'mitochondria' : 'The MITOCHONDRIA is the powerhouse of the cell! When placed adjacent to other organelles,the mitochondria will reduce ATP upkeep.',
+	'golgibody' : 'The GOLGI BODY increases attack power.',
+	'nucleus' : 'If the NUCLEUS is destroyed, the cell will die. Be careful!',
+	'proteinchannel' : 'The PROTEIN CHANNEL enables the cell to exchange materials with the nutrient-rich environment. It grants bonuses to all stats except double speed chance for every adjacent tile not in the cell.',
+	'endoplasmicreticulum' : 'The ENDOPLASMIC RETICULUM will speed things up in the cell, especially when placed next to the NUCLEUS. It grants double speed chance, allowing powerful double attacks, defense boosts, and heals!',
+	'cellwall' : 'The CELL WALL boosts defense, increasing with adjacent CELL WALL pieces.'
+}
+
 const organelle_icon_path_dict = {
 	'ribosome' : 'res://sprites/organelle_icon1.png',
 	'mitochondria' : 'res://sprites/organelle_icon2.png',
@@ -94,6 +104,9 @@ const organelle_size_dict = {
 	'endoplasmicreticulum' : Vector2(3,1),
 	'cellwall' : Vector2(1,1)
 }
+
+func get_organelle_info(organelle):
+	return organelle_info_dict[organelle]
 
 func get_organelle_hp(organelle):
 	return organelle_stat_dict[organelle][0]

@@ -1,16 +1,16 @@
 [gd_scene load_steps=7 format=3 uid="uid://bqklwy88vautq"]
 
 [ext_resource type="Script" path="res://scripts/intro.gd" id="1_n580y"]
-[ext_resource type="Texture2D" uid="uid://ppbeomoilir1" path="res://sprites/lab_sketch.png" id="2_6cjy5"]
-[ext_resource type="Texture2D" uid="uid://ckhprlkbq1sjq" path="res://sprites/inga_draft.png" id="3_5okxd"]
-[ext_resource type="Texture2D" uid="uid://wby3uhxp7jo8" path="res://sprites/shelly_sketch.png" id="4_5imwx"]
-[ext_resource type="Texture2D" uid="uid://dcq4qef7lm2tf" path="res://sprites/vicky_draft.png" id="5_rcw4y"]
+[ext_resource type="Texture2D" uid="uid://bvhca36jeug4u" path="res://sprites/Background2.png" id="2_3jagy"]
+[ext_resource type="Texture2D" uid="uid://hvpcvitq2udl" path="res://sprites/inga.png" id="3_ochr0"]
+[ext_resource type="Texture2D" uid="uid://crq8fgppkg5er" path="res://sprites/shelly1.png" id="4_qedjd"]
+[ext_resource type="Texture2D" uid="uid://dq05lwj84a6pa" path="res://sprites/vicky.png" id="5_fc0y1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hntuh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_5okxd")
+"texture": ExtResource("3_ochr0")
 }],
 "loop": true,
 "name": &"Inga",
@@ -18,7 +18,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_5imwx")
+"texture": ExtResource("4_qedjd")
 }],
 "loop": true,
 "name": &"Shelly",
@@ -26,7 +26,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_rcw4y")
+"texture": ExtResource("5_fc0y1")
 }],
 "loop": true,
 "name": &"Vicky",
@@ -38,39 +38,44 @@ z_index = 1
 script = ExtResource("1_n580y")
 
 [node name="LabSketch" type="Sprite2D" parent="."]
-position = Vector2(543.529, 420)
-scale = Vector2(0.335686, 0.335686)
-texture = ExtResource("2_6cjy5")
+position = Vector2(544, 320)
+texture = ExtResource("2_3jagy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 8.0
+offset_top = 552.0
+offset_right = 1080.0
+offset_bottom = 608.0
+color = Color(0.380392, 0.282353, 0.301961, 1)
+
+[node name="Portrait" type="AnimatedSprite2D" parent="."]
+position = Vector2(208, 296)
+sprite_frames = SubResource("SpriteFrames_hntuh")
+animation = &"Shelly"
 
 [node name="TempSplash" type="ColorRect" parent="."]
 offset_left = 8.0
-offset_top = 344.0
+offset_top = 392.0
 offset_right = 1080.0
-offset_bottom = 584.0
+offset_bottom = 608.0
 color = Color(0, 0, 0, 0.588235)
 
 [node name="Nameplate" type="RichTextLabel" parent="."]
 offset_left = 32.3136
-offset_top = 540.314
+offset_top = 564.314
 offset_right = 192.314
-offset_bottom = 588.314
+offset_bottom = 612.314
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[center]Name"
 scroll_active = false
 
-[node name="Portrait" type="AnimatedSprite2D" parent="."]
-position = Vector2(112.314, 448.314)
-scale = Vector2(0.313726, 0.313725)
-sprite_frames = SubResource("SpriteFrames_hntuh")
-animation = &"Shelly"
-
 [node name="Story" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
 offset_left = 208.0
-offset_top = 368.0
+offset_top = 416.0
 offset_right = 1056.0
-offset_bottom = 536.0
+offset_bottom = 560.0
 theme_override_constants/line_separation = 4
 theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
@@ -79,17 +84,17 @@ text = "Story text goes here."
 [node name="Skip" type="Button" parent="."]
 unique_name_in_owner = true
 offset_left = 960.0
-offset_top = 544.0
+offset_top = 568.0
 offset_right = 1056.0
-offset_bottom = 575.0
+offset_bottom = 599.0
 focus_neighbor_left = NodePath("../Next")
 text = "Skip Scene"
 
 [node name="Next" type="Button" parent="."]
 offset_left = 864.0
-offset_top = 544.0
+offset_top = 568.0
 offset_right = 944.0
-offset_bottom = 576.0
+offset_bottom = 600.0
 focus_neighbor_right = NodePath("../Skip")
 text = "Next"
 
