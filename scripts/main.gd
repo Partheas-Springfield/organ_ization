@@ -70,7 +70,7 @@ func _organelle_death(tile):
 		_remove_organelle(tile)
 
 func _game_over():
-	get_tree().change_scene_to_file.bind("res://scenes/title.tscn").call_deferred()
+	get_tree().change_scene_to_file.bind("res://scenes/end.tscn").call_deferred()
 
 func _get_targets(num = 3):
 	var valid_targets = []
@@ -166,7 +166,9 @@ func _tile_clicked(tile):
 			get_tile(tile.get_organelle_origin()).organelle_hp_change(info_bar.get_rec()*info_bar.duo_activation())
 			info_bar.use_atp(40)
 	elif mode == 'defend':
-		pass
+		if tile.get_organelle() != null and info_bar.get_curr_atp() >= 30:
+			get_tile(tile.get_organelle_origin()).add_defense(info_bar.get_def())
+			info_bar.use_atp(30)
 	elif mode not in ['battle','attack','reward']:
 		if Global.held_organelle != null:
 			if valid_placement:
@@ -386,6 +388,8 @@ func _on_proceed_pressed():
 
 func _on_battle_overlay_end_turn():
 	if battle_overlay.all_dead():
+		for t in game_tiles.get_children():
+			t.reset_def_hp()
 		mode = 'reward'
 		reward_screen.reset()
 		reward_screen.show()
@@ -393,6 +397,9 @@ func _on_battle_overlay_end_turn():
 	for virus in battle_overlay.get_all_viruses():
 		if target_tiles[virus.get_id()].get_organelle_origin() != null:
 			get_tile(target_tiles[virus.get_id()].get_organelle_origin()).organelle_hp_change(-virus.get_atk())
+	info_bar.restore_atp()
+	for t in game_tiles.get_children():
+			t.reset_def()
 	_start_round()
 
 func _on_battle_overlay_defend():

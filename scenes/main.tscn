@@ -1,8 +1,8 @@
 [gd_scene load_steps=26 format=4 uid="uid://dw3dg4mra64he"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0ns07"]
+[ext_resource type="Texture2D" uid="uid://bvhca36jeug4u" path="res://sprites/Background2.png" id="2_cu64w"]
 [ext_resource type="Texture2D" uid="uid://bawt0bs4dsmiv" path="res://sprites/cell_on_petri1.png" id="2_gce5q"]
-[ext_resource type="Texture2D" uid="uid://ppbeomoilir1" path="res://sprites/lab_sketch.png" id="2_op42y"]
 [ext_resource type="Texture2D" uid="uid://c6gc1lwgyubeu" path="res://sprites/petri_dish.png" id="2_s4grk"]
 [ext_resource type="Texture2D" uid="uid://ccfsgkb7l17bl" path="res://sprites/cell_on_petri2.png" id="3_lecxp"]
 [ext_resource type="Texture2D" uid="uid://caeci6rig2f7b" path="res://sprites/organelles1.png" id="4_pxque"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b0ageon1wfi4" path="res://sprites/biohazard2.png" id="9_q44p0"]
 [ext_resource type="Texture2D" uid="uid://dlkdpblknun62" path="res://sprites/biohazard4.png" id="10_qsexh"]
 [ext_resource type="PackedScene" uid="uid://cqyknuexrg1pf" path="res://scenes/reward.tscn" id="12_jh65c"]
-[ext_resource type="PackedScene" path="res://scenes/battle_overlay.tscn" id="13_75scg"]
+[ext_resource type="PackedScene" uid="uid://c12rg84b7fh8n" path="res://scenes/battle_overlay.tscn" id="13_75scg"]
 [ext_resource type="PackedScene" uid="uid://ds5x6tdgg575b" path="res://scenes/info_bar.tscn" id="13_e6uy5"]
 [ext_resource type="PackedScene" uid="uid://uxx3lucnkrns" path="res://scenes/organelle_bank.tscn" id="15_43esn"]
 [ext_resource type="PackedScene" uid="uid://bqklwy88vautq" path="res://scenes/intro.tscn" id="15_don1q"]
@@ -208,9 +208,8 @@ animations = [{
 script = ExtResource("1_0ns07")
 
 [node name="background" type="Sprite2D" parent="."]
-position = Vector2(552, 360)
-scale = Vector2(0.35, 0.35)
-texture = ExtResource("2_op42y")
+position = Vector2(544, 320)
+texture = ExtResource("2_cu64w")
 
 [node name="petri_dish" type="Sprite2D" parent="."]
 position = Vector2(288, 288)

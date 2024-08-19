@@ -5,11 +5,14 @@ extends Node2D
 @onready var hp_bar = $health_bar
 @onready var target = $target_button/target
 @onready var target_button = $target_button
+@onready var def_icon = $def_icon
+@onready var def_text = $def_icon/def_text
 
 var incel = false
 var id = 0
 var organelle = null
 var organelle_origin = null
+var organelle_defense = 0
 var hovered = false
 var iposition = Vector2i()
 var origin = false
@@ -32,7 +35,18 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if organelle_defense == 0:
+		def_icon.hide()
+	else:
+		def_icon.show()
+	if organelle_hp == organelle_max_hp:
+		hp_bar.hide()
+	else:
+		hp_bar.show()
+
+func reset_def_hp():
+	organelle_defense = 0
+	organelle_hp = organelle_max_hp
 
 func set_iposition(ix,iy):
 	iposition = Vector2i(ix,iy)
@@ -59,7 +73,15 @@ func set_incel(is_incel=true):
 	else:
 		id = 0
 
+func reset_def():
+	organelle_defense = 0
+
 func organelle_hp_change(amount):
+	print(amount)
+	if amount <= 0:
+		if -amount >= organelle_defense:
+			amount += organelle_defense
+		else: amount = 0
 	organelle_hp += amount
 	hp_bar.show()
 	hp_bar.update_hp(amount)
@@ -71,6 +93,10 @@ func organelle_hp_change(amount):
 
 func get_id():
 	return id
+
+func add_defense(amount):
+	organelle_defense += amount
+	def_text.text = str(organelle_defense)
 
 func is_origin():
 	return origin
