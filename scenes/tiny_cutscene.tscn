@@ -1,25 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://bs85uwcnr0kst"]
+[gd_scene load_steps=3 format=3 uid="uid://drl1ovjwyav6l"]
 
-[ext_resource type="Script" path="res://scripts/mini_cutscene.gd" id="1_k5rpp"]
-[ext_resource type="SpriteFrames" uid="uid://thfhxu1te58v" path="res://sprites/animations/portrait.tres" id="2_t4hcy"]
+[ext_resource type="Script" path="res://scripts/tiny_cutscene.gd" id="1_wiene"]
+[ext_resource type="SpriteFrames" uid="uid://thfhxu1te58v" path="res://sprites/animations/portrait.tres" id="2_3hwde"]
 
-[node name="mini_cutscene" type="Node2D"]
-script = ExtResource("1_k5rpp")
+[node name="tiny_cutscene" type="Node2D"]
+script = ExtResource("1_wiene")
 
 [node name="TempSplash" type="ColorRect" parent="."]
-offset_left = 8.0
-offset_top = 432.0
-offset_right = 752.0
-offset_bottom = 552.0
+offset_left = 115.0
+offset_top = 436.0
+offset_right = 516.0
+offset_bottom = 472.0
 color = Color(0, 0, 0, 0.588235)
 
 [node name="Portrait" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(64, 496)
 scale = Vector2(0.21875, 0.21875)
-sprite_frames = ExtResource("2_t4hcy")
+sprite_frames = ExtResource("2_3hwde")
 animation = &"Shelly"
 
 [node name="Nameplate" type="RichTextLabel" parent="."]
+visible = false
 offset_left = 8.0
 offset_top = 520.0
 offset_right = 120.0
@@ -34,16 +36,13 @@ scroll_active = false
 [node name="Story" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
 offset_left = 128.0
-offset_top = 445.0
-offset_right = 744.0
-offset_bottom = 541.0
+offset_top = 444.0
+offset_right = 503.0
+offset_bottom = 540.0
 theme_override_constants/line_separation = 1
 theme_override_font_sizes/normal_font_size = 21
 bbcode_enabled = true
-text = "Story text goes here.
-Second line here.
-Third line?
-FOUR LINES?!?!?!"
+text = "One line only, please. No longer than this."
 scroll_active = false
 
 [node name="Skip" type="Button" parent="."]

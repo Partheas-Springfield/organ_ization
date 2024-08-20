@@ -1,41 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqklwy88vautq"]
+[gd_scene load_steps=8 format=3 uid="uid://bqklwy88vautq"]
 
 [ext_resource type="Script" path="res://scripts/intro.gd" id="1_n580y"]
 [ext_resource type="Texture2D" uid="uid://bvhca36jeug4u" path="res://sprites/Background2.png" id="2_3jagy"]
-[ext_resource type="Texture2D" uid="uid://hvpcvitq2udl" path="res://sprites/inga.png" id="3_ochr0"]
-[ext_resource type="Texture2D" uid="uid://crq8fgppkg5er" path="res://sprites/shelly1.png" id="4_qedjd"]
-[ext_resource type="Texture2D" uid="uid://dq05lwj84a6pa" path="res://sprites/vicky.png" id="5_fc0y1"]
+[ext_resource type="SpriteFrames" uid="uid://thfhxu1te58v" path="res://sprites/animations/portrait.tres" id="3_ihmc4"]
 [ext_resource type="PackedScene" uid="uid://dvs0nug5kbfdo" path="res://scenes/end.tscn" id="6_pyrab"]
 [ext_resource type="Texture2D" uid="uid://d3uptre1rkxlx" path="res://sprites/Background.png" id="7_sunkn"]
 [ext_resource type="Texture2D" uid="uid://16wubiwqfww6" path="res://sprites/microscope.png" id="8_7nn7j"]
 [ext_resource type="Texture2D" uid="uid://b33f3e3c5darj" path="res://sprites/microscope2.png" id="9_m7gdw"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_hntuh"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_ochr0")
-}],
-"loop": true,
-"name": &"Inga",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_qedjd")
-}],
-"loop": true,
-"name": &"Shelly",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_fc0y1")
-}],
-"loop": true,
-"name": &"Vicky",
-"speed": 5.0
-}]
 
 [node name="Intro" type="Node2D"]
 z_index = 1
@@ -54,7 +25,7 @@ color = Color(0.380392, 0.282353, 0.301961, 1)
 
 [node name="Portrait" type="AnimatedSprite2D" parent="."]
 position = Vector2(208, 296)
-sprite_frames = SubResource("SpriteFrames_hntuh")
+sprite_frames = ExtResource("3_ihmc4")
 animation = &"Shelly"
 
 [node name="TempSplash" type="ColorRect" parent="."]

@@ -182,7 +182,7 @@ const intro_text = [
 	"Didn't quite catch that one. Anyway, good luck!",
 ]
 #endregion
-#region Build Text
+#region First Build Text
 const build_speaker = [
 	"Vicky",
 	"Inga",
@@ -229,6 +229,20 @@ const post_build_text = [
 	#"That Evening",
 	#"Cell POV, inga backlit, looming sinister",
 	"So, this is the cell that Vicky is so excited about becoming superimmune? You don’t look so tough. Let’s see if you can survive this.",
+]
+#endregion
+#region First Battle Text
+const battle_speaker = [
+	"Cell",
+	"Cell",
+	"Cell",
+	"Cell",
+]
+const battle_text = [
+	"Threats, Viruses.",
+	"I sense them targeting my organelles",
+	"I must fight.",
+	"Consume them and grow!",
 ]
 #endregion
 #region Post First Battle Phase
