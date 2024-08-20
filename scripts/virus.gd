@@ -118,3 +118,22 @@ func _on_virus_name_focus_exited():
 
 func _on_virus_name_pressed():
 	emit_signal('virus_clicked')
+
+
+func _on_button_pressed():
+	_on_virus_name_pressed()
+
+func _on_button_focus_entered():
+	_on_virus_name_focus_entered()
+
+
+func _on_button_focus_exited():
+	_on_virus_name_focus_exited()
+
+
+func _on_button_mouse_entered():
+	_on_virus_name_mouse_entered()
+
+
+func _on_button_mouse_exited():
+	_on_virus_name_mouse_exited()
