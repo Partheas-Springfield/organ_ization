@@ -17,9 +17,13 @@ var target_tiles = []
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
+	print(Global.music_volume)
+	for player in $MusicPlayer.get_children(): player.volume_db=linear_to_db(Global.music_volume*Global.volume_scale)
+	#$MusicPlayer/TitleMusic.volume_db=Global.music_volume*Global.volume_scale
+	#$MusicPlayer/BuildTheme.volume_db=Global.music_volume*Global.volume_scale
+	#$MusicPlayer/BattleTheme.volume_db=Global.music_volume*Global.volume_scale
 	_play_music("title", Global.music_save)
 	Global.music_save=0.0
-	for player in $MusicPlayer.get_children(): player.volume_db=Global.music_volume
 	for xi in range(2,7):
 		for yi in range(1,6):
 			var new_tile = tile_scene.instantiate()
@@ -395,7 +399,7 @@ func _on_cutscenes_hidden():
 			_to_phase('build')
 
 func _on_menu_hidden():
-	for player in $MusicPlayer.get_children(): player.volume_db=Global.music_volume
+	for player in $MusicPlayer.get_children(): player.volume_db=linear_to_db(Global.music_volume*Global.volume_scale)
 	if$cutscenes.is_visible_in_tree():$cutscenes.paused=false
 	if$build_overlay/mini_cutscene.is_visible_in_tree():$build_overlay/mini_cutscene.paused=false
 	if$battle_overlay/tiny_cutscene.is_visible_in_tree():$battle_overlay/tiny_cutscene.paused=false

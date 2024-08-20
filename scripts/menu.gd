@@ -1,6 +1,8 @@
 extends Node2D
 
-@export var MusicPlayer = AudioStreamPlayer.new()
+@export var TitlePlayer = AudioStreamPlayer.new()
+@export var BuildPlayer = AudioStreamPlayer.new()
+@export var BattlePlayer = AudioStreamPlayer.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,7 +22,9 @@ func open():
 #region Settings Logic
 func _music_volume_changed(value):
 	Global.music_volume = value
-	$MusicPlayer.volume_db = linear_to_db(Global.music_volume*Global.volume_scale)
+	TitlePlayer.volume_db = linear_to_db(Global.music_volume*Global.volume_scale)
+	BuildPlayer.volume_db = linear_to_db(Global.music_volume*Global.volume_scale)
+	BattlePlayer.volume_db = linear_to_db(Global.music_volume*Global.volume_scale)
 func _effects_volume_changed(value):
 	Global.effects_volume = value
 func _on_disable_toggle_toggled(toggled):

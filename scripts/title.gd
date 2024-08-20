@@ -55,6 +55,7 @@ func _master_volume_changed(value):
 	Global.master_volume = value
 func _music_volume_changed(value):
 	Global.music_volume = value
+	print(Global.music_volume)
 	for player in $MusicPlayer.get_children():player.volume_db = linear_to_db(Global.music_volume*Global.volume_scale)
 func _effects_volume_changed(value):
 	Global.effects_volume = value

@@ -37,6 +37,7 @@ func progress(value):
 
 func start(input=scene):
 	scene=input
+	$TitleMusic.volume_db=linear_to_db(Global.music_volume*Global.volume_scale)
 	match scene:
 		1: #intro>post first build
 			speaker_list=Global.post_build_speaker
@@ -92,6 +93,7 @@ func _on_next_pressed():
 				%Story.show()
 				$TempSplash.set_position(Vector2(8,392))
 				$TempSplash.set_size(Vector2(1072,216))
+		_adjust_background()
 	elif scene==0:
 		$BrightLab.show()
 	else: _advance()
@@ -109,6 +111,7 @@ func _on_microscope_focus_exited():
 func _advance():
 	scene+=1
 	story_index=0
+	_adjust_background()
 	paused=true
 	fade=fade_start
 	match scene:
