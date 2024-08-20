@@ -515,15 +515,18 @@ func _on_battle_theme_finished():
 func _on_organelle_bank_add_to_next():
 	if organelle_bank.get_next_slot() != null:
 		var slot_num = organelle_bank.get_slot_num(organelle_bank.get_next_slot())
-		organelle_bank.get_next_slot().set_button_icon(Global.load_image(Global.temp_organelle))
+		organelle_bank.get_next_slot().set_button_icon(load_image(Global.temp_organelle))
 		organelle_bank.organelle_array[slot_num] = Global.temp_organelle
 
+func load_image(organelle):
+	var icon = Image.load_from_file(Global.get_icon_path(organelle))
+	return ImageTexture.create_from_image(icon)
 
 func _on_organelle_bank_slot_pressed():
 	var slot = organelle_bank.get_slot(Global.temp_slot)
 	if slot.get_button_icon() == null:
 		if Global.held_organelle != null:
-			slot.set_button_icon(Global.load_image(Global.held_organelle))
+			slot.set_button_icon(load_image(Global.held_organelle))
 			organelle_bank.organelle_array[organelle_bank.get_slot_num(slot)] = Global.held_organelle
 			Global.held_organelle = null
 	elif Global.held_organelle == null:
@@ -537,5 +540,5 @@ func _on_organelle_bank_slot_pressed():
 		slot.set_button_icon(null)
 		organelle_bank.organelle_array[organelle_bank.get_slot_num(slot)] = ''
 		Global.held_organelle = to_return
-		slot.set_button_icon(Global.load_image(temp))
+		slot.set_button_icon(load_image(temp))
 		organelle_bank.organelle_array[organelle_bank.get_slot_num(slot)] = temp
