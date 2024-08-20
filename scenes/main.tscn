@@ -277,7 +277,7 @@ offset_right = 784.0
 offset_bottom = 152.0
 focus_neighbor_top = NodePath("../waste_button")
 focus_neighbor_bottom = NodePath("../shrink_cell")
-text = "Add Cytoplasm
+text = "Expand Cell
 (-10 max ATP)"
 
 [node name="shrink_cell" type="Button" parent="build_overlay"]
@@ -287,7 +287,7 @@ offset_right = 784.0
 offset_bottom = 232.0
 focus_neighbor_top = NodePath("../expand_cell")
 focus_neighbor_bottom = NodePath("../../debug_overlay/get_organelle")
-text = "Remove Cytoplasm
+text = "Shrink Cell
 (+10 max ATP)"
 
 [node name="organelle_bank" parent="build_overlay" instance=ExtResource("15_43esn")]

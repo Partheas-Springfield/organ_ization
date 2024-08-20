@@ -38,7 +38,7 @@ flat = true
 [node name="rec_icon" type="Button" parent="."]
 offset_left = 304.0
 offset_top = 8.0
-offset_right = 400.0
+offset_right = 416.0
 offset_bottom = 56.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "50"
@@ -46,9 +46,9 @@ icon = ExtResource("3_4pfn8")
 flat = true
 
 [node name="duo_icon" type="Button" parent="."]
-offset_left = 432.0
+offset_left = 448.0
 offset_top = 8.0
-offset_right = 528.0
+offset_right = 560.0
 offset_bottom = 56.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "5%"
@@ -56,9 +56,9 @@ icon = ExtResource("6_h5yph")
 flat = true
 
 [node name="atp_icon" type="Button" parent="."]
-offset_left = 560.0
+offset_left = 592.0
 offset_top = 8.0
-offset_right = 688.0
+offset_right = 768.0
 offset_bottom = 56.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "300/300 (-0)"
