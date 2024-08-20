@@ -34,17 +34,34 @@ func progress(value):
 		%Text.text="[center][shake]Halfway there..."
 """
 
-func start():
-	fade=fade_start
+func start(input=scene):
+	scene=input
+	match scene:
+		1: #intro>post first build
+			speaker_list=Global.post_build_speaker
+			text_list=Global.post_build_text
+		2: #post first build>post first fight
+			speaker_list=Global.post_battle_speaker
+			text_list=Global.post_battle_text
+		3: #loss
+			speaker_list=Global.loss_speaker
+			text_list=Global.loss_text
+		4: #win
+			speaker_list=Global.win_speaker
+			speaker_list=Global.win_text
+		_:pass
 	show()
+	$Nameplate.text=speaker_list[0]
+	$Portrait.play(speaker_list[story_index])
 	paused=false
 
 func skip_press():
-	#_advance()
-	$BrightLab.show()
+	if scene == 0:$BrightLab.show()
+	else:_advance()
 
 func skip_down():
-	%Skip.text = ":("
+	#%Skip.text = ":("
+	pass
 
 func _on_next_pressed():
 	if fade<text_list[story_index].length(): fade=text_list[story_index].length()
@@ -69,19 +86,15 @@ func _on_microscope_focus_exited():
 
 func _advance():
 	scene+=1
-	match scene:
-		1: #intro>post first build
-			speaker_list=Global.post_build_speaker
-			text_list=Global.post_build_text
-		2: #post first build>post first fight
-			speaker_list=Global.post_battle_speaker
-			text_list=Global.post_battle_text
-		_:pass
-	fade=0
 	story_index=0
 	paused=true
-	hide()
-	if Global.controller:focus_send.grab_focus()
+	fade=fade_start
+	match scene:
+		4:$GameOverScreen.switch("loss")
+		5:$GameOverScreen.switch()
+		_:
+			hide()
+			if Global.controller:focus_send.grab_focus()
 
 func _input(event):
 	if !is_visible_in_tree()||$GameOverScreen.is_visible_in_tree():pass

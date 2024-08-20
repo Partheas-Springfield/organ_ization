@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/intro.gd" id="1_n580y"]
 [ext_resource type="Texture2D" uid="uid://bvhca36jeug4u" path="res://sprites/Background2.png" id="2_3jagy"]
 [ext_resource type="SpriteFrames" uid="uid://thfhxu1te58v" path="res://sprites/animations/portrait.tres" id="3_ihmc4"]
+[ext_resource type="Texture2D" uid="uid://bgusexkjhuheq" path="res://sprites/Background1.png" id="5_p8e6b"]
 [ext_resource type="PackedScene" uid="uid://dvs0nug5kbfdo" path="res://scenes/end.tscn" id="6_pyrab"]
-[ext_resource type="Texture2D" uid="uid://d3uptre1rkxlx" path="res://sprites/Background.png" id="7_sunkn"]
 [ext_resource type="Texture2D" uid="uid://16wubiwqfww6" path="res://sprites/microscope.png" id="8_7nn7j"]
 [ext_resource type="Texture2D" uid="uid://b33f3e3c5darj" path="res://sprites/microscope2.png" id="9_m7gdw"]
 
@@ -79,7 +79,7 @@ visible = false
 [node name="BrightLab" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(544, 320)
-texture = ExtResource("7_sunkn")
+texture = ExtResource("5_p8e6b")
 
 [node name="Microscope" type="Button" parent="BrightLab"]
 offset_left = -224.0

@@ -43,6 +43,7 @@ func _ready():
 	calculate_stats()
 
 func _process(_delta):
+	print($cutscenes.is_visible_in_tree())
 	if Global.held_organelle != null:
 		$build_overlay/organelle_tips.text = Global.get_organelle_info(Global.held_organelle)
 	if mode in ['attack','defend','battle','heal']:
@@ -83,14 +84,12 @@ func _virus_unhighlight(virus):
 
 func _organelle_death(tile):
 	if tile.get_organelle() == 'nucleus':
-		#_game_over()
-		$cutscenes.show()
-		$cutscenes/GameOverScreen.switch("loss")
+		_game_over()
 	else:
 		_remove_organelle(tile)
 
 func _game_over():
-	get_tree().change_scene_to_file.bind("res://scenes/end.tscn").call_deferred()
+	$cutscenes.start(3)
 
 func _get_targets(num = 3):
 	var valid_targets = []
@@ -360,8 +359,9 @@ func _on_select_button_pressed():
 	$reward_screen.hide()
 	info_bar._update_display()
 	var new_organelle = $reward_screen.selected()
-	_to_phase('build')
 	$build_overlay/organelle_bank.add_to_next_slot(new_organelle)
+	if $cutscenes.scene==2:$cutscenes.start()
+	else:_to_phase('build')
 #endregion
 
 func _on_menu_pressed():
@@ -372,9 +372,15 @@ func _on_menu_pressed():
 #endregion
 
 func _on_cutscenes_hidden():
-	if$cutscenes.scene==1:
-		$build_overlay/mini_cutscene.show()
-		$build_overlay/mini_cutscene.paused = false
+	match $cutscenes.scene:
+		1: # After intro; entering build phase for the first time
+			$build_overlay/mini_cutscene.show()
+			$build_overlay/mini_cutscene.paused = false
+		2: # After first build phase; entering battle phase for the first time
+			mode = 'battle'
+			_to_phase('battle')
+		3: # After first reward; entering build phase
+			_to_phase('build')
 
 func _on_menu_hidden():
 	for player in $MusicPlayer.get_children(): player.volume_db=Global.music_volume
@@ -437,8 +443,11 @@ func _on_proceed_pressed():
 			$build_overlay/mini_cutscene.paused = true
 			$build_overlay/mini_cutscene.hide()
 			$battle_overlay/tiny_cutscene.paused = false
-		mode = 'battle'
-		_to_phase('battle')
+			$cutscenes.show()
+			$cutscenes.start()
+		else:
+			mode = 'battle'
+			_to_phase('battle')
 
 func _on_battle_overlay_end_turn():
 	if battle_overlay.all_dead():
