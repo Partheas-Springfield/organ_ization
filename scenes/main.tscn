@@ -361,9 +361,12 @@ position = Vector2(-8, 88)
 visible = false
 focus_send = NodePath("../build_overlay/expand_cell")
 
-[node name="Menu" parent="." instance=ExtResource("21_ghpac")]
+[node name="Menu" parent="." node_paths=PackedStringArray("TitlePlayer", "BuildPlayer", "BattlePlayer") instance=ExtResource("21_ghpac")]
 visible = false
 z_index = 1000
+TitlePlayer = NodePath("../MusicPlayer/TitleMusic")
+BuildPlayer = NodePath("../MusicPlayer/BuildTheme")
+BattlePlayer = NodePath("../MusicPlayer/BattleTheme")
 
 [connection signal="finished" from="MusicPlayer/TitleMusic" to="." method="_on_title_music_finished"]
 [connection signal="finished" from="MusicPlayer/BuildTheme" to="." method="_on_build_theme_finished"]
