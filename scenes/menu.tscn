@@ -79,6 +79,7 @@ step = 0.01
 value = 0.5
 
 [node name="MouseDisablerLabel" type="RichTextLabel" parent="."]
+visible = false
 offset_left = 424.0
 offset_top = 249.0
 offset_right = 567.0
@@ -88,6 +89,7 @@ text = "[right]Accesibility Controls:[/right]"
 scroll_active = false
 
 [node name="DisableToggle" type="CheckButton" parent="."]
+visible = false
 offset_left = 569.0
 offset_top = 246.0
 offset_right = 668.0
@@ -96,6 +98,7 @@ theme_override_constants/check_v_offset = -2
 text = "Auto"
 
 [node name="MouseDisablerDescription" type="RichTextLabel" parent="."]
+visible = false
 offset_left = 392.0
 offset_top = 286.0
 offset_right = 696.0

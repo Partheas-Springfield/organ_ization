@@ -215,6 +215,7 @@ popup/item_3/text = "Coming for You"
 popup/item_3/id = 3
 
 [node name="MouseDisablerLabel" type="RichTextLabel" parent="Settings"]
+visible = false
 layout_mode = 0
 offset_left = 424.0
 offset_top = 322.0
@@ -225,6 +226,7 @@ text = "[right]Accesibility Controls:[/right]"
 scroll_active = false
 
 [node name="DisableToggle" type="CheckButton" parent="Settings"]
+visible = false
 layout_mode = 0
 offset_left = 569.0
 offset_top = 319.0
@@ -234,6 +236,7 @@ theme_override_constants/check_v_offset = -2
 text = "Auto"
 
 [node name="MouseDisablerDescription" type="RichTextLabel" parent="Settings"]
+visible = false
 layout_mode = 0
 offset_left = 392.0
 offset_top = 352.0
