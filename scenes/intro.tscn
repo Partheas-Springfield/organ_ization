@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqklwy88vautq"]
+[gd_scene load_steps=11 format=3 uid="uid://bqklwy88vautq"]
 
 [ext_resource type="Script" path="res://scripts/intro.gd" id="1_n580y"]
 [ext_resource type="Texture2D" uid="uid://bvhca36jeug4u" path="res://sprites/Background2.png" id="2_3jagy"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dq05lwj84a6pa" path="res://sprites/vicky.png" id="5_fc0y1"]
 [ext_resource type="PackedScene" uid="uid://dvs0nug5kbfdo" path="res://scenes/end.tscn" id="6_pyrab"]
 [ext_resource type="Texture2D" uid="uid://d3uptre1rkxlx" path="res://sprites/Background.png" id="7_sunkn"]
+[ext_resource type="Texture2D" uid="uid://16wubiwqfww6" path="res://sprites/microscope.png" id="8_7nn7j"]
+[ext_resource type="Texture2D" uid="uid://b33f3e3c5darj" path="res://sprites/microscope2.png" id="9_m7gdw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hntuh"]
 animations = [{
@@ -113,26 +115,40 @@ offset_left = -224.0
 offset_top = -32.0
 offset_right = -48.0
 offset_bottom = 160.0
+flat = true
+
+[node name="Image1" type="Sprite2D" parent="BrightLab/Microscope"]
+position = Vector2(224, 32)
+texture = ExtResource("8_7nn7j")
+
+[node name="Image2" type="Sprite2D" parent="BrightLab/Microscope"]
+visible = false
+position = Vector2(224, 32)
+texture = ExtResource("9_m7gdw")
 
 [node name="Banner" type="ColorRect" parent="BrightLab"]
-offset_left = -168.0
+offset_left = -176.0
 offset_top = 208.0
-offset_right = 168.0
+offset_right = 176.0
 offset_bottom = 256.0
 color = Color(0, 0, 0, 0.588235)
 metadata/_edit_group_ = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BrightLab/Banner"]
+[node name="MicroscopeLabel" type="RichTextLabel" parent="BrightLab/Banner"]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 13.0
-offset_right = 328.0
+offset_right = 344.0
 offset_bottom = 48.0
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
-text = "[center]Use the microscope to begin!"
+text = "[center]Click the microscope to begin!"
 
 [connection signal="button_down" from="Skip" to="." method="skip_down"]
 [connection signal="pressed" from="Skip" to="." method="skip_press"]
 [connection signal="pressed" from="Next" to="." method="_on_next_pressed"]
+[connection signal="focus_entered" from="BrightLab/Microscope" to="." method="_on_microscope_focus_entered"]
+[connection signal="focus_exited" from="BrightLab/Microscope" to="." method="_on_microscope_focus_exited"]
+[connection signal="mouse_entered" from="BrightLab/Microscope" to="." method="_on_microscope_focus_entered"]
+[connection signal="mouse_exited" from="BrightLab/Microscope" to="." method="_on_microscope_focus_exited"]
 [connection signal="pressed" from="BrightLab/Microscope" to="." method="_on_microscope_pressed"]

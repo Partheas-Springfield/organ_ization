@@ -51,13 +51,19 @@ func _on_next_pressed():
 		fade = fade_start
 		$Nameplate.text = "[center]" + speaker_list[story_index]
 		$Portrait.play(speaker_list[story_index])
-	elif scene==0:$BrightLab.show()
+	elif scene==0:
+		$BrightLab.show()
 	else: _advance()
 	
+#region Microscope Logic
 func _on_microscope_pressed():
 	$BrightLab.hide()
 	_advance()
-		
+func _on_microscope_focus_entered():
+	$BrightLab/Microscope/Image2.show()
+func _on_microscope_focus_exited():
+	$BrightLab/Microscope/Image2.hide()
+#endregion
 
 func _advance():
 	scene+=1
@@ -83,5 +89,10 @@ func _input(event):
 	else:
 		if !event.as_text().contains("Mouse"):
 			Global.controller = true
-			$Next.grab_focus()
+			if$BrightLab.is_visible_in_tree():$BrightLab/Microscope.grab_focus()
+			else:$Next.grab_focus()
 			get_viewport().set_input_as_handled()
+	if scene==0:
+		if event.as_text().contains("Mouse"):$BrightLab/Banner/MicroscopeLabel.text = "[center]Click the microscope to begin!"
+		elif event.as_text().contains("Joypad"):$BrightLab/Banner/MicroscopeLabel.text = "[center]Press \"A\" to begin!"
+		else: $BrightLab/Banner/MicroscopeLabel.text = "[center]Press \"space\" to begin!"
