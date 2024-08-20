@@ -32,11 +32,11 @@ func set_display_stats(atp_modifier,atk,def,heal,crit,scalar):
 	_update_display()
 
 func _update_display():
-	atk_icon.text = str(attack)
-	def_icon.text = str(defense)
-	rec_icon.text = str(recovery)
-	atp_icon.text = str(current_atp)+'/'+str(300+atp_adjustment)+' ('+str(atp_adjustment)+')'
-	duo_icon.text = str(critical_chance)+'%'
+	atk_icon.text = 'ATK: '+str(attack)
+	def_icon.text = 'DEF: '+str(defense)
+	rec_icon.text = 'HEAL: '+str(recovery)
+	atp_icon.text = 'ATP: '+str(current_atp)+'/'+str(300+atp_adjustment)+' ('+str(atp_adjustment)+')'
+	duo_icon.text = 'CRIT: '+str(critical_chance)+'%'
 
 func get_atk():
 	return attack
