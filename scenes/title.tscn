@@ -28,7 +28,6 @@ stream = ExtResource("2_j5hkm")
 parameters/looping = true
 
 [node name="TitleBox" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1088.0
@@ -192,6 +191,7 @@ popup/item_1/text = "Coming for You"
 popup/item_1/id = 1
 
 [node name="Instructions" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
