@@ -309,7 +309,8 @@ const loss_speaker = [
 ]
 
 func load_image(organelle):
-	return Image.load_from_file(Global.get_icon_path(organelle))
+	var icon = Image.load_from_file(Global.get_icon_path(organelle))
+	return ImageTexture.create_from_image(icon)
 
 const loss_text = [
 	"Oh no! What happened?",
