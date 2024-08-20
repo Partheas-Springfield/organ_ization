@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://ds5x6tdgg575b" path="res://scenes/info_bar.tscn" id="13_e6uy5"]
 [ext_resource type="PackedScene" uid="uid://uxx3lucnkrns" path="res://scenes/organelle_bank.tscn" id="15_43esn"]
 [ext_resource type="PackedScene" uid="uid://bqklwy88vautq" path="res://scenes/intro.tscn" id="15_don1q"]
-[ext_resource type="PackedScene" uid="uid://bs85uwcnr0kst" path="res://mini_cutscene.tscn" id="17_rirbn"]
+[ext_resource type="PackedScene" uid="uid://bs85uwcnr0kst" path="res://scenes/mini_cutscene.tscn" id="17_rirbn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkpd5"]
 texture = ExtResource("2_gce5q")
@@ -320,6 +320,7 @@ offset_right = 1024.0
 offset_bottom = 432.0
 
 [node name="mini_cutscene" parent="build_overlay" instance=ExtResource("17_rirbn")]
+visible = false
 position = Vector2(-8, 88)
 
 [node name="cutscenes" parent="." node_paths=PackedStringArray("focus_send") instance=ExtResource("15_don1q")]
@@ -343,3 +344,4 @@ focus_send = NodePath("../build_overlay/expand_cell")
 [connection signal="animation_looped" from="build_overlay/waste_button/waste" to="." method="_on_waste_animation_looped"]
 [connection signal="frame_changed" from="build_overlay/waste_button/waste" to="." method="_on_waste_frame_changed"]
 [connection signal="pressed" from="build_overlay/proceed" to="." method="_on_proceed_pressed"]
+[connection signal="hidden" from="cutscenes" to="." method="_on_cutscenes_hidden"]

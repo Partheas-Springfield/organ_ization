@@ -168,6 +168,34 @@ const intro_text = [
 	"Didn't quite catch that one. Anyway, good luck!",
 ]
 #endregion
+#region Build Text
+const build_speaker = [
+	"Vicky",
+	"Inga",
+	"Vicky",
+	"Inga",
+	"Vicky",
+	"Inga",
+	"Vicky",
+	"Inga",
+	"Vicky",
+	"Inga",
+	"Inga",
+]
+const build_text = [
+	"Alright, let's set up the Crisp-st cell in this petri dish.",
+	"*grunts* [Do you know how to use this equipment?]",
+	"Honestly, I feel a little disoriented in the new lab. I'd really appreciate a quick breakdown.",
+	"*grunts* [Sure thing, Vicky. As you've probably noticed, all of our tools are laid out on the right side of the petri dish.]",
+	"I see that these top two will let me make the cell larger or smaller.",
+	"*grunts* [That's right. Larger cells can hold more organelles, but use more ATP just to survive.]",
+	"Right. Cells with more organelles are more powerful, but smaller cells have more ATP to interact with their environment.",
+	"*grunts* [Precisely. Try to make your cell just big enough to fit the organelles you want.]",
+	"And this last thing must be the organelle bank. I just have to move organelles from here onto open spots in the cell.",
+	"*grunts* [You can also store existing cells there, or put them in the biohazard bin in the corner. I'll deal with the waste immediately.]",
+	"*grunts* [Make sure you get the Nucleus in there! The cell won't function without it...]",
+]
+#endregion
 #region Post First Build Phase
 const post_build_speaker = [
 	"Vicky",

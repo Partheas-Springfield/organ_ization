@@ -363,6 +363,9 @@ func _on_select_button_pressed():
 #endregion
 #endregion
 
+func _on_cutscenes_hidden():
+	$build_overlay/mini_cutscene.show()
+
 func _input(event):
 	if $cutscenes.is_visible_in_tree():pass
 	if Global.controller:

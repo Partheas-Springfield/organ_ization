@@ -19,8 +19,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	fade += delta*fade_rate
-	%Story.text = "[fade start=" + str(fade) + " length=1]" + text_list[story_index]
+	if is_visible_in_tree():
+		fade += delta*fade_rate
+		%Story.text = "[fade start=" + str(fade) + " length=1]" + text_list[story_index]
 
 """
 func progress(value):
