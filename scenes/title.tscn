@@ -21,6 +21,7 @@ offset_bottom = 512.0
 color = Color(0.380392, 0.282353, 0.301961, 1)
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
 offset_top = 13.0
 offset_right = 1144.0
 offset_bottom = 296.0
@@ -115,9 +116,9 @@ text = "Back"
 [node name="VolumeControls" type="Control" parent="Settings"]
 anchors_preset = 0
 offset_left = -64.0
-offset_top = 120.0
+offset_top = 68.0
 offset_right = -24.0
-offset_bottom = 160.0
+offset_bottom = 108.0
 
 [node name="MasterVolumeLabel" type="RichTextLabel" parent="Settings/VolumeControls"]
 visible = false
@@ -182,23 +183,54 @@ value = 0.5
 [node name="MusicLabel" type="RichTextLabel" parent="Settings"]
 layout_mode = 0
 offset_left = 432.0
-offset_top = 340.0
+offset_top = 288.0
 offset_right = 520.0
-offset_bottom = 380.0
+offset_bottom = 328.0
 bbcode_enabled = true
 text = "[right]Music Player:"
 
 [node name="MusicSelect" type="OptionButton" parent="Settings"]
 layout_mode = 0
 offset_left = 528.0
-offset_top = 336.0
+offset_top = 284.0
 offset_right = 672.0
-offset_bottom = 362.0
+offset_bottom = 310.0
 selected = 0
 item_count = 2
 popup/item_0/text = "Title Music"
 popup/item_1/text = "Coming for You"
 popup/item_1/id = 1
+
+[node name="MouseDisablerLabel" type="RichTextLabel" parent="Settings"]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 322.0
+offset_right = 567.0
+offset_bottom = 346.0
+bbcode_enabled = true
+text = "[right]Accesibility Controls:[/right]"
+scroll_active = false
+
+[node name="DisableToggle" type="CheckButton" parent="Settings"]
+layout_mode = 0
+offset_left = 569.0
+offset_top = 319.0
+offset_right = 668.0
+offset_bottom = 345.0
+theme_override_constants/check_v_offset = -2
+text = "Auto"
+
+[node name="MouseDisablerDescription" type="RichTextLabel" parent="Settings"]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 352.0
+offset_right = 696.0
+offset_bottom = 464.0
+bbcode_enabled = true
+text = "[center]Auto: Game will disable/enable keyboard and controller functionality dynamically based on controls being used.
+
+Forced: Mouse use will not disable keyboard and controller functionality."
+scroll_active = false
 
 [node name="Instructions" type="Control" parent="."]
 visible = false
@@ -291,5 +323,6 @@ text = "Back"
 [connection signal="value_changed" from="Settings/VolumeControls/MusicVolumeSlider" to="." method="_music_volume_changed"]
 [connection signal="value_changed" from="Settings/VolumeControls/SoundEffectsVolumeSlider" to="." method="_effects_volume_changed"]
 [connection signal="item_selected" from="Settings/MusicSelect" to="." method="_on_music_select_item_selected"]
+[connection signal="toggled" from="Settings/DisableToggle" to="." method="_on_disable_toggle_toggled"]
 [connection signal="pressed" from="Instructions/Back" to="." method="on_instructions_back"]
 [connection signal="pressed" from="Credits/Back" to="." method="on_credits_back"]

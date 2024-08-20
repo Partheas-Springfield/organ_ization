@@ -54,6 +54,12 @@ func _on_music_select_item_selected(index):
 	match index:
 		0:$MusicPlayer/TitleMusic.play()
 		1:$MusicPlayer/ComingForYou.play()
+		
+func _on_disable_toggle_toggled(toggled):
+	Global.force_controller=toggled
+	match toggled:
+		true:$Settings/DisableToggle.text = "Forced"
+		false:$Settings/DisableToggle.text = "Auto"
 #endregion
 
 
