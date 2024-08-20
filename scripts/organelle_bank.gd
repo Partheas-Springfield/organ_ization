@@ -21,15 +21,13 @@ func get_slot_num(slot):
 func add_to_next_slot(organelle):
 	if _get_next_slot() != null:
 		var slot_num = get_slot_num(_get_next_slot())
-		var icon = Global.load_image(Global.held_organelle)
-		_get_next_slot().set_button_icon(ImageTexture.create_from_image(icon))
+		_get_next_slot().set_button_icon(Global.load_image(organelle))
 		organelle_array[slot_num] = organelle
 
 func _slot_pressed(slot):
 	if slot.get_button_icon() == null:
 		if Global.held_organelle != null:
-			var icon = Global.load_image(Global.held_organelle)
-			slot.set_button_icon(ImageTexture.create_from_image(icon))
+			slot.set_button_icon(Global.load_image(Global.held_organelle))
 			organelle_array[get_slot_num(slot)] = Global.held_organelle
 			Global.held_organelle = null
 	elif Global.held_organelle == null:
@@ -43,8 +41,7 @@ func _slot_pressed(slot):
 		slot.set_button_icon(null)
 		organelle_array[get_slot_num(slot)] = ''
 		Global.held_organelle = to_return
-		var icon = Global.load_image(Global.held_organelle)
-		slot.set_button_icon(ImageTexture.create_from_image(icon))
+		slot.set_button_icon(Global.load_image(temp))
 		organelle_array[get_slot_num(slot)] = temp
 
 func all_slots_empty():
