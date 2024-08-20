@@ -1,10 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5svm8lt1hywc"]
+[gd_scene load_steps=5 format=3 uid="uid://c5svm8lt1hywc"]
 
 [ext_resource type="Script" path="res://scripts/title.gd" id="1_3yn27"]
 [ext_resource type="AudioStream" uid="uid://1lqlxac7lnk3" path="res://audio/coming_for_you.mp3" id="2_j5hkm"]
+[ext_resource type="Texture2D" uid="uid://bvhca36jeug4u" path="res://sprites/Background2.png" id="2_jhrct"]
+[ext_resource type="Texture2D" uid="uid://dan0ox3akg6q3" path="res://sprites/cellout.png" id="4_yntrf"]
 
 [node name="Title" type="Node2D"]
 script = ExtResource("1_3yn27")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(544, 320)
+texture = ExtResource("2_jhrct")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -24.0
+offset_top = 128.0
+offset_right = 1120.0
+offset_bottom = 512.0
+color = Color(0.380392, 0.282353, 0.301961, 1)
 
 [node name="MusicPlayer" type="Node" parent="."]
 
@@ -17,50 +30,46 @@ parameters/looping = true
 [node name="TitleBox" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_top = 1.0
 offset_right = 1088.0
-offset_bottom = 640.0
-
-[node name="Title" type="RichTextLabel" parent="TitleBox"]
-layout_mode = 0
-offset_top = 175.0
-offset_right = 1088.0
-offset_bottom = 222.0
-theme_override_font_sizes/mono_font_size = 1
-theme_override_font_sizes/normal_font_size = 30
-bbcode_enabled = true
-text = "[center]Organ-Ization[/center]"
+offset_bottom = 639.0
 
 [node name="Start" type="Button" parent="TitleBox"]
-layout_mode = 0
-offset_left = 512.0
-offset_top = 423.0
-offset_right = 576.0
-offset_bottom = 454.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = 98.5
+offset_right = 56.0
+offset_bottom = 137.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "Start"
 
 [node name="SettingsButton" type="Button" parent="TitleBox"]
 layout_mode = 0
-offset_left = 400.0
-offset_top = 479.0
-offset_right = 480.0
-offset_bottom = 510.0
+offset_left = 392.0
+offset_top = 471.0
+offset_right = 472.0
+offset_bottom = 502.0
 text = "Settings"
 
 [node name="InstructionsButton" type="Button" parent="TitleBox"]
 layout_mode = 0
 offset_left = 488.0
-offset_top = 479.0
+offset_top = 471.0
 offset_right = 600.0
-offset_bottom = 510.0
+offset_bottom = 502.0
 text = "Instructions"
 
 [node name="CreditsButton" type="Button" parent="TitleBox"]
 layout_mode = 0
-offset_left = 608.0
-offset_top = 479.0
-offset_right = 688.0
-offset_bottom = 510.0
+offset_left = 616.0
+offset_top = 471.0
+offset_right = 696.0
+offset_bottom = 502.0
 text = "Credits"
 
 [node name="Settings" type="Control" parent="."]
@@ -254,6 +263,11 @@ offset_top = 560.0
 offset_right = 568.0
 offset_bottom = 591.0
 text = "Back"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(552, 264)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_yntrf")
 
 [connection signal="button_up" from="TitleBox/Start" to="." method="on_start"]
 [connection signal="pressed" from="TitleBox/SettingsButton" to="." method="on_settings"]
