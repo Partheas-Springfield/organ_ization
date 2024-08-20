@@ -219,8 +219,8 @@ const post_build_speaker = [
 	"Inga",
 	"Dr. Vicky",
 	"Inga",
-	#"Card",
-	#"Scene",
+	"Card",
+	"Scene",
 	"Inga",
 ]
 
@@ -229,8 +229,8 @@ const post_build_text = [
 	"*grunt* [My pleasure, Vicky.]",
 	"This specimen looks promising, let’s keep it for observation for now.",
 	"*grunt* [Will do. I will see you tomorrow.]",
-	#"That Evening",
-	#"Cell POV, inga backlit, looming sinister",
+	"That Evening",
+	"Cell POV, inga backlit, looming sinister",
 	"So, this is the cell that Vicky is so excited about becoming superimmune? You don’t look so tough. Let’s see if you can survive this.",
 ]
 #endregion
