@@ -33,6 +33,11 @@ anchors_preset = 0
 offset_right = 1088.0
 offset_bottom = 639.0
 
+[node name="Title" type="Sprite2D" parent="TitleBox"]
+position = Vector2(552, 308)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_yntrf")
+
 [node name="Start" type="Button" parent="TitleBox"]
 layout_mode = 1
 anchors_preset = 8
@@ -263,11 +268,6 @@ offset_top = 560.0
 offset_right = 568.0
 offset_bottom = 591.0
 text = "Back"
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(552, 308)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("4_yntrf")
 
 [connection signal="button_up" from="TitleBox/Start" to="." method="on_start"]
 [connection signal="pressed" from="TitleBox/SettingsButton" to="." method="on_settings"]

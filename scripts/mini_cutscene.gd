@@ -28,7 +28,7 @@ func _process(delta):
 		fade += delta*fade_rate
 		if fade<=text_list[story_index].length():
 			%Story.text = "[fade start=" + str(fade) + " length=1]" + text_list[story_index]
-		if story_index==speaker_list.size()||story_index==text_list.size():
+		if story_index==speaker_list.size()-1||story_index==text_list.size()-1:
 			pass
 		elif fade>text_list[story_index].length()+delay:
 			story_index+=1
