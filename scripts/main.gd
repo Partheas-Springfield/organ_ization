@@ -199,12 +199,10 @@ func _tile_clicked(tile):
 		if tile.get_organelle() != null and info_bar.get_curr_atp() >= 40:
 			get_tile(tile.get_organelle_origin()).organelle_hp_change(info_bar.get_rec()*info_bar.duo_activation())
 			info_bar.use_atp(40)
-			mode = 'battle'
 	elif mode == 'defend':
 		if tile.get_organelle() != null and info_bar.get_curr_atp() >= 30:
 			get_tile(tile.get_organelle_origin()).add_defense(info_bar.get_def())
 			info_bar.use_atp(30)
-			mode = 'battle'
 	elif mode not in ['battle','attack','reward']:
 		if Global.held_organelle != null:
 			if valid_placement:
