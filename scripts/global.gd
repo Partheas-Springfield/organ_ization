@@ -163,10 +163,10 @@ const intro_speaker = [
 	"Vicky",
 	"Shelly",
 	"Inga",
-	"Vicky",
+	"Dr. Vicky",
 	"Shelly",
 	"Inga",
-	"Shelly",
+	"CEO Shelly",
 ]
 const intro_text = [
 	"Congratulations Dr. Fraulenstein, not many people get their own lab at your age.",
@@ -224,7 +224,7 @@ const post_build_speaker = [
 
 const post_build_text = [
 	"It’s alive! Thank you for your help, Inga.",
-	"*grunt* [My pleasure, Vicky]",
+	"*grunt* [My pleasure, Vicky.]",
 	"This specimen looks promising, let’s keep it for observation for now.",
 	"*grunt* [Will do. I will see you tomorrow.]",
 	#"That Evening",
@@ -256,7 +256,7 @@ const post_battle_speaker = [
 ]
 
 const post_battle_text = [
-	"Inga, this is incredible! The specimen has somehow developed new ATP capacity overnight.",
+	"Inga, this is incredible! The specimen has somehow developed new capacity overnight.",
 	"*grunt* [So it survived and got stronger? Congratulations Vicky.]",
 	"I could probably modify it further now. But I wonder what triggered this change?",
 	"*grunt* [Who knows, maybe you should make those modifications though, next time it may not be so lucky.]",
@@ -308,7 +308,7 @@ const loss_text = [
 	"Oh no! What happened?",
 	"*grunt* [Sorry, Vicky. It seems the specimen was too weak to survive the night. Perhaps we should consider a different use for Crisp-st.]",
 	"No, Inga. I’m more determined than ever now. Next time I will make a Cell that truly changes the world!",
-	"*grunt* [Then be here to contribute too.]",
+	"*grunt* [Then I will be here to contribute too.]",
 ]
 #endregion
 #region Credits
