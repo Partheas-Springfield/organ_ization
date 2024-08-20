@@ -8,6 +8,7 @@ extends Node2D
 @onready var battle_overlay = $battle_overlay
 @onready var reward_screen = $reward_screen
 @onready var organelle_bank = $build_overlay/organelle_bank
+@onready var icon = preload("res://icon.tscn")
 
 var mode = null
 var active_tile = null
@@ -519,8 +520,7 @@ func _on_organelle_bank_add_to_next():
 		organelle_bank.organelle_array[slot_num] = Global.temp_organelle
 
 func load_image(organelle):
-	var icon = Image.load_from_file(Global.get_icon_path(organelle))
-	return ImageTexture.create_from_image(icon)
+	return $icon.sprite_frames.get_frame_texture(organelle,0)
 
 func _on_organelle_bank_slot_pressed():
 	var slot = organelle_bank.get_slot(Global.temp_slot)

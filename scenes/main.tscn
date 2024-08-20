@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://dw3dg4mra64he"]
+[gd_scene load_steps=41 format=4 uid="uid://dw3dg4mra64he"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0ns07"]
 [ext_resource type="Texture2D" uid="uid://bvhca36jeug4u" path="res://sprites/Background2.png" id="2_cu64w"]
@@ -23,7 +23,14 @@
 [ext_resource type="PackedScene" uid="uid://bqklwy88vautq" path="res://scenes/intro.tscn" id="15_don1q"]
 [ext_resource type="PackedScene" uid="uid://bs85uwcnr0kst" path="res://scenes/mini_cutscene.tscn" id="17_rirbn"]
 [ext_resource type="AudioStream" uid="uid://dq6u6durjrtnu" path="res://audio/battle_theme.wav" id="19_wlmde"]
-[ext_resource type="PackedScene" path="res://scenes/menu.tscn" id="21_ghpac"]
+[ext_resource type="PackedScene" uid="uid://c2hlbi8d8hiue" path="res://scenes/menu.tscn" id="21_ghpac"]
+[ext_resource type="Texture2D" uid="uid://c1olj0u3fy6n0" path="res://sprites/organelle_icon7.png" id="24_4o4u6"]
+[ext_resource type="Texture2D" uid="uid://creledyjfi4lj" path="res://sprites/organelle_icon5.png" id="25_g6gbo"]
+[ext_resource type="Texture2D" uid="uid://dw446rvr8pbus" path="res://sprites/organelle_icon3.png" id="26_aph0u"]
+[ext_resource type="Texture2D" uid="uid://b01s3ljlt3rrs" path="res://sprites/organelle_icon2.png" id="27_8a2a4"]
+[ext_resource type="Texture2D" uid="uid://do731kvr1aqii" path="res://sprites/organelle_icon4.png" id="28_t1o71"]
+[ext_resource type="Texture2D" uid="uid://club1pqd3hunr" path="res://sprites/organelle_icon6.png" id="29_wpoi7"]
+[ext_resource type="Texture2D" uid="uid://b8k7qkw0mu7kx" path="res://sprites/organelle_icon1.png" id="30_xmju4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkpd5"]
 texture = ExtResource("2_gce5q")
@@ -211,6 +218,65 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_nynhl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_4o4u6")
+}],
+"loop": true,
+"name": &"cellwall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_g6gbo")
+}],
+"loop": true,
+"name": &"endoplasmicreticulum",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_aph0u")
+}],
+"loop": true,
+"name": &"golgibody",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_8a2a4")
+}],
+"loop": true,
+"name": &"mitochondria",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_t1o71")
+}],
+"loop": true,
+"name": &"nucleus",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_wpoi7")
+}],
+"loop": true,
+"name": &"proteinchannel",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("30_xmju4")
+}],
+"loop": true,
+"name": &"ribosome",
+"speed": 5.0
+}]
+
 [node name="main" type="Node2D"]
 script = ExtResource("1_0ns07")
 
@@ -360,6 +426,11 @@ position = Vector2(-8, 88)
 [node name="cutscenes" parent="." node_paths=PackedStringArray("focus_send") instance=ExtResource("15_don1q")]
 visible = false
 focus_send = NodePath("../build_overlay/expand_cell")
+
+[node name="icon" type="AnimatedSprite2D" parent="."]
+position = Vector2(160, -48)
+sprite_frames = SubResource("SpriteFrames_nynhl")
+animation = &"endoplasmicreticulum"
 
 [node name="Menu" parent="." instance=ExtResource("21_ghpac")]
 visible = false
