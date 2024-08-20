@@ -229,8 +229,8 @@ const post_build_text = [
 	"*grunt* [My pleasure, Vicky.]",
 	"This specimen looks promising, let’s keep it for observation for now.",
 	"*grunt* [Will do. I will see you tomorrow.]",
-	"That Evening",
-	"Cell POV, inga backlit, looming sinister",
+	"That Evening", #Night time lab scene
+	"Cell POV, inga backlit, looming sinister", #Art
 	"So, this is the cell that Vicky is so excited about becoming superimmune? You don’t look so tough. Let’s see if you can survive this.",
 ]
 #endregion
@@ -262,7 +262,7 @@ const post_battle_text = [
 	"*grunt* [So it survived and got stronger? Congratulations Vicky.]",
 	"I could probably modify it further now. But I wonder what triggered this change?",
 	"*grunt* [Who knows, maybe you should make those modifications though, next time it may not be so lucky.]",
-	"Good idea, let’s get to work.",
+	"Good idea, let’s get to work. A few more rounds of this and we'll have a superimmune cell in no time.",
 ]
 #endregion
 #region Win
@@ -273,13 +273,13 @@ const win_speaker = [
 	"Dr. Vicky",
 	"Inga",
 	"Dr. Vicky",
-	#"Scene",
-	#"Scene",
-	#"Scene",
-	#"Scene",
-	#"Scene",
-	#"Card",
-	#"Card",
+	"Scene",
+	"Scene",
+	"Dr. Vicky",
+	"Scene",
+	"Scene",
+	"Card",
+	"Card",
 ]
 const win_text = [
 	#"The lab",
@@ -288,29 +288,29 @@ const win_text = [
 	"Wait, what? You can talk? Also you were plotting to destroy the specimen?",
 	"Your work is too powerful to be left in the hands of this company. Now that it’s come to this, I’ll just have to steal it!",
 	"No! You can’t!",
-	#"Struggle in the lab, the petri dish slips and breaks by the open door.",
-	#"Containment Breach sign lights up",
-	#"An expanding mass of goo",
-	#"Vicky and Inga look up in horror as the shadow of the mass towers towers over them",
-	#"The silhouette of a city skyline covered in goo",
-	#"Dr. Fraulenstein’s superimmune monster. You have become the dominant lifeform on earth, completely immune to death.",
-	#"Congratulations!",
+	"Struggle in the lab, the petri dish slips and breaks by the open door.", #dish break art
+	"Containment Breach sign lights up", #art
+	"It's growing and multiplying!",
+	"Vicky and Inga look up in horror as the shadow of the mass towers towers over them",
+	"The silhouette of a city skyline covered in goo",
+	"Dr. Vicky Fraulenstein’s superimmune monster. You have become the dominant lifeform on earth, completely immune to death.",
+	"Congratulations!",
 ]
 #endregion
 #region Loss
 const loss_speaker = [
-	#"Scene",
 	"Dr. Vicky",
 	"Inga",
 	"Dr. Vicky",
-	"Inga"
+	"Inga",
+	"Scene",
 ]
 const loss_text = [
-	#"The lab, Vicky tearful, Inga comforting somewhat insincerely",
 	"Oh no! What happened?",
 	"*grunt* [Sorry, Vicky. It seems the specimen was too weak to survive the night. Perhaps we should consider a different use for Crisp-st.]",
 	"No, Inga. I’m more determined than ever now. Next time I will make a Cell that truly changes the world!",
 	"*grunt* [Then I will be here to contribute too.]",
+	"The lab, Vicky tearful, Inga comforting somewhat insincerely",
 ]
 #endregion
 #region Credits

@@ -78,14 +78,19 @@ func _on_disable_toggle_toggled(toggled):
 
 func _input(event):
 	if Global.controller:
-		if event.as_text().contains("Mouse"):
+		if event.as_text().contains("Mouse")&&!Global.force_controller:
 			Global.controller = false
 			last_box = get_viewport().gui_get_focus_owner()
-			last_box.release_focus()
+			if last_box!=null:last_box.release_focus()
 	else:
 		if !event.as_text().contains("Mouse"):
 			Global.controller = true
-			last_box.grab_focus()
+			if last_box!=null:last_box.grab_focus()
+			else:
+				if $Settings.is_visible_in_tree():$Settings/Back.grab_focus()
+				elif $Instructions.is_visible_in_tree():$Instructions/Back.grab_focus()
+				elif $Credits.is_visible_in_tree():$Credits/Back.grab_focus()
+				else:$Start.grab_focus()
 			get_viewport().set_input_as_handled()
 
 

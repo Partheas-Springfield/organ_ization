@@ -406,11 +406,11 @@ func _on_battle_overlay_hidden():
 	$battle_overlay/tiny_cutscene.paused = true
 	$battle_overlay/tiny_cutscene.hide()
 
-
+"""
 func _input(event):
 	if $cutscenes.is_visible_in_tree():pass
 	if Global.controller:
-		if event.as_text().contains("Mouse"):
+		if event.as_text().contains("Mouse")&&!Global.force_controller:
 			Global.controller = false
 			get_viewport().gui_release_focus()
 		elif  mode != null:
@@ -450,6 +450,7 @@ func _input(event):
 			Global.controller = true
 			$build_overlay/expand_cell.grab_focus()
 			get_viewport().set_input_as_handled()
+"""
 
 func _on_proceed_pressed():
 	if $build_overlay/organelle_bank.all_slots_empty() and Global.held_organelle == null:
