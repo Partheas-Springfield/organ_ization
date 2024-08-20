@@ -305,6 +305,10 @@ const loss_speaker = [
 	"Inga",
 	"Scene",
 ]
+
+func load_image(organelle):
+	return Image.load_from_file(Global.get_icon_path(organelle))
+
 const loss_text = [
 	"Oh no! What happened?",
 	"*grunt* [Sorry, Vicky. It seems the specimen was too weak to survive the night. Perhaps we should consider a different use for Crisp-st.]",
