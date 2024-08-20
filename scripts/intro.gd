@@ -82,6 +82,7 @@ func _on_next_pressed():
 				$TempSplash.set_position(Vector2(8,392))
 				$TempSplash.set_size(Vector2(1072,216))
 			"[center]Scene":
+				fade=1000
 				$Nameplate.hide()
 				$Portrait.hide()
 				%Story.hide()
@@ -151,6 +152,9 @@ func _adjust_background():
 				5:
 					$Backgrounds/Lab_Night.hide()
 					$Backgrounds/Inga_Looming.show()
+				6:
+					$Nameplate.text="Inga"
+					$Nameplate.show()
 		2:$Backgrounds/Inga_Looming.hide()
 		3:# Loss
 			match story_index:
@@ -159,9 +163,14 @@ func _adjust_background():
 			match story_index:
 				5:
 					$Backgrounds/BrokenGlass.show()
+					$Shatter.volume_db=linear_to_db(Global.effects_volume*Global.volume_scale)
+					$Shatter.play()
 				6:
 					$Backgrounds/BrokenGlass.hide()
 					$Backgrounds/CBSign.show()
+					$Backgrounds/CBSign.play()
+					$Klaxon.volume_db=linear_to_db(Global.effects_volume*Global.volume_scale)
+					$Klaxon.play()
 				8:
 					$Backgrounds/CBSign.hide()
 					$Backgrounds/LookingUp.show()

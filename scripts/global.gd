@@ -223,7 +223,7 @@ const post_build_speaker = [
 	"Inga",
 	"Card",
 	"Scene",
-	"Inga",
+	"Card",
 ]
 
 const post_build_text = [
