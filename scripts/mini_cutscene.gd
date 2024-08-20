@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var scene = "build"
+var paused=true
 var fade_start = 0
 var fade = fade_start
 var fade_rate = 40
@@ -24,7 +25,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if is_visible_in_tree():
+	if !paused:
 		fade += delta*fade_rate
 		if fade<=text_list[story_index].length():
 			%Story.text = "[fade start=" + str(fade) + " length=1]" + text_list[story_index]

@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var focus_send = Control.new() ## Which UI element to make grab_focus() when cutscenes end
+var paused = false
 var scene = 0
 var fade_start = 0
 var fade = fade_start
@@ -19,7 +20,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if is_visible_in_tree():
+	if !paused:
 		fade += delta*fade_rate
 		%Story.text = "[fade start=" + str(fade) + " length=1]" + text_list[story_index]
 
@@ -36,6 +37,7 @@ func progress(value):
 func start():
 	fade=fade_start
 	show()
+	paused=false
 
 func skip_press():
 	#_advance()
@@ -77,6 +79,7 @@ func _advance():
 		_:pass
 	fade=0
 	story_index=0
+	paused=true
 	hide()
 	if Global.controller:focus_send.grab_focus()
 

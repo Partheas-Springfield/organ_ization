@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://dw3dg4mra64he"]
+[gd_scene load_steps=30 format=4 uid="uid://dw3dg4mra64he"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0ns07"]
 [ext_resource type="Texture2D" uid="uid://bvhca36jeug4u" path="res://sprites/Background2.png" id="2_cu64w"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bqklwy88vautq" path="res://scenes/intro.tscn" id="15_don1q"]
 [ext_resource type="PackedScene" uid="uid://bs85uwcnr0kst" path="res://scenes/mini_cutscene.tscn" id="17_rirbn"]
 [ext_resource type="AudioStream" uid="uid://dq6u6durjrtnu" path="res://audio/battle_theme.wav" id="19_wlmde"]
+[ext_resource type="PackedScene" uid="uid://c2hlbi8d8hiue" path="res://scenes/menu.tscn" id="21_ghpac"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkpd5"]
 texture = ExtResource("2_gce5q")
@@ -210,6 +211,11 @@ animations = [{
 [node name="main" type="Node2D"]
 script = ExtResource("1_0ns07")
 
+[node name="MusicPlayer" type="Node" parent="."]
+
+[node name="music" type="AudioStreamPlayer2D" parent="MusicPlayer"]
+stream = ExtResource("19_wlmde")
+
 [node name="background" type="Sprite2D" parent="."]
 position = Vector2(544, 320)
 texture = ExtResource("2_cu64w")
@@ -274,6 +280,15 @@ text = "Select Reward"
 [node name="info_bar" parent="." instance=ExtResource("13_e6uy5")]
 metadata/_edit_group_ = true
 
+[node name="menu" type="Button" parent="info_bar"]
+offset_left = 961.0
+offset_top = 11.0
+offset_right = 1067.0
+offset_bottom = 53.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Menu"
+flat = true
+
 [node name="build_overlay" type="Node2D" parent="."]
 
 [node name="expand_cell" type="Button" parent="build_overlay"]
@@ -333,16 +348,19 @@ position = Vector2(-8, 88)
 visible = false
 focus_send = NodePath("../build_overlay/expand_cell")
 
-[node name="music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("19_wlmde")
+[node name="Menu" parent="." instance=ExtResource("21_ghpac")]
+visible = false
+z_index = 1000
 
 [connection signal="attack" from="battle_overlay" to="." method="_on_battle_overlay_attack"]
 [connection signal="defend" from="battle_overlay" to="." method="_on_battle_overlay_defend"]
 [connection signal="end_turn" from="battle_overlay" to="." method="_on_battle_overlay_end_turn"]
 [connection signal="heal" from="battle_overlay" to="." method="_on_battle_overlay_heal"]
+[connection signal="hidden" from="battle_overlay" to="." method="_on_battle_overlay_hidden"]
 [connection signal="pressed" from="debug_overlay/get_organelle" to="." method="_on_get_organelle_pressed"]
 [connection signal="pressed" from="debug_overlay/move_organelle" to="." method="_on_move_organelle_pressed"]
 [connection signal="pressed" from="reward_screen/Select Button" to="." method="_on_select_button_pressed"]
+[connection signal="pressed" from="info_bar/menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="build_overlay/expand_cell" to="." method="_on_expand_cell_pressed"]
 [connection signal="pressed" from="build_overlay/shrink_cell" to="." method="_on_shrink_cell_pressed"]
 [connection signal="focus_entered" from="build_overlay/waste_button" to="." method="_on_waste_button_focus_entered"]
@@ -354,3 +372,4 @@ stream = ExtResource("19_wlmde")
 [connection signal="frame_changed" from="build_overlay/waste_button/waste" to="." method="_on_waste_frame_changed"]
 [connection signal="pressed" from="build_overlay/proceed" to="." method="_on_proceed_pressed"]
 [connection signal="hidden" from="cutscenes" to="." method="_on_cutscenes_hidden"]
+[connection signal="hidden" from="Menu" to="." method="_on_menu_hidden"]

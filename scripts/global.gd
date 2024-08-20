@@ -12,6 +12,7 @@ var battle_won = false
 var level = 0.
 
 var controller = false
+var force_controller = false
 
 const organelle_list = ['nucleus','ribosome','mitochondria','golgibody','proteinchannel','endoplasmicreticulum','cellwall']
 

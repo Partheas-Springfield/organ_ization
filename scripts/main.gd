@@ -17,6 +17,7 @@ var target_tiles = []
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
+	for player in $MusicPlayer.get_children(): player.volume_db=Global.music_volume
 	for xi in range(2,7):
 		for yi in range(1,6):
 			var new_tile = tile_scene.instantiate()
@@ -362,10 +363,29 @@ func _on_select_button_pressed():
 	_to_phase('build')
 	$build_overlay/organelle_bank.add_to_next_slot(new_organelle)
 #endregion
+
+func _on_menu_pressed():
+	$Menu.open()
+	if$cutscenes.is_visible_in_tree():$cutscenes.paused=true
+	if$build_overlay/mini_cutscene.is_visible_in_tree():$build_overlay/mini_cutscene.paused=true
+	if$battle_overlay/tiny_cutscene.is_visible_in_tree():$battle_overlay/tiny_cutscene.paused=true
 #endregion
 
 func _on_cutscenes_hidden():
-	$build_overlay/mini_cutscene.show()
+	if$cutscenes.scene==1:
+		$build_overlay/mini_cutscene.show()
+		$build_overlay/mini_cutscene.paused = false
+
+func _on_menu_hidden():
+	for player in $MusicPlayer.get_children(): player.volume_db=Global.music_volume
+	if$cutscenes.is_visible_in_tree():$cutscenes.paused=false
+	if$build_overlay/mini_cutscene.is_visible_in_tree():$build_overlay/mini_cutscene.paused=false
+	if$battle_overlay/tiny_cutscene.is_visible_in_tree():$battle_overlay/tiny_cutscene.paused=false
+
+func _on_battle_overlay_hidden():
+	$battle_overlay/tiny_cutscene.paused = true
+	$battle_overlay/tiny_cutscene.hide()
+
 
 func _input(event):
 	if $cutscenes.is_visible_in_tree():pass
@@ -413,6 +433,10 @@ func _input(event):
 
 func _on_proceed_pressed():
 	if $build_overlay/organelle_bank.all_slots_empty() and Global.held_organelle == null:
+		if$cutscenes.scene==1:
+			$build_overlay/mini_cutscene.paused = true
+			$build_overlay/mini_cutscene.hide()
+			$battle_overlay/tiny_cutscene.paused = false
 		mode = 'battle'
 		_to_phase('battle')
 
