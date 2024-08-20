@@ -52,3 +52,10 @@ func all_slots_empty():
 		if s.get_button_icon() != null:
 			return false
 	return true
+
+
+func _on_title_button_pressed():
+	if Global.held_organelle != null:
+		if _get_next_slot() != null:
+			add_to_next_slot(Global.held_organelle)
+			Global.held_organelle = null

@@ -2,15 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-path="res://.godot/imported/inga_above3.png-215b547387ea398d9af732170c87bb38.ctex"
+uid="uid://bciini3wmhr3a"
+path="res://.godot/imported/inga_above4.png-f503991eddcae39e8d72c2ef60bee3cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/inga_above3.png"
-dest_files=["res://.godot/imported/inga_above3.png-215b547387ea398d9af732170c87bb38.ctex"]
+source_file="res://sprites/inga_above4.png"
+dest_files=["res://.godot/imported/inga_above4.png-f503991eddcae39e8d72c2ef60bee3cc.ctex"]
 
 [params]
 
