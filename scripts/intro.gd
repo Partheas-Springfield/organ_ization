@@ -146,7 +146,29 @@ func _adjust_background():
 	match scene:
 		1:
 			match story_index:
-				pass
+				4:
+					$Backgrounds/Lab_Night.show()
+				5:
+					$Backgrounds/Lab_Night.hide()
+					$Backgrounds/Inga_Looming.show()
+		2:$Backgrounds/Inga_Looming.hide()
+		3:# Loss
+			match story_index:
+				4:$Backgrounds/VickyCrying.show()
+		4:# Win
+			match story_index:
+				5:
+					$Backgrounds/BrokenGlass.show()
+				6:
+					$Backgrounds/BrokenGlass.hide()
+					$Backgrounds/CBSign.show()
+				8:
+					$Backgrounds/CBSign.hide()
+					$Backgrounds/LookingUp.show()
+				9:
+					$Backgrounds/LookingUp.hide()
+					$Backgrounds/GooLine.show()
+					
 
 func _on_title_music_finished():
 	$TitleMusic.play()

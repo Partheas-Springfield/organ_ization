@@ -250,6 +250,7 @@ const battle_text = [
 #endregion
 #region Post First Battle Phase
 const post_battle_speaker = [
+	"Card",
 	"Dr. Vicky",
 	"Inga",
 	"Dr. Vicky",
@@ -258,6 +259,7 @@ const post_battle_speaker = [
 ]
 
 const post_battle_text = [
+	"The Next Day",
 	"Inga, this is incredible! The specimen has somehow developed new capacity overnight.",
 	"*grunt* [So it survived and got stronger? Congratulations Vicky.]",
 	"I could probably modify it further now. But I wonder what triggered this change?",
