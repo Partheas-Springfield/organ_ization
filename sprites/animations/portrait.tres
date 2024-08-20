@@ -8,6 +8,22 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_ynm0l")
+}],
+"loop": true,
+"name": &"CEO Shelly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qg0ss")
+}],
+"loop": true,
+"name": &"Dr. Vicky",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("1_4fv3h")
 }],
 "loop": true,
