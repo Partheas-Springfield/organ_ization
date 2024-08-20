@@ -16,26 +16,32 @@ func on_start():
 #region Button Pressing Logic
 func on_settings(): 
 	$TitleBox.hide()
+	$Title_Cover.show()
 	$Settings.show()
 	$Settings/Back.grab_focus()
 func on_instructions():
 	$TitleBox.hide()
+	$Title_Cover.show()
 	$Instructions.show()
 	$Instructions/Back.grab_focus()
 func on_credits():
 	$TitleBox.hide()
+	$Title_Cover.show()
 	$Credits.show()
 	$Credits/Back.grab_focus()
 func on_settings_back():
 	$TitleBox.show()
+	$Title_Cover.hide()
 	$Settings.hide()
 	$TitleBox/SettingsButton.grab_focus()
 func on_instructions_back():
 	$TitleBox.show()
+	$Title_Cover.hide()
 	$Instructions.hide()
 	$TitleBox/InstructionsButton.grab_focus()
 func on_credits_back():
 	$TitleBox.show()
+	$Title_Cover.hide()
 	$Credits.hide()
 	$TitleBox/CreditsButton.grab_focus()
 #endregion
