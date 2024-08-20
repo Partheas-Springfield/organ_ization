@@ -379,6 +379,7 @@ func _on_cutscenes_hidden():
 		2: # After first build phase; entering battle phase for the first time
 			mode = 'battle'
 			_to_phase('battle')
+			$battle_overlay/tiny_cutscene.paused = false
 		3: # After first reward; entering build phase
 			_to_phase('build')
 
@@ -442,7 +443,6 @@ func _on_proceed_pressed():
 		if$cutscenes.scene==1:
 			$build_overlay/mini_cutscene.paused = true
 			$build_overlay/mini_cutscene.hide()
-			$battle_overlay/tiny_cutscene.paused = false
 			$cutscenes.show()
 			$cutscenes.start()
 		else:

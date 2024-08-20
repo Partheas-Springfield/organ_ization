@@ -16,6 +16,7 @@ func _ready():
 	text_list = Global.intro_text
 	$Nameplate.text = "[center]" + speaker_list[story_index]
 	$Portrait.play(speaker_list[story_index])
+	%Story.text = "[fade start=" + str(fade) + " length=1]" + text_list[story_index]
 	show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
