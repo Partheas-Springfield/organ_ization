@@ -68,3 +68,7 @@ func _input(event):
 			Global.controller = true
 			last_box.grab_focus()
 			get_viewport().set_input_as_handled()
+
+
+func _on_title_music_finished():
+	$MusicPlayer/TitleMusic.play()
