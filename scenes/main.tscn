@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://dw3dg4mra64he"]
+[gd_scene load_steps=28 format=4 uid="uid://dw3dg4mra64he"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0ns07"]
 [ext_resource type="Texture2D" uid="uid://bvhca36jeug4u" path="res://sprites/Background2.png" id="2_cu64w"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://uxx3lucnkrns" path="res://scenes/organelle_bank.tscn" id="15_43esn"]
 [ext_resource type="PackedScene" uid="uid://bqklwy88vautq" path="res://scenes/intro.tscn" id="15_don1q"]
 [ext_resource type="PackedScene" uid="uid://bs85uwcnr0kst" path="res://scenes/mini_cutscene.tscn" id="17_rirbn"]
+[ext_resource type="AudioStream" uid="uid://dq6u6durjrtnu" path="res://audio/battle_theme.wav" id="19_wlmde"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkpd5"]
 texture = ExtResource("2_gce5q")
@@ -318,19 +319,6 @@ offset_left = 808.0
 offset_top = 88.0
 offset_right = 1048.0
 offset_bottom = 440.0
-text = "If the NUCLEUS is destroyed, the cell will die. Be careful!
-
-The GOLGI BODY increases attack power.
-
-The MITOCHONDRIA is the powerhouse of the cell! When placed adjacent to other organelles,the mitochondria will reduce ATP upkeep.
-
-The CELL WALL boosts defense, increasing with adjacent CELL WALL pieces.
-
-The RIBOSOME boosts cell recovery, allowing the repair of damaged organelles.
-
-The ENDOPLASMIC RETICULUM will speed things up in the cell, especially when placed next to the NUCLEUS. It grants double speed chance, allowing powerful double attacks, defense boosts, and heals!
-
-The PROTEIN CHANNEL enables the cell to exchange materials with the nutrient-rich environment. It grants bonuses to all stats except double speed chance for every adjacent tile not in the cell."
 
 [node name="mini_cutscene" parent="build_overlay" instance=ExtResource("17_rirbn")]
 visible = false
@@ -339,6 +327,9 @@ position = Vector2(-8, 88)
 [node name="cutscenes" parent="." node_paths=PackedStringArray("focus_send") instance=ExtResource("15_don1q")]
 visible = false
 focus_send = NodePath("../build_overlay/expand_cell")
+
+[node name="music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_wlmde")
 
 [connection signal="attack" from="battle_overlay" to="." method="_on_battle_overlay_attack"]
 [connection signal="defend" from="battle_overlay" to="." method="_on_battle_overlay_defend"]

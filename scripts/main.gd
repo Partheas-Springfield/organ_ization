@@ -357,6 +357,7 @@ func _on_waste_button_mouse_exited():
 func _on_select_button_pressed():
 	#Assign $reward_screen.reward to something - is it the name of the reward as a string
 	$reward_screen.hide()
+	info_bar._update_display()
 	var new_organelle = $reward_screen.selected()
 	_to_phase('build')
 	$build_overlay/organelle_bank.add_to_next_slot(new_organelle)

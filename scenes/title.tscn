@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5svm8lt1hywc"]
+[gd_scene load_steps=6 format=3 uid="uid://c5svm8lt1hywc"]
 
 [ext_resource type="Script" path="res://scripts/title.gd" id="1_3yn27"]
 [ext_resource type="AudioStream" uid="uid://1lqlxac7lnk3" path="res://audio/coming_for_you.mp3" id="2_j5hkm"]
 [ext_resource type="Texture2D" uid="uid://bvhca36jeug4u" path="res://sprites/Background2.png" id="2_jhrct"]
+[ext_resource type="AudioStream" uid="uid://dq6u6durjrtnu" path="res://audio/battle_theme.wav" id="3_amfpv"]
 [ext_resource type="Texture2D" uid="uid://dan0ox3akg6q3" path="res://sprites/cellout.png" id="4_yntrf"]
 
 [node name="Title" type="Node2D"]
@@ -22,6 +23,7 @@ color = Color(0.380392, 0.282353, 0.301961, 1)
 [node name="MusicPlayer" type="Node" parent="."]
 
 [node name="TitleMusic" type="AudioStreamPlayer" parent="MusicPlayer"]
+stream = ExtResource("3_amfpv")
 
 [node name="ComingForYou" type="AudioStreamPlayer" parent="MusicPlayer"]
 stream = ExtResource("2_j5hkm")
