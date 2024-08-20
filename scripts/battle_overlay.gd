@@ -29,6 +29,7 @@ func reset():
 	$attack.disabled = false
 	$heal.disabled = false
 	$defend.disabled = false
+	$level.text = 'Level ' + str(int(Global.level))
 
 func _on_attack_pressed():
 	emit_signal('attack')

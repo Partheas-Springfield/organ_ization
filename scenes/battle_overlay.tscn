@@ -46,6 +46,15 @@ offset_right = 1024.0
 offset_bottom = 608.0
 text = "End Round"
 
+[node name="level" type="RichTextLabel" parent="."]
+offset_left = 896.0
+offset_top = 96.0
+offset_right = 1016.0
+offset_bottom = 136.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+text = "Level 1"
+
 [connection signal="pressed" from="attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="defend" to="." method="_on_defend_pressed"]
 [connection signal="pressed" from="heal" to="." method="_on_heal_pressed"]
