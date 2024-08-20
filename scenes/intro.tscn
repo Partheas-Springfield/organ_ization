@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqklwy88vautq"]
+[gd_scene load_steps=8 format=3 uid="uid://bqklwy88vautq"]
 
 [ext_resource type="Script" path="res://scripts/intro.gd" id="1_n580y"]
 [ext_resource type="Texture2D" uid="uid://bvhca36jeug4u" path="res://sprites/Background2.png" id="2_3jagy"]
-[ext_resource type="AudioStream" uid="uid://bnetlwpljv43v" path="res://audio/comin_for_you_remix.wav" id="2_yy5an"]
 [ext_resource type="SpriteFrames" uid="uid://thfhxu1te58v" path="res://sprites/animations/portrait.tres" id="3_ihmc4"]
 [ext_resource type="Texture2D" uid="uid://bgusexkjhuheq" path="res://sprites/Background1.png" id="5_p8e6b"]
 [ext_resource type="PackedScene" uid="uid://dvs0nug5kbfdo" path="res://scenes/end.tscn" id="6_pyrab"]
@@ -12,9 +11,6 @@
 [node name="Intro" type="Node2D"]
 z_index = 1
 script = ExtResource("1_n580y")
-
-[node name="TitleMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_yy5an")
 
 [node name="LabSketch" type="Sprite2D" parent="."]
 position = Vector2(544, 320)
@@ -119,8 +115,6 @@ theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "[center]Click the microscope to begin!"
 
-[connection signal="finished" from="TitleMusic" to="." method="_on_title_music_finished"]
-[connection signal="tree_exiting" from="TitleMusic" to="." method="_on_title_music_tree_exiting"]
 [connection signal="button_down" from="Skip" to="." method="skip_down"]
 [connection signal="pressed" from="Skip" to="." method="skip_press"]
 [connection signal="pressed" from="Next" to="." method="_on_next_pressed"]

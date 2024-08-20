@@ -157,16 +157,16 @@ func get_organelle_from_icon_path(path):
 
 #region Intro
 const intro_speaker = [
-	"Shelly",
-	"Vicky",
-	"Shelly",
-	"Vicky",
-	"Inga",
-	"Vicky",
-	"Shelly",
+	"CEO Shelly",
+	"Dr. Vicky",
+	"CEO Shelly",
+	"Dr. Vicky",
 	"Inga",
 	"Dr. Vicky",
-	"Shelly",
+	"CEO Shelly",
+	"Inga",
+	"Dr. Vicky",
+	"CEO Shelly",
 	"Inga",
 	"CEO Shelly",
 ]
@@ -187,16 +187,16 @@ const intro_text = [
 #endregion
 #region First Build Text
 const build_speaker = [
-	"Vicky",
+	"Dr. Vicky",
 	"Inga",
-	"Vicky",
+	"Dr. Vicky",
 	"Inga",
-	"Vicky",
+	"Dr. Vicky",
 	"Inga",
-	"Vicky",
+	"Dr. Vicky",
 	"Inga",
 	"Inga",
-	"Vicky",
+	"Dr. Vicky",
 	"Inga",
 ]
 const build_text = [
@@ -215,9 +215,9 @@ const build_text = [
 #endregion
 #region Post First Build Phase
 const post_build_speaker = [
-	"Vicky",
+	"Dr. Vicky",
 	"Inga",
-	"Vicky",
+	"Dr. Vicky",
 	"Inga",
 	#"Card",
 	#"Scene",
@@ -250,11 +250,11 @@ const battle_text = [
 #endregion
 #region Post First Battle Phase
 const post_battle_speaker = [
-	"Vicky",
+	"Dr. Vicky",
 	"Inga",
-	"Vicky",
+	"Dr. Vicky",
 	"Inga",
-	"Vicky",
+	"Dr. Vicky",
 ]
 
 const post_battle_text = [
@@ -268,11 +268,11 @@ const post_battle_text = [
 #region Win
 const win_speaker = [
 	#"Scene",
-	"Vicky",
+	"Dr. Vicky",
 	"Inga",
-	"Vicky",
+	"Dr. Vicky",
 	"Inga",
-	"Vicky",
+	"Dr. Vicky",
 	#"Scene",
 	#"Scene",
 	#"Scene",
@@ -300,9 +300,9 @@ const win_text = [
 #region Loss
 const loss_speaker = [
 	#"Scene",
-	"Vicky",
+	"Dr. Vicky",
 	"Inga",
-	"Vicky",
+	"Dr. Vicky",
 	"Inga"
 ]
 const loss_text = [
