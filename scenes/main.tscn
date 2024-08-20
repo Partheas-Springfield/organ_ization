@@ -379,6 +379,8 @@ z_index = 1000
 [connection signal="pressed" from="info_bar/menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="build_overlay/expand_cell" to="." method="_on_expand_cell_pressed"]
 [connection signal="pressed" from="build_overlay/shrink_cell" to="." method="_on_shrink_cell_pressed"]
+[connection signal="add_to_next" from="build_overlay/organelle_bank" to="." method="_on_organelle_bank_add_to_next"]
+[connection signal="slot_pressed" from="build_overlay/organelle_bank" to="." method="_on_organelle_bank_slot_pressed"]
 [connection signal="focus_entered" from="build_overlay/waste_button" to="." method="_on_waste_button_focus_entered"]
 [connection signal="focus_exited" from="build_overlay/waste_button" to="." method="_on_waste_button_focus_exited"]
 [connection signal="mouse_entered" from="build_overlay/waste_button" to="." method="_on_waste_button_mouse_entered"]

@@ -7,6 +7,8 @@ var volume_scale = 2
 var music_save = 0.0
 var track_save = "title"
 
+var temp_slot = -1
+var temp_organelle = null
 var stats = [0,5,0,0,0,0]
 var held_organelle = null
 var held_organelle_hp = null
