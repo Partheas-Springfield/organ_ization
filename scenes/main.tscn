@@ -1,12 +1,15 @@
-[gd_scene load_steps=30 format=4 uid="uid://dw3dg4mra64he"]
+[gd_scene load_steps=33 format=4 uid="uid://dw3dg4mra64he"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0ns07"]
 [ext_resource type="Texture2D" uid="uid://bvhca36jeug4u" path="res://sprites/Background2.png" id="2_cu64w"]
 [ext_resource type="Texture2D" uid="uid://bawt0bs4dsmiv" path="res://sprites/cell_on_petri1.png" id="2_gce5q"]
 [ext_resource type="Texture2D" uid="uid://c6gc1lwgyubeu" path="res://sprites/petri_dish.png" id="2_s4grk"]
 [ext_resource type="Texture2D" uid="uid://ccfsgkb7l17bl" path="res://sprites/cell_on_petri2.png" id="3_lecxp"]
+[ext_resource type="AudioStream" uid="uid://bnetlwpljv43v" path="res://audio/comin_for_you_remix.wav" id="3_ybq1t"]
+[ext_resource type="AudioStream" uid="uid://b7hscawhcavfw" path="res://audio/build_theme_slowcut.mp3" id="4_j4fvx"]
 [ext_resource type="Texture2D" uid="uid://caeci6rig2f7b" path="res://sprites/organelles1.png" id="4_pxque"]
 [ext_resource type="Texture2D" uid="uid://c7u34cu06m3vr" path="res://sprites/virus_attack_icon.png" id="5_28eru"]
+[ext_resource type="AudioStream" uid="uid://dqtvpaqfoaxdu" path="res://audio/battle_theme_cut.mp3" id="5_fc45n"]
 [ext_resource type="Texture2D" uid="uid://esywlbyso7tf" path="res://sprites/organelles2.png" id="5_g1qlk"]
 [ext_resource type="Texture2D" uid="uid://dgnuwm64d5sco" path="res://sprites/biohazard1.png" id="8_napfp"]
 [ext_resource type="Texture2D" uid="uid://dbwxw5kthm7bb" path="res://sprites/biohazard3.png" id="9_jttll"]
@@ -214,7 +217,17 @@ script = ExtResource("1_0ns07")
 [node name="MusicPlayer" type="Node" parent="."]
 
 [node name="music" type="AudioStreamPlayer2D" parent="MusicPlayer"]
+visible = false
 stream = ExtResource("19_wlmde")
+
+[node name="TitleMusic" type="AudioStreamPlayer" parent="MusicPlayer"]
+stream = ExtResource("3_ybq1t")
+
+[node name="BuildTheme" type="AudioStreamPlayer" parent="MusicPlayer"]
+stream = ExtResource("4_j4fvx")
+
+[node name="BattleTheme" type="AudioStreamPlayer" parent="MusicPlayer"]
+stream = ExtResource("5_fc45n")
 
 [node name="background" type="Sprite2D" parent="."]
 position = Vector2(544, 320)
@@ -352,6 +365,9 @@ focus_send = NodePath("../build_overlay/expand_cell")
 visible = false
 z_index = 1000
 
+[connection signal="finished" from="MusicPlayer/TitleMusic" to="." method="_on_title_music_finished"]
+[connection signal="finished" from="MusicPlayer/BuildTheme" to="." method="_on_build_theme_finished"]
+[connection signal="finished" from="MusicPlayer/BattleTheme" to="." method="_on_battle_theme_finished"]
 [connection signal="attack" from="battle_overlay" to="." method="_on_battle_overlay_attack"]
 [connection signal="defend" from="battle_overlay" to="." method="_on_battle_overlay_defend"]
 [connection signal="end_turn" from="battle_overlay" to="." method="_on_battle_overlay_end_turn"]

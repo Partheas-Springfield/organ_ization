@@ -35,5 +35,8 @@ func switch(state = "win"):
 
 
 func _on_title_pressed():
-	get_tree().change_scene_to_file('res://scenes/title.tscn')
 	Global.level=0
+	if $Victory.playing:
+		Global.track_save="C4Y"
+		Global.music_save=$Victory.get_playback_position()
+	get_tree().change_scene_to_file('res://scenes/title.tscn')

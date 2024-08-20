@@ -4,6 +4,8 @@ var master_volume = 1
 var music_volume = .5
 var effects_volume = .5
 var volume_scale = 2
+var music_save = 0.0
+var track_save = "title"
 
 var stats = [0,5,0,0,0,0]
 var held_organelle = null

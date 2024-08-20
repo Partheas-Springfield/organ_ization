@@ -17,6 +17,8 @@ var target_tiles = []
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
+	_play_music("title", Global.music_save)
+	Global.music_save=0.0
 	for player in $MusicPlayer.get_children(): player.volume_db=Global.music_volume
 	for xi in range(2,7):
 		for yi in range(1,6):
@@ -43,7 +45,6 @@ func _ready():
 	calculate_stats()
 
 func _process(_delta):
-	print(Global.level)
 	if Global.held_organelle != null:
 		$build_overlay/organelle_tips.text = Global.get_organelle_info(Global.held_organelle)
 	if mode in ['attack','defend','battle','heal']:
@@ -89,9 +90,11 @@ func _organelle_death(tile):
 		_remove_organelle(tile)
 
 func _game_over():
+	_play_music()
 	$cutscenes.start(3)
 
 func _victory():
+	_play_music()
 	$cutscenes.start(4)
 
 func _get_targets(num = 3):
@@ -114,11 +117,13 @@ func _to_phase(phase):
 		mode = 'move'
 		battle_overlay.hide()
 		$build_overlay.show()
+		_play_music("build")
 	elif phase == 'battle':
 		Global.level += 1
 		battle_overlay.reset()
 		battle_overlay.show()
 		$build_overlay.hide()
+		_play_music("battle")
 		_start_round()
 
 func _start_round():
@@ -363,7 +368,9 @@ func _on_select_button_pressed():
 	info_bar._update_display()
 	var new_organelle = $reward_screen.selected()
 	$build_overlay/organelle_bank.add_to_next_slot(new_organelle)
-	if $cutscenes.scene==2:$cutscenes.start()
+	if $cutscenes.scene==2:
+		$cutscenes.start()
+		_play_music("title")
 	else:_to_phase('build')
 #endregion
 
@@ -379,6 +386,7 @@ func _on_cutscenes_hidden():
 		1: # After intro; entering build phase for the first time
 			$build_overlay/mini_cutscene.show()
 			$build_overlay/mini_cutscene.paused = false
+			_play_music("build")
 		2: # After first build phase; entering battle phase for the first time
 			mode = 'battle'
 			_to_phase('battle')
@@ -448,13 +456,14 @@ func _on_proceed_pressed():
 			$build_overlay/mini_cutscene.hide()
 			$cutscenes.show()
 			$cutscenes.start()
+			_play_music("title")
 		else:
 			mode = 'battle'
 			_to_phase('battle')
 
 func _on_battle_overlay_end_turn():
 	if battle_overlay.all_dead():
-		if Global.level>=10:
+		if Global.level>=1:
 			_victory()
 			pass
 		for t in game_tiles.get_children():
@@ -482,3 +491,17 @@ func _on_battle_overlay_attack():
 func _on_battle_overlay_heal():
 	if mode != 'heal':
 		mode = 'heal'
+
+func _play_music(track="stop", time=0.0):
+	for player in $MusicPlayer.get_children():player.stop()
+	match track:
+		"build":$MusicPlayer/BuildTheme.play(time)
+		"battle":$MusicPlayer/BattleTheme.play(time)
+		"title":$MusicPlayer/TitleMusic.play(time)
+		#"C4Y":$MusicPlayer/ComingForYou.play(time)
+func _on_title_music_finished():
+	$MusicPlayer/TitleMusic.play()
+func _on_build_theme_finished():
+	$MusicPlayer/BuildTheme.play()
+func _on_battle_theme_finished():
+	$MusicPlayer/BattleTheme.play()

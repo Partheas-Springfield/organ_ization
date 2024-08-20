@@ -47,9 +47,11 @@ func start(input=scene):
 		3: #loss
 			speaker_list=Global.loss_speaker
 			text_list=Global.loss_text
+			$TitleMusic.play()
 		4: #win
 			speaker_list=Global.win_speaker
 			text_list=Global.win_text
+			$TitleMusic.play()
 		_:pass
 	show()
 	$Nameplate.text=speaker_list[0]
@@ -91,8 +93,11 @@ func _advance():
 	paused=true
 	fade=fade_start
 	match scene:
-		4:$GameOverScreen.switch("loss")
-		5:$GameOverScreen.switch()
+		4:
+			$GameOverScreen.switch("loss")
+		5:
+			$TitleMusic.stop()
+			$GameOverScreen.switch()
 		_:
 			hide()
 			if Global.controller:focus_send.grab_focus()
@@ -113,3 +118,11 @@ func _input(event):
 		if event.as_text().contains("Mouse"):$BrightLab/Banner/MicroscopeLabel.text = "[center]Click the microscope to begin!"
 		elif event.as_text().contains("Joypad"):$BrightLab/Banner/MicroscopeLabel.text = "[center]Press \"A\" to begin!"
 		else: $BrightLab/Banner/MicroscopeLabel.text = "[center]Press \"space\" to begin!"
+
+
+func _on_title_music_finished():
+	$TitleMusic.play()
+
+
+func _on_title_music_tree_exiting():
+	if scene==4:Global.music_save=$TitleMusic.get_playback_position()
