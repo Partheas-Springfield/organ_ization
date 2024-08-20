@@ -49,7 +49,7 @@ func start(input=scene):
 			text_list=Global.loss_text
 		4: #win
 			speaker_list=Global.win_speaker
-			speaker_list=Global.win_text
+			text_list=Global.win_text
 		_:pass
 	show()
 	$Nameplate.text=speaker_list[0]
