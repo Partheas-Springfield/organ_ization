@@ -176,7 +176,7 @@ const intro_text = [
 	"*grunt*",
 	"Wait, who is this?",
 	"Oh that's just Inga, your new lab assistant!",
-	"*grunt* [Hello, nice to meet you, Dr. Fraulenstein]",
+	"*grunt* [Hello, nice to meet you, Dr. Fraulenstein.]",
 	"Oh, um, hello Inga, you can just call me Vicky. Is she... okay?",
 	"No, she's a grad student. She comes with the lab. In their semi-conscious caffeine fueled state they can pretty much only make grunting noises, but at least they don’t need money, sleep or rights. You can usually figure out what the grunts mean.",
 	"*grunt* [The inequities of our society can only be addressed by proletarian rule]",
@@ -201,7 +201,7 @@ const build_text = [
 	"Let's get started making a superimmune cell, Inga. Did you set up Crisp-st?",
 	"*grunt* [According to your specifications.]",
 	"Go ahead and show me your lab setup.",
-	"*grunt* [On the left, we have the empty proto-cell. On the right we have the cell building tools. Grow or shrink the cell with cytoplasm, then place organelles in the cell from the bank]",
+	"*grunt* [On the left, we have the empty proto-cell. On the right we have the cell building tools. Grow or shrink the cell with cytoplasm, then place organelles in the cell from the bank.]",
 	"Anything I do to the cell will affect the cell's abilities",
 	"*grunt* [You can see the resulting stats above]",
 	"If this cell is going to be superimmune, I'll need to pack as many useful organelles as I can into the smallest area of cytoplasm. I should start with the Nucleus, the cell won't function without it.",
@@ -240,9 +240,9 @@ const battle_speaker = [
 	"Cell",
 ]
 const battle_text = [
-	"Threats, Viruses.",
+	"Threats, Viruses. Their marks appear.",
 	"I sense them targeting my organelles",
-	"I must fight.",
+	"I must use my ATP to fight",
 	"Consume them and grow!",
 ]
 #endregion
@@ -306,7 +306,7 @@ const loss_speaker = [
 const loss_text = [
 	#"The lab, Vicky tearful, Inga comforting somewhat insincerely",
 	"Oh no! What happened?",
-	"*grunt* [Sorry, Vicky. It seems the specimen was too weak to survive the night. Perhaps we should consider a different use for Crisp-st]",
+	"*grunt* [Sorry, Vicky. It seems the specimen was too weak to survive the night. Perhaps we should consider a different use for Crisp-st.]",
 	"No, Inga. I’m more determined than ever now. Next time I will make a Cell that truly changes the world!",
 	"*grunt* [Then be here to contribute too.]",
 ]
