@@ -19,6 +19,7 @@ position = Vector2(544, 320)
 texture = ExtResource("3_gnqgk")
 
 [node name="Title_Cover" type="ColorRect" parent="."]
+visible = false
 offset_left = -24.0
 offset_top = 110.0
 offset_right = 1120.0
