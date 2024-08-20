@@ -43,7 +43,7 @@ func _ready():
 	calculate_stats()
 
 func _process(_delta):
-	print($cutscenes.is_visible_in_tree())
+	print(Global.level)
 	if Global.held_organelle != null:
 		$build_overlay/organelle_tips.text = Global.get_organelle_info(Global.held_organelle)
 	if mode in ['attack','defend','battle','heal']:
@@ -90,6 +90,9 @@ func _organelle_death(tile):
 
 func _game_over():
 	$cutscenes.start(3)
+
+func _victory():
+	$cutscenes.start(4)
 
 func _get_targets(num = 3):
 	var valid_targets = []
@@ -451,6 +454,9 @@ func _on_proceed_pressed():
 
 func _on_battle_overlay_end_turn():
 	if battle_overlay.all_dead():
+		if Global.level>=10:
+			_victory()
+			pass
 		for t in game_tiles.get_children():
 			t.reset_def_hp()
 		mode = 'reward'

@@ -33,6 +33,7 @@ func _on_disable_toggle_toggled(toggled):
 
 func _on_give_up_pressed():
 	get_tree().change_scene_to_file('res://scenes/title.tscn')
+	Global.level=0
 
 
 func _on_return_pressed():

@@ -36,3 +36,4 @@ func switch(state = "win"):
 
 func _on_title_pressed():
 	get_tree().change_scene_to_file('res://scenes/title.tscn')
+	Global.level=0
