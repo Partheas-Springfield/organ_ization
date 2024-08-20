@@ -12,7 +12,7 @@
 z_index = 1
 script = ExtResource("1_n580y")
 
-[node name="LabSketch" type="Sprite2D" parent="."]
+[node name="Lab" type="Sprite2D" parent="."]
 position = Vector2(544, 320)
 texture = ExtResource("2_3jagy")
 

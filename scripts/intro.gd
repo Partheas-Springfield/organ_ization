@@ -73,6 +73,25 @@ func _on_next_pressed():
 		fade = fade_start
 		$Nameplate.text = "[center]" + speaker_list[story_index]
 		$Portrait.play(speaker_list[story_index])
+		match $Nameplate.text:
+			"[center]Card":
+				$Nameplate.hide()
+				$Portrait.hide()
+				%Story.show()
+				$TempSplash.set_position(Vector2(8,392))
+				$TempSplash.set_size(Vector2(1072,216))
+			"[center]Scene":
+				$Nameplate.hide()
+				$Portrait.hide()
+				%Story.hide()
+				$TempSplash.set_position(Vector2(8,552))
+				$TempSplash.set_size(Vector2(1072,56))
+			_:
+				$Nameplate.show()
+				$Portrait.show()
+				%Story.show()
+				$TempSplash.set_position(Vector2(8,392))
+				$TempSplash.set_size(Vector2(1072,216))
 	elif scene==0:
 		$BrightLab.show()
 	else: _advance()
@@ -119,6 +138,11 @@ func _input(event):
 		elif event.as_text().contains("Joypad"):$BrightLab/Banner/MicroscopeLabel.text = "[center]Press \"A\" to begin!"
 		else: $BrightLab/Banner/MicroscopeLabel.text = "[center]Press \"space\" to begin!"
 
+func _adjust_background():
+	match scene:
+		1:
+			match story_index:
+				pass
 
 func _on_title_music_finished():
 	$TitleMusic.play()
