@@ -28,6 +28,7 @@ stream = ExtResource("2_j5hkm")
 parameters/looping = true
 
 [node name="TitleBox" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1088.0
@@ -191,7 +192,6 @@ popup/item_1/text = "Coming for You"
 popup/item_1/id = 1
 
 [node name="Instructions" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
@@ -209,16 +209,18 @@ text = "[center]Instructions[/center]"
 
 [node name="InstructionsPlaceholder" type="RichTextLabel" parent="Instructions"]
 layout_mode = 0
-offset_left = 288.0
-offset_top = 296.0
-offset_right = 800.0
-offset_bottom = 416.0
+offset_left = 88.0
+offset_top = 240.0
+offset_right = 1000.0
+offset_bottom = 464.0
+theme_override_constants/line_separation = 19
 bbcode_enabled = true
-text = "[center]Press Start
-Pass Go
-Do NOT Collect $200
-???
-Fail to Profit[/center]"
+text = "[center]The game alternates between a \"build phase\" and a \"combat phase.\"
+You begin the game with a cell with two organelles, including a nucleus.
+During the build phase, you can adjust the size of your cell and add organelles that you have in your ogranelle bank.
+During the combat phase, you can attack enemy viruses, defend organelles that are under attack, or heal damaged organelles.
+When you defeat all viruses, a reward screen comes up where you can select a new organelle as a reward.
+A copy will be added to your organelle bank, and the game will return to the build phase to prepare for a new combat."
 
 [node name="Back" type="Button" parent="Instructions"]
 layout_mode = 0
