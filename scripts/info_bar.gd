@@ -62,6 +62,7 @@ func duo_activation():
 
 func restore_atp():
 	current_atp = get_max_atp()
+	_update_display()
 
 func get_max_atp():
 	return 300+atp_adjustment
