@@ -123,11 +123,11 @@ func _advance():
 		_:
 			hide()
 			if Global.controller:focus_send.grab_focus()
-
+"""
 func _input(event):
 	if !is_visible_in_tree()||$GameOverScreen.is_visible_in_tree():pass
 	elif Global.controller:
-		if event.as_text().contains("Mouse"):
+		if event.as_text().contains("Mouse")&&!Global.force_controller:
 			Global.controller = false
 			get_viewport().gui_release_focus()
 	else:
@@ -140,6 +140,7 @@ func _input(event):
 		if event.as_text().contains("Mouse"):$BrightLab/Banner/MicroscopeLabel.text = "[center]Click the microscope to begin!"
 		elif event.as_text().contains("Joypad"):$BrightLab/Banner/MicroscopeLabel.text = "[center]Press \"A\" to begin!"
 		else: $BrightLab/Banner/MicroscopeLabel.text = "[center]Press \"space\" to begin!"
+"""
 
 func _adjust_background():
 	match scene:
