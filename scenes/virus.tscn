@@ -105,6 +105,7 @@ text = "Sneaky Virus"
 flat = true
 
 [node name="Button" type="Button" parent="virus_name"]
+layout_mode = 0
 offset_left = 24.0
 offset_top = -144.0
 offset_right = 88.0

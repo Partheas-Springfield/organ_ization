@@ -1,20 +1,74 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqklwy88vautq"]
+[gd_scene load_steps=16 format=3 uid="uid://bqklwy88vautq"]
 
 [ext_resource type="Script" path="res://scripts/intro.gd" id="1_n580y"]
 [ext_resource type="Texture2D" uid="uid://bvhca36jeug4u" path="res://sprites/Background2.png" id="2_3jagy"]
+[ext_resource type="AudioStream" uid="uid://bnetlwpljv43v" path="res://audio/comin_for_you_remix.wav" id="2_yy5an"]
 [ext_resource type="SpriteFrames" uid="uid://thfhxu1te58v" path="res://sprites/animations/portrait.tres" id="3_ihmc4"]
+[ext_resource type="Texture2D" uid="uid://c75a3k8hqloie" path="res://sprites/Background3.png" id="4_7eqrr"]
 [ext_resource type="Texture2D" uid="uid://bgusexkjhuheq" path="res://sprites/Background1.png" id="5_p8e6b"]
+[ext_resource type="Texture2D" uid="uid://b0a7msb54nsee" path="res://sprites/inga_above1.png" id="5_yiub7"]
+[ext_resource type="Texture2D" uid="uid://y76p1al51dii" path="res://sprites/inga_above6.png" id="6_oakv1"]
 [ext_resource type="PackedScene" uid="uid://dvs0nug5kbfdo" path="res://scenes/end.tscn" id="6_pyrab"]
+[ext_resource type="Texture2D" uid="uid://be7hdpqk0qvvp" path="res://sprites/CBSign2.png" id="7_ncqq2"]
 [ext_resource type="Texture2D" uid="uid://16wubiwqfww6" path="res://sprites/microscope.png" id="8_7nn7j"]
+[ext_resource type="Texture2D" uid="uid://dlf532b0w2oqp" path="res://sprites/inga_above3.png" id="8_dolr7"]
+[ext_resource type="Texture2D" uid="uid://bciini3wmhr3a" path="res://sprites/inga_above4.png" id="9_djxw7"]
 [ext_resource type="Texture2D" uid="uid://b33f3e3c5darj" path="res://sprites/microscope2.png" id="9_m7gdw"]
+[ext_resource type="Texture2D" uid="uid://c1w4xtjpvcs1m" path="res://sprites/inga_above5.png" id="10_cu7hd"]
 
 [node name="Intro" type="Node2D"]
 z_index = 1
 script = ExtResource("1_n580y")
 
+[node name="TitleMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_yy5an")
+
 [node name="LabSketch" type="Sprite2D" parent="."]
 position = Vector2(544, 320)
 texture = ExtResource("2_3jagy")
+
+[node name="Backgrounds" type="Node2D" parent="."]
+
+[node name="Lab_Night" type="Sprite2D" parent="Backgrounds"]
+visible = false
+position = Vector2(544, 320)
+texture = ExtResource("4_7eqrr")
+
+[node name="Inga_Looming" type="Sprite2D" parent="Backgrounds"]
+visible = false
+position = Vector2(544, 320)
+scale = Vector2(1.41667, 1.25)
+texture = ExtResource("5_yiub7")
+
+[node name="BrokenGlass" type="Sprite2D" parent="Backgrounds"]
+visible = false
+position = Vector2(544, 320)
+scale = Vector2(1.41667, 1.25)
+texture = ExtResource("6_oakv1")
+
+[node name="CBSign" type="Sprite2D" parent="Backgrounds"]
+visible = false
+position = Vector2(544, 320)
+scale = Vector2(1.00741, 1)
+texture = ExtResource("7_ncqq2")
+
+[node name="LookingUp" type="Sprite2D" parent="Backgrounds"]
+visible = false
+position = Vector2(544, 320)
+scale = Vector2(1.41667, 1.25)
+texture = ExtResource("8_dolr7")
+
+[node name="GooLine" type="Sprite2D" parent="Backgrounds"]
+visible = false
+position = Vector2(544, 320)
+scale = Vector2(1.41667, 1.25)
+texture = ExtResource("9_djxw7")
+
+[node name="VickyCrying" type="Sprite2D" parent="Backgrounds"]
+visible = false
+position = Vector2(544, 320)
+scale = Vector2(1.41667, 1.25)
+texture = ExtResource("10_cu7hd")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 8.0

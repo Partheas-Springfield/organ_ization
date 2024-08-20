@@ -466,7 +466,7 @@ func _on_proceed_pressed():
 
 func _on_battle_overlay_end_turn():
 	if battle_overlay.all_dead():
-		if Global.level>=1:
+		if Global.level>=6:
 			_victory()
 			pass
 		for t in game_tiles.get_children():
