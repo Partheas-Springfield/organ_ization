@@ -15,6 +15,10 @@ script = ExtResource("1_4sxmw")
 position = Vector2(544, 32)
 texture = ExtResource("2_ofjoe")
 
+[node name="menu_button_icon" type="Sprite2D" parent="."]
+position = Vector2(1462, 32)
+texture = ExtResource("2_ofjoe")
+
 [node name="atk_icon" type="Button" parent="."]
 offset_left = 48.0
 offset_top = 8.0
@@ -63,4 +67,13 @@ offset_bottom = 56.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "300/300 (-0)"
 icon = ExtResource("4_io4de")
+flat = true
+
+[node name="menu" type="Button" parent="."]
+offset_left = 961.0
+offset_top = 11.0
+offset_right = 1067.0
+offset_bottom = 53.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Menu"
 flat = true
