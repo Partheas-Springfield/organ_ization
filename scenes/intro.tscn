@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqklwy88vautq"]
+[gd_scene load_steps=9 format=3 uid="uid://bqklwy88vautq"]
 
 [ext_resource type="Script" path="res://scripts/intro.gd" id="1_n580y"]
 [ext_resource type="Texture2D" uid="uid://bvhca36jeug4u" path="res://sprites/Background2.png" id="2_3jagy"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://crq8fgppkg5er" path="res://sprites/shelly1.png" id="4_qedjd"]
 [ext_resource type="Texture2D" uid="uid://dq05lwj84a6pa" path="res://sprites/vicky.png" id="5_fc0y1"]
 [ext_resource type="PackedScene" uid="uid://dvs0nug5kbfdo" path="res://scenes/end.tscn" id="6_pyrab"]
+[ext_resource type="Texture2D" uid="uid://d3uptre1rkxlx" path="res://sprites/Background.png" id="7_sunkn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hntuh"]
 animations = [{
@@ -102,6 +103,36 @@ text = "Next"
 [node name="GameOverScreen" parent="." instance=ExtResource("6_pyrab")]
 visible = false
 
+[node name="BrightLab" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(544, 320)
+texture = ExtResource("7_sunkn")
+
+[node name="Microscope" type="Button" parent="BrightLab"]
+offset_left = -224.0
+offset_top = -32.0
+offset_right = -48.0
+offset_bottom = 160.0
+
+[node name="Banner" type="ColorRect" parent="BrightLab"]
+offset_left = -168.0
+offset_top = 208.0
+offset_right = 168.0
+offset_bottom = 256.0
+color = Color(0, 0, 0, 0.588235)
+metadata/_edit_group_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BrightLab/Banner"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 13.0
+offset_right = 328.0
+offset_bottom = 48.0
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[center]Use the microscope to begin!"
+
 [connection signal="button_down" from="Skip" to="." method="skip_down"]
 [connection signal="pressed" from="Skip" to="." method="skip_press"]
 [connection signal="pressed" from="Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="BrightLab/Microscope" to="." method="_on_microscope_pressed"]

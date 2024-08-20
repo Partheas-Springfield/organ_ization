@@ -38,7 +38,8 @@ func start():
 	show()
 
 func skip_press():
-	_advance()
+	#_advance()
+	$BrightLab.show()
 
 func skip_down():
 	%Skip.text = ":("
@@ -50,7 +51,12 @@ func _on_next_pressed():
 		fade = fade_start
 		$Nameplate.text = "[center]" + speaker_list[story_index]
 		$Portrait.play(speaker_list[story_index])
+	elif scene==0:$BrightLab.show()
 	else: _advance()
+	
+func _on_microscope_pressed():
+	$BrightLab.hide()
+	_advance()
 		
 
 func _advance():
