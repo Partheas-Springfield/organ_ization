@@ -7,6 +7,7 @@ extends Node2D
 @onready var info_bar = $info_bar
 @onready var battle_overlay = $battle_overlay
 @onready var reward_screen = $reward_screen
+@onready var organelle_bank = $build_overlay/organelle_bank
 
 var mode = null
 var active_tile = null
@@ -47,6 +48,7 @@ func _ready():
 		v.virus_unhighlight.connect(_virus_unhighlight.bind(v))
 	if Global.controller: $cutscenes/Next.grab_focus()
 	calculate_stats()
+	organelle_bank.setup()
 
 func _process(_delta):
 	if Global.held_organelle != null:
@@ -508,3 +510,32 @@ func _on_build_theme_finished():
 	$MusicPlayer/BuildTheme.play()
 func _on_battle_theme_finished():
 	$MusicPlayer/BattleTheme.play()
+
+
+func _on_organelle_bank_add_to_next():
+	if organelle_bank.get_next_slot() != null:
+		var slot_num = organelle_bank.get_slot_num(organelle_bank.get_next_slot())
+		organelle_bank.get_next_slot().set_button_icon(Global.load_image(Global.temp_organelle))
+		organelle_bank.organelle_array[slot_num] = Global.temp_organelle
+
+
+func _on_organelle_bank_slot_pressed():
+	var slot = organelle_bank.get_slot(Global.temp_slot)
+	if slot.get_button_icon() == null:
+		if Global.held_organelle != null:
+			slot.set_button_icon(Global.load_image(Global.held_organelle))
+			organelle_bank.organelle_array[organelle_bank.get_slot_num(slot)] = Global.held_organelle
+			Global.held_organelle = null
+	elif Global.held_organelle == null:
+		var to_return = organelle_bank.organelle_array[organelle_bank.get_slot_num(slot)]
+		slot.set_button_icon(null)
+		organelle_bank.organelle_array[organelle_bank.get_slot_num(slot)] = ''
+		Global.held_organelle = to_return
+	else:
+		var temp = Global.held_organelle
+		var to_return = organelle_bank.organelle_array[organelle_bank.get_slot_num(slot)]
+		slot.set_button_icon(null)
+		organelle_bank.organelle_array[organelle_bank.get_slot_num(slot)] = ''
+		Global.held_organelle = to_return
+		slot.set_button_icon(Global.load_image(temp))
+		organelle_bank.organelle_array[organelle_bank.get_slot_num(slot)] = temp
