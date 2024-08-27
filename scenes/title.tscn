@@ -309,9 +309,9 @@ text = "[center]Credits[/center]"
 
 [node name="Credits" type="RichTextLabel" parent="Credits"]
 layout_mode = 0
-offset_top = 256.0
+offset_top = 248.0
 offset_right = 1088.0
-offset_bottom = 440.0
+offset_bottom = 445.0
 theme_override_constants/line_separation = 4
 bbcode_enabled = true
 text = "[center]Project Lead: Anneke van Renesse

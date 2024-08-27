@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dgnuwm64d5sco" path="res://sprites/biohazard1.png" id="8_napfp"]
 [ext_resource type="Texture2D" uid="uid://dbwxw5kthm7bb" path="res://sprites/biohazard3.png" id="9_jttll"]
 [ext_resource type="Texture2D" uid="uid://b0ageon1wfi4" path="res://sprites/biohazard2.png" id="9_q44p0"]
-[ext_resource type="PackedScene" path="res://scenes/tiny_cutscene.tscn" id="10_e51co"]
+[ext_resource type="PackedScene" uid="uid://drl1ovjwyav6l" path="res://scenes/tiny_cutscene.tscn" id="10_e51co"]
 [ext_resource type="Texture2D" uid="uid://dlkdpblknun62" path="res://sprites/biohazard4.png" id="10_qsexh"]
 [ext_resource type="PackedScene" uid="uid://cqyknuexrg1pf" path="res://scenes/reward.tscn" id="12_jh65c"]
 [ext_resource type="PackedScene" uid="uid://c12rg84b7fh8n" path="res://scenes/battle_overlay.tscn" id="13_75scg"]

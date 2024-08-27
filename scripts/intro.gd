@@ -9,6 +9,7 @@ var fade_rate = 40
 var story_index = 0
 var speaker_list
 var text_list
+var music_duration=0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,6 +22,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	music_duration+=delta
 	if !paused:
 		fade += delta*fade_rate
 		%Story.text = "[fade start=" + str(fade) + " length=1]" + text_list[story_index]
@@ -49,14 +51,25 @@ func start(input=scene):
 			speaker_list=Global.loss_speaker
 			text_list=Global.loss_text
 			$TitleMusic.play()
+			music_duration=0.0
 		4: #win
 			speaker_list=Global.win_speaker
 			text_list=Global.win_text
 			$TitleMusic.play()
+			music_duration=0.0
 		_:pass
 	show()
-	$Nameplate.text=speaker_list[0]
-	$Portrait.play(speaker_list[story_index])
+	$Nameplate.text="[center]"+speaker_list[0]
+	if $Nameplate.text=="[center]Card"||$Nameplate.text=="[center]Scene":
+		$Nameplate.hide()
+		$Portrait.hide()
+	else: 
+		$Portrait.play(speaker_list[story_index])
+		$Nameplate.show()
+		$Portrait.show()
+		%Story.show()
+		$TempSplash.show()
+		$ColorRect.show()
 	paused=false
 
 func skip_press():
@@ -79,21 +92,27 @@ func _on_next_pressed():
 				$Nameplate.hide()
 				$Portrait.hide()
 				%Story.show()
-				$TempSplash.set_position(Vector2(8,392))
-				$TempSplash.set_size(Vector2(1072,216))
+				#$TempSplash.set_position(Vector2(8,392))
+				#$TempSplash.set_size(Vector2(1072,216))
+				$TempSplash.show()
+				$ColorRect.show()
 			"[center]Scene":
 				fade=1000
 				$Nameplate.hide()
 				$Portrait.hide()
 				%Story.hide()
-				$TempSplash.set_position(Vector2(8,552))
-				$TempSplash.set_size(Vector2(1072,56))
+				#$TempSplash.set_position(Vector2(8,552))
+				#$TempSplash.set_size(Vector2(1072,56))
+				$TempSplash.hide()
+				$ColorRect.hide()
 			_:
 				$Nameplate.show()
 				$Portrait.show()
 				%Story.show()
-				$TempSplash.set_position(Vector2(8,392))
-				$TempSplash.set_size(Vector2(1072,216))
+				#$TempSplash.set_position(Vector2(8,392))
+				#$TempSplash.set_size(Vector2(1072,216))
+				$TempSplash.show()
+				$ColorRect.show()
 		_adjust_background()
 	elif scene==0:
 		$BrightLab.show()
@@ -153,7 +172,7 @@ func _adjust_background():
 					$Backgrounds/Lab_Night.hide()
 					$Backgrounds/Inga_Looming.show()
 				6:
-					$Nameplate.text="Inga"
+					$Nameplate.text="[center]Inga"
 					$Nameplate.show()
 		2:$Backgrounds/Inga_Looming.hide()
 		3:# Loss
@@ -181,7 +200,8 @@ func _adjust_background():
 
 func _on_title_music_finished():
 	$TitleMusic.play()
+	music_duration=0.0
 
 
 func _on_title_music_tree_exiting():
-	if scene==4:Global.music_save=$TitleMusic.get_playback_position()
+	if scene==4:Global.music_save=music_duration

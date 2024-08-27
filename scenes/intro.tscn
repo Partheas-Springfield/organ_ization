@@ -142,22 +142,23 @@ text = "Story text goes here."
 [node name="Skip" type="Button" parent="."]
 unique_name_in_owner = true
 offset_left = 960.0
-offset_top = 568.0
+offset_top = 564.0
 offset_right = 1056.0
-offset_bottom = 599.0
+offset_bottom = 595.0
 focus_neighbor_left = NodePath("../Next")
 text = "Skip Scene"
 
 [node name="Next" type="Button" parent="."]
 offset_left = 864.0
-offset_top = 568.0
+offset_top = 564.0
 offset_right = 944.0
-offset_bottom = 600.0
+offset_bottom = 596.0
 focus_neighbor_right = NodePath("../Skip")
 text = "Next"
 
-[node name="GameOverScreen" parent="." instance=ExtResource("6_pyrab")]
+[node name="GameOverScreen" parent="." node_paths=PackedStringArray("music") instance=ExtResource("6_pyrab")]
 visible = false
+music = NodePath("../TitleMusic")
 
 [node name="BrightLab" type="Sprite2D" parent="."]
 visible = false

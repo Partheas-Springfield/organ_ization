@@ -14,6 +14,7 @@ var held_organelle = null
 var held_organelle_hp = null
 var battle_won = false
 var level = 0.
+var victory = 6 ##Win after beating this round
 
 var controller = false
 var force_controller = false
@@ -182,7 +183,7 @@ const intro_text = [
 	"Oh that's just Inga, your new lab assistant!",
 	"*grunt* [Hello, nice to meet you, Dr. Fraulenstein.]",
 	"Oh, um, hello Inga, you can just call me Vicky. Is she... okay?",
-	"No, she's a grad student. She comes with the lab. In their semi-conscious caffeine fueled state they can pretty much only make grunting noises, but at least they don’t need money, sleep or rights. You can usually figure out what the grunts mean.",
+	"No, she's a grad student. She comes with the lab. In their semi-conscious caffeine fueled state they can pretty much only make grunting noises, but at least they don't need money, sleep or rights. You can usually figure out what the grunts mean.",
 	"*grunt* [The inequities of our society can only be addressed by proletarian rule]",
 	"Didn't quite catch that one. Anyway, good luck!",
 ]
@@ -233,7 +234,7 @@ const post_build_text = [
 	"*grunt* [Will do. I will see you tomorrow.]",
 	"That Evening", #Night time lab scene
 	"Cell POV, inga backlit, looming sinister", #Art
-	"So, this is the cell that Vicky is so excited about becoming superimmune? You don’t look so tough. Let's see if you can survive this.",
+	"So, this is the cell that Vicky is so excited about becoming superimmune? You don't look so tough. Let's see if you can survive this.",
 ]
 #endregion
 #region First Battle Text
@@ -290,7 +291,7 @@ const win_text = [
 	"Wow, this cell is so powerful now, I'm not sure anything could kill it, Inga!",
 	"Yes, I was hoping to quietly eliminate it before this point.",
 	"Wait, what? You can talk? Also you were plotting to destroy the specimen?",
-	"Your work is too powerful to be left in the hands of this company. Now that it’s come to this, I'll just have to steal it!",
+	"Your work is too powerful to be left in the hands of this company. Now that it's come to this, I'll just have to steal it!",
 	"No! You can't!",
 	"Struggle in the lab, the petri dish slips and breaks by the open door.", #dish break art
 	"Containment Breach sign lights up", #art

@@ -1,6 +1,7 @@
 extends Node2D
 
 var last_box = null
+var music_duration = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,8 +13,11 @@ func _ready():
 	Global.track_save="title"
 	Global.music_save=0.0
 	
+func _process(delta):
+	music_duration+=delta
+	
 func on_start():
-	if$MusicPlayer/TitleMusic.playing:Global.music_save = $MusicPlayer/TitleMusic.get_playback_position()
+	if$MusicPlayer/TitleMusic.playing:Global.music_save = music_duration#$MusicPlayer/TitleMusic.get_playback_position()
 	get_tree().change_scene_to_file('res://scenes/main.tscn')
 
 
@@ -67,6 +71,7 @@ func _on_music_select_item_selected(index):
 		1:$MusicPlayer/BuildTheme.play()
 		2:$MusicPlayer/BattleTheme.play()
 		3:$MusicPlayer/ComingForYou.play()
+	music_duration=0.0
 		
 func _on_disable_toggle_toggled(toggled):
 	Global.force_controller=toggled
@@ -75,7 +80,9 @@ func _on_disable_toggle_toggled(toggled):
 		false:$Settings/DisableToggle.text = "Auto"
 #endregion
 
-
+#func _input(event):
+	#$Credits/InputDisplay.text+=(event.as_text()+"\n")
+"""
 func _input(event):
 	if Global.controller:
 		if event.as_text().contains("Mouse")&&!Global.force_controller:
@@ -92,7 +99,7 @@ func _input(event):
 				elif $Credits.is_visible_in_tree():$Credits/Back.grab_focus()
 				else:$Start.grab_focus()
 			get_viewport().set_input_as_handled()
-
+"""
 
 func _play_music(track="stop", time=0.0):
 	for player in $MusicPlayer.get_children():player.stop()

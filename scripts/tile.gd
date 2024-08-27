@@ -155,8 +155,11 @@ func deselected():
 	selection.hide()
 
 func _unhandled_input(event):
-	if hovered and Input.is_action_just_pressed('select'):
+	if hovered and (Input.is_action_just_pressed('select')):
 		emit_signal('tile_clicked')
+
+func _input(event):
+	if hovered and event.as_text().contains("released"):emit_signal('tile_clicked')
 
 func set_organelle_stats(new_organelle):
 	if organelle == null:
@@ -179,3 +182,4 @@ func _on_target_button_mouse_entered():
 func _on_target_button_mouse_exited():
 	emit_signal('target_unhighlight')
 	highlight(false)
+	
